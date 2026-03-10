@@ -1,34 +1,74 @@
-# PACDI Global - Onur ve Analiz Motoru v1.0
+# =================================================================
+# PROJE: PACDI GLOBAL - BÜTÜNLEŞİK ÇEKİRDEK SİSTEM (v2.0)
+# İÇERİK: Kariyer Analizi, Refah Katsayısı, Takvim Yaprağı, PDF Motoru
+# =================================================================
+
 import datetime
+import json
 
-class PACDIMotor:
-    def __init__(self, ulke, hedef_kitle):
-        self.ulke = ulke
-        self.hedef_kitle = hedef_kitle # "Genç" veya "Kıdemli"
-        self.asgari_ucret = 2100 if ulke == "DE" else 17002 # Örn: Euro ve TL
+class PACDIGlobal:
+    def __init__(self, bolge, hedef_kitle, kullanıcı_adı):
+        self.bolge = bolge  # "TR" veya "EU"
+        self.hedef_kitle = hedef_kitle  # "Genç" veya "Kıdemli"
+        self.kullanıcı_adı = kullanıcı_adı
         
-    def refah_analizi_yap(self, puan, potansiyel_maas):
-        """Gençler için (PusulaPro) Kariyer ve Refah Hesabı"""
-        katsayi = potansiyel_maas / self.asgari_ucret
-        refah_durumu = "Yüksek" if katsayi > 3 else "Standart"
-        return f"Refah Katsayınız: {katsayi:.2f} ({refah_durumu} Yaşam Standartı)"
+        # Dinamik Veri Kaynakları
+        self.ekonomi = {
+            "TR": {"birim": "TL", "asgari_ucret": 17002, "pro_bedel": "149 TL", "vip_bedel": "499 TL"},
+            "EU": {"birim": "€", "asgari_ucret": 2100, "pro_bedel": "9.90 €", "vip_bedel": "44.90 €"}
+        }
 
-    def gunun_pusulasi_getir(self):
-        """Tüm kullanıcılar için takvim yaprağı mesajı"""
-        mesajlar = [
-            "Sevginin dili evrenseldir, maya sağlamsa yol onurdur.",
-            "Kendi yolunu çizen, rüzgarın yönüne takılmaz.",
-            "En büyük nimet, bir gönülde hatır sormaktır."
-        ]
-        # Her güne farklı bir mesaj (Basit simülasyon)
-        gun = datetime.datetime.now().day % len(mesajlar)
-        return f"🧭 Bugünün Pusulası: {mesajlar[gun]}"
+    def gunun_pusulasi_motoru(self):
+        """Karma Deneyim: Görsel, İşitsel ve Metinsel Tetikleyici"""
+        takvim_verisi = {
+            "Genç": {
+                "mesaj": "Kendi yolunu çizmezsen, başkasının haritasında figüran olursun.",
+                "ses_tınısı": "Dinamik/Motivasyonel Piyano",
+                "görsel_efekt": "Yükselen Işıklar"
+            },
+            "Kıdemli": {
+                "mesaj": "Sevginin dili evrenseldir; maya sağlamsa, ruh yorulmaz. Sen değerlisin.",
+                "ses_tınısı": "Huzurlu Ney ve Su Sesi",
+                "görsel_efekt": "Eski Takvim Yaprağı Düşüşü"
+            }
+        }
+        return takvim_verisi[self.hedef_kitle]
 
-# --- Uygulama Başlatma ---
-# 1. Gençler için PusulaPro (TR)
-genç_pusula = PACDIMotor("TR", "Genç")
-print(f"PusulaPro TR: {genç_pusula.refah_analizi_yap(85, 45000)}")
+    def pdf_rapor_olustur(self, puan, potansiyel_maas):
+        """PDF Motoru: Kariyer Raporu ve Sertifika Altyapısı"""
+        ucret = self.ekonomi[self.bolge]
+        katsayi = potansiyel_maas / ucret["asgari_ucret"]
+        
+        # PDF İçerik Hazırlığı
+        rapor_icerigi = {
+            "baslik": f"PACDI GLOBAL - {self.hedef_kitle.upper()} ANALİZ RAPORU",
+            "kullanıcı": self.kullanıcı_adı,
+            "refah_seviyesi": f"{round(katsayi, 2)} x Asgari Ücret",
+            "durum": "Sertifika Onaylandı" if puan > 70 else "Gelişim Önerilir",
+            "mühür": "PACDI GLOBAL - ONUR MÜHRÜ"
+        }
+        return rapor_icerigi
 
-# 2. Kıdemli Dostlar için Gönül Pusulası (EU)
-kıdemli_pusula = PACDIMotor("DE", "Kıdemli")
-print(f"Silver Compass DE: {kıdemli_pusula.gunun_pusulasi_getir()}")
+    def ozel_gun_kontrol(self, dogum_gunu=False):
+        """Kutlama Modülü: Konfeti ve Çiçek Tetikleyicisi"""
+        if dogum_gunu:
+            return "🎉 KONFETİ PATLATMA: İyi ki doğdun! PACDI mührüyle onurlandırıldın."
+        return "Bugün standart bir onur günü."
+
+# --- SİSTEMİ ÇALIŞTIRMA VE TEST ---
+
+# Örnek 1: Türkiye'deki Genç (PusulaPro)
+ali = PACDIGlobal("TR", "Genç", "Ali Yılmaz")
+rapor = ali.pdf_rapor_olustur(85, 60000)
+print(f"--- {ali.kullanıcı_adı} İçin PDF Hazırlanıyor ---")
+print(f"Rapor Özeti: {rapor['refah_seviyesi']} refah katsayısı ile yolun açık.")
+print(f"Mesaj: {ali.gunun_pusulasi_motoru()['mesaj']}")
+
+print("\n" + "="*40 + "\n")
+
+# Örnek 2: Avrupa'daki Kıdemli Dostumuz (Silver Compass)
+hans = PACDIGlobal("EU", "Kıdemli", "Hans Müller")
+print(f"--- {hans.kullanıcı_adı} İçin Sabah Karşılaması ---")
+print(f"Tetikleyici: {hans.gunun_pusulasi_motoru()['ses_tınısı']} çalıyor...")
+print(f"Bilgelik: {hans.gunun_pusulasi_motoru()['mesaj']}")
+print(hans.ozel_gun_kontrol(dogum_gunu=True))
