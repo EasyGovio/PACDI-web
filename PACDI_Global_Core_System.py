@@ -109,7 +109,18 @@ class PACDIGlobal:
             "kariyer_pusulasi": sonuc,
             "analiz_notu": f"Sayın {self.kullanici_adi}, potansiyeliniz {sonuc} alanında parlıyor."
         }
-    
+      def tesekkur_ritueli_kaydet(self, maddeler):
+        """Kullanıcının o günkü manevi şükür notlarını mühürler."""
+        # maddeler: ["Sağlıklıyım", "Ailemle vakit geçirdim", "Yeni bir şey öğrendim"]
+        tarih = datetime.datetime.now().strftime("%d/%m/%Y")
+        
+        return {
+            "tarih": tarih,
+            "rituel_notu": f"Bugün {len(maddeler)} güzelliği mühürledin.",
+            "liste": maddeler,
+            "muhur": "PACDI GLOBAL - MANEVİ HUZUR TESCİLLİ"
+        }
+  
 
 # --- SİSTEM TESTİ ---
 if __name__ == "__main__":
