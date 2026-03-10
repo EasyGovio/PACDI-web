@@ -62,6 +62,19 @@ class PACDIGlobal:
             "onay": f"Sayın {self.kullanici_adi} onuruyla tescillenmiştir.",
             "muhur": "Gümüş Pusula & Menşei: Onur"
         }
+    def ekonomi_verisini_guncelle(self, yeni_asgari_ucret):
+        """Asgari ücret değiştiğinde sistemin kalbini günceller."""
+        self.ekonomi[self.bolge]["asgari_ucret"] = yeni_asgari_ucret
+        return f"Sistem Güncellendi: Yeni Temel Ücret {yeni_asgari_ucret} {self.ekonomi[self.bolge]['birim']}"
+
+    def ayarlar_ozeti_getir(self):
+        """Kullanıcının tercih ettiği sistem ayarları paneli."""
+        return {
+            "Aktif Bölge": self.bolge,
+            "Hedef Kitle": self.hedef_kitle,
+            "Mevcut Birim": self.ekonomi[self.bolge]["birim"],
+            "Mühür Durumu": "Aktif - Onur Tescilli"
+        }
 
 # --- SİSTEM TESTİ ---
 if __name__ == "__main__":
