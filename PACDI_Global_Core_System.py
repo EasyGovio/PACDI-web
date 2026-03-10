@@ -54,7 +54,17 @@ class PACDIGlobal:
             "tasarim": "Mühürlü Takvim Yaprağı",
             "icerik": mesaj,
             "filigran": "PACDI Global - Onur Pusulası"
-        }
+    def grafik_verisi_olustur(self, katsayi):
+        """Raporun içindeki görsel kadranın konumunu belirler."""
+        if self.hedef_kitle == "Genç":
+            # Gençler için ekonomik refah analizi
+            seviye = "Gelişmekte" if katsayi < 2 else "Refah İçinde"
+            return f"Refah Kadranı: {katsayi}x | Durum: {seviye}"
+        else:
+            # Kıdemli dostlarımız için manevi huzur endeksi
+            # Burada katsayıdan bağımsız olarak 'Sevgi' vurgusu yapıyoruz.
+            return "Huzur Kadranı: %100 Saf Sevgi ve Onur"
+
 
 # --- Uygulama Testi ---
 if __name__ == "__main__":
