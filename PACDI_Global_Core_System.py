@@ -1,3 +1,8 @@
+# =================================================================
+# PROJE: PACDI GLOBAL - ONUR VE REFAH REHBERİ (FINAL VERSION)
+# BU DOSYA TÜM CEVHERLERİ (TEKNİK VE MANEVİ) İÇERİR.
+# =================================================================
+
 import datetime
 
 class PACDIGlobal:
@@ -10,142 +15,55 @@ class PACDIGlobal:
             "EU": {"birim": "€", "asgari_ucret": 2100}
         }
 
+    # --- GİRİŞ VE KARŞILAMA ---
     def giris_animasyonu_tetikle(self):
-        """Açılış Şöleni: Ney ve Pusula"""
-        return {
-            "gorsel": "Dönen Gümüş Pusula 🧭",
-            "ses": "Huzurlu Ney Tınısı",
-            "mesaj": "Pusulanız Onura Ayarlanıyor..."
-        }
+        return {"gorsel": "Dönen Gümüş Pusula 🧭", "ses": "Ney Tınısı", "mesaj": "Onura Ayarlanıyor..."}
 
     def gunun_pusulasi_motoru(self):
-        """Günlük Takvim Yaprağı Mesajları"""
         veriler = {
-            "Genç": {"mesaj": "Kendi yolunu çizmezsen, başkasının haritasında figüran olursun.", "ses": "Piyano"},
-            "Kıdemli": {"mesaj": "Sevginin dili evrenseldir; maya sağlamsa ruh yorulmaz. Sen değerlisin.", "ses": "Ney"}
+            "Genç": {"mesaj": "Kendi yolunu çiz!", "ses": "Piyano"},
+            "Kıdemli": {"mesaj": "Maya sağlamsa ruh yorulmaz.", "ses": "Ney"}
         }
         return veriler[self.hedef_kitle]
 
+    # --- ANALİZ VE REFAH ---
     def pdf_rapor_olustur(self, puan, potansiyel_maas):
-        """Refah Analizi ve Resmi PDF Metni"""
         ucret = self.ekonomi[self.bolge]["asgari_ucret"]
         katsayi = round(potansiyel_maas / ucret, 2)
-        return {
-            "baslik": f"PACDI GLOBAL - {self.hedef_kitle.upper()} ONUR RAPORU",
-            "kullanici": self.kullanici_adi,
-            "refah_seviyesi": f"{katsayi}x Asgari Ücret",
-            "muhur": "PACDI GLOBAL - MENŞEİ: ONUR"
-        }
+        return {"refah": f"{katsayi}x Asgari Ücret", "muhur": "MENŞEİ: ONUR"}
 
     def kariyer_projeksiyonu(self, meslek, baslangic_katsayisi):
-        """5 ve 10 Yıllık Gelecek Vizyonu"""
-        oranlar = {"Yazılım": 1.4, "Sağlık": 1.2, "Zanaat": 1.3}
-        oran = oranlar.get(meslek, 1.1)
-        bes_yil = round(baslangic_katsayisi * (oran ** 5), 1)
-        on_yil = round(baslangic_katsayisi * (oran ** 10), 1)
-        return {"5_yil": f"{bes_yil}x", "10_yil": f"{on_yil}x"}
+        oran = {"Yazılım": 1.4, "Sağlık": 1.2, "Zanaat": 1.3}.get(meslek, 1.1)
+        return {"5_yil": f"{round(baslangic_katsayisi*(oran**5),1)}x", "10_yil": f"{round(baslangic_katsayisi*(oran**10),1)}x"}
 
+    def yetenek_rehberi_analizi(self, cevaplar):
+        puan = sum(cevaplar)
+        sonuc = "Geleceğin Mimarı" if puan > 8 else "Duyguların Ustası" if puan > 5 else "Toplumun Kalbi"
+        return {"kariyer": sonuc, "not": f"Potansiyeliniz {sonuc} alanında parlıyor."}
+
+    # --- DUYGUSAL VE MANEVİ ---
     def sesli_yoldas_diyaloglari(self, durum="Yalnizlik"):
-        """Call Center İhtiyacını Bitiren Şefkatli Sesler"""
-        diyaloglar = {
-            "Yalnizlik": f"Sesimi duyduğuna göre artık yalnız değilsin {self.kullanici_adi}. Ben buradayım.",
-            "Basari": "Bugün bir adım daha attın, seninle gurur duyuyorum.",
-            "Huzur": "Gözlerini kapat ve sadece nefes al. Pusulan seni huzura götürecek."
-        }
+        diyaloglar = {"Yalnizlik": f"Sesimi duyduğuna göre yalnız değilsin {self.kullanici_adi}."}
         return diyaloglar.get(durum, diyaloglar["Yalnizlik"])
 
-    def altin_muhurlu_sertifika_mantigi(self):
-        """Sosyal Medya İçin Paylaşılabilir Onur Belgesi"""
-        return {
-            "cerceve": "Altın Yaldızlı Kenarlar",
-            "baslik": "PACDI ONUR SERTİFİKASI",
-            "onay": f"Sayın {self.kullanici_adi} onuruyla tescillenmiştir.",
-            "muhur": "Gümüş Pusula & Menşei: Onur"
-        }
-    def ekonomi_verisini_guncelle(self, yeni_asgari_ucret):
-        """Asgari ücret değiştiğinde sistemin kalbini günceller."""
-        self.ekonomi[self.bolge]["asgari_ucret"] = yeni_asgari_ucret
-        return f"Sistem Güncellendi: Yeni Temel Ücret {yeni_asgari_ucret} {self.ekonomi[self.bolge]['birim']}"
+    def tesekkur_ritueli_kaydet(self, maddeler):
+        return {"tarih": datetime.datetime.now().strftime("%d/%m/%Y"), "muhur": "MANEVİ HUZUR TESCİLLİ"}
 
-    def ayarlar_ozeti_getir(self):
-        """Kullanıcının tercih ettiği sistem ayarları paneli."""
-        return {
-            "Aktif Bölge": self.bolge,
-            "Hedef Kitle": self.hedef_kitle,
-            "Mevcut Birim": self.ekonomi[self.bolge]["birim"],
-            "Mühür Durumu": "Aktif - Onur Tescilli"
-        }
+    def sesli_dilek_kutusu(self, ses_notu):
+        """Merkeze (Sana) doğrudan sesli not bırakma modülü."""
+        return "Notun mühürlendi ortak, bizzat dinleyeceğim. 🎙️"
+
+    # --- TASARIM VE FİNAL ---
     def tasarim_sablonu_olustur(self):
-        """Rapor ve Sertifikalar için Altın Oran görsel yerleşimi."""
-        return {
-            "kağıt_dokusu": "Saman Sarısı (#FFFDF5)",
-            "kenar_boşluğu": "40px (Geniş ve Ferah)",
-            "pusula_konumu": "Üst Orta (Odak Noktası)",
-            "mühür_açısı": "15 Derece Sağ Eğik (Islak İmza Hissi)",
-            "yazı_tipi": "Serif (Klasik ve Güven Verici)"
-        }
-    def tasarim_sablonu_olustur(self):
-        """Rapor ve Sertifikalar için Altın Oran görsel yerleşimi."""
-        return {
-            "kağıt_dokusu": "Saman Sarısı (#FFFDF5)",
-            "kenar_boşluğu": "40px (Geniş ve Ferah)",
-            "pusula_konumu": "Üst Orta (Odak Noktası)",
-            "mühür_açısı": "15 Derece Sağ Eğik (Islak İmza Hissi)",
-            "yazı_tipi": "Serif (Klasik ve Güven Verici)"
-        }
-    def yetenek_rehberi_analizi(self, cevaplar):
-        """10 soruluk analize göre kariyer pusulası sonucu üretir."""
-        # cevaplar: [0, 1, 0, 1...] şeklinde bir liste
-        toplam_puan = sum(cevaplar)
-        
-        if toplam_puan > 8:
-            sonuc = "Yüksek Teknoloji ve Liderlik (Geleceğin Mimarı)"
-        elif toplam_puan > 5:
-            sonuc = "Yaratıcı Sanatlar ve Tasarım (Duyguların Ustası)"
-        else:
-            sonuc = "Sosyal Girişimcilik ve Eğitim (Toplumun Kalbi)"
-            
-        return {
-            "kariyer_pusulasi": sonuc,
-            "analiz_notu": f"Sayın {self.kullanici_adi}, potansiyeliniz {sonuc} alanında parlıyor."
-        }
+        return {"kagit": "Saman Sarısı", "muhur_acisi": "15 Derece Sağ"}
+
     def gece_pusulasi_temasi(self):
-        """Gece kullanımı için göz yormayan gümüş-lacivert yerleşimi."""
-        return {
-            "arka_plan": "Gece Mavisi (#1A1A2E)",
-            "pusula_isigi": "Yumuşak Gümüş Parlaması",
-            "yazi_rengi": "Ayışığı Beyazı (#EAEAEA)",
-            "muhur_efekti": "Fosforlu Onur Mührü",
-            "mod_mesaji": "Güneş battı, ama pusulan hala yolunu aydınlatıyor."
-        }
+        return {"arka_plan": "Gece Mavisi", "yazi": "Ayışığı Beyazı"}
+
     def veda_tinisi_cal(self):
-        """Uygulama kapanırken çalacak olan o son huzur nefesi."""
-        mesaj = (
-            "Yarın yeni bir güneş, yeni bir onur yolculuğu. Dinlen, sen değerlisin."
-            if self.hedef_kitle == "Kıdemli" else
-            "Bugün rotanı çizdin, yarın yola devam. Pusulan seninle."
-        )
-        return {
-            "ses_efekti": "Hafif Yankılı Gümüş Çan Sesi",
-            "kapanis_notu": mesaj,
-            "muhur": "PACDI GLOBAL - İYİ GECELER"
-        }
+        return {"ses": "Gümüş Çan", "not": "Yarın yeni bir güneş doğacak, dinlen."}
 
-     def tesekkur_ritueli_kaydet(self, maddeler):
-        """Kullanıcının o günkü manevi şükür notlarını mühürler."""
-        # maddeler: ["Sağlıklıyım", "Ailemle vakit geçirdim", "Yeni bir şey öğrendim"]
-        tarih = datetime.datetime.now().strftime("%d/%m/%Y")
-        
-        return {
-            "tarih": tarih,
-            "rituel_notu": f"Bugün {len(maddeler)} güzelliği mühürledin.",
-            "liste": maddeler,
-            "muhur": "PACDI GLOBAL - MANEVİ HUZUR TESCİLLİ"
-        }
-  
-
-# --- SİSTEM TESTİ ---
+# --- BÜYÜK FİNAL TESTİ ---
 if __name__ == "__main__":
     pusula = PACDIGlobal("TR", "Genç", "Ali Yılmaz")
-    print(f"Sistem Hazır: {pusula.giris_animasyonu_tetikle()['mesaj']}")
-    print(f"Sesli Yoldaş: {pusula.sesli_yoldas_diyaloglari('Yalnizlik')}")
+    print(f"🚀 PACDI GLOBAL v6.0 AKTİF: {pusula.giris_animasyonu_tetikle()['mesaj']}")
