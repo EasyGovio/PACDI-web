@@ -109,7 +109,29 @@ class PACDIGlobal:
             "kariyer_pusulasi": sonuc,
             "analiz_notu": f"Sayın {self.kullanici_adi}, potansiyeliniz {sonuc} alanında parlıyor."
         }
-      def tesekkur_ritueli_kaydet(self, maddeler):
+    def gece_pusulasi_temasi(self):
+        """Gece kullanımı için göz yormayan gümüş-lacivert yerleşimi."""
+        return {
+            "arka_plan": "Gece Mavisi (#1A1A2E)",
+            "pusula_isigi": "Yumuşak Gümüş Parlaması",
+            "yazi_rengi": "Ayışığı Beyazı (#EAEAEA)",
+            "muhur_efekti": "Fosforlu Onur Mührü",
+            "mod_mesaji": "Güneş battı, ama pusulan hala yolunu aydınlatıyor."
+        }
+    def veda_tinisi_cal(self):
+        """Uygulama kapanırken çalacak olan o son huzur nefesi."""
+        mesaj = (
+            "Yarın yeni bir güneş, yeni bir onur yolculuğu. Dinlen, sen değerlisin."
+            if self.hedef_kitle == "Kıdemli" else
+            "Bugün rotanı çizdin, yarın yola devam. Pusulan seninle."
+        )
+        return {
+            "ses_efekti": "Hafif Yankılı Gümüş Çan Sesi",
+            "kapanis_notu": mesaj,
+            "muhur": "PACDI GLOBAL - İYİ GECELER"
+        }
+
+     def tesekkur_ritueli_kaydet(self, maddeler):
         """Kullanıcının o günkü manevi şükür notlarını mühürler."""
         # maddeler: ["Sağlıklıyım", "Ailemle vakit geçirdim", "Yeni bir şey öğrendim"]
         tarih = datetime.datetime.now().strftime("%d/%m/%Y")
