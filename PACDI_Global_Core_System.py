@@ -75,6 +75,24 @@ class PACDIGlobal:
             "Mevcut Birim": self.ekonomi[self.bolge]["birim"],
             "Mühür Durumu": "Aktif - Onur Tescilli"
         }
+    def tasarim_sablonu_olustur(self):
+        """Rapor ve Sertifikalar için Altın Oran görsel yerleşimi."""
+        return {
+            "kağıt_dokusu": "Saman Sarısı (#FFFDF5)",
+            "kenar_boşluğu": "40px (Geniş ve Ferah)",
+            "pusula_konumu": "Üst Orta (Odak Noktası)",
+            "mühür_açısı": "15 Derece Sağ Eğik (Islak İmza Hissi)",
+            "yazı_tipi": "Serif (Klasik ve Güven Verici)"
+        }
+    def tasarim_sablonu_olustur(self):
+        """Rapor ve Sertifikalar için Altın Oran görsel yerleşimi."""
+        return {
+            "kağıt_dokusu": "Saman Sarısı (#FFFDF5)",
+            "kenar_boşluğu": "40px (Geniş ve Ferah)",
+            "pusula_konumu": "Üst Orta (Odak Noktası)",
+            "mühür_açısı": "15 Derece Sağ Eğik (Islak İmza Hissi)",
+            "yazı_tipi": "Serif (Klasik ve Güven Verici)"
+        }
 
 # --- SİSTEM TESTİ ---
 if __name__ == "__main__":
