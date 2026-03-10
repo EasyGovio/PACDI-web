@@ -1,84 +1,63 @@
-# =================================================================
-# PROJE: PACDI GLOBAL - BÜTÜNLEŞİK ÇEKİRDEK SİSTEM (v2.0)
-# İÇERİK: Kariyer Analizi, Refah Katsayısı, Takvim Yaprağı, PDF Motoru
-# =================================================================
-
 import datetime
-import json
 
 class PACDIGlobal:
-    def __init__(self, bolge, hedef_kitle, kullanıcı_adı):
+    def __init__(self, bolge, hedef_kitle, kullanici_adi):
         self.bolge = bolge  # "TR" veya "EU"
         self.hedef_kitle = hedef_kitle  # "Genç" veya "Kıdemli"
-        self.kullanıcı_adı = kullanıcı_adı
+        self.kullanici_adi = kullanici_adi
         
-        # Dinamik Veri Kaynakları
+        # Ekonomik Veri Bankası ve Fiyatlandırma
         self.ekonomi = {
-            "TR": {"birim": "TL", "asgari_ucret": 17002, "pro_bedel": "149 TL", "vip_bedel": "499 TL"},
-            "EU": {"birim": "€", "asgari_ucret": 2100, "pro_bedel": "9.90 €", "vip_bedel": "44.90 €"}
+            "TR": {"birim": "TL", "asgari_ucret": 17002, "pro": "149 TL", "vip": "499 TL"},
+            "EU": {"birim": "€", "asgari_ucret": 2100, "pro": "9.90 €", "vip": "44.90 €"}
         }
 
     def gunun_pusulasi_motoru(self):
-        """Karma Deneyim: Görsel, İşitsel ve Metinsel Tetikleyici"""
+        """Karma Deneyim: Takvim Yaprağı Mesajı ve Tetikleyiciler"""
         takvim_verisi = {
             "Genç": {
                 "mesaj": "Kendi yolunu çizmezsen, başkasının haritasında figüran olursun.",
-                "ses_tınısı": "Dinamik/Motivasyonel Piyano",
-                "görsel_efekt": "Yükselen Işıklar"
+                "ses": "Dinamik Piyano", "efekt": "Yükselen Işıklar"
             },
             "Kıdemli": {
-                "mesaj": "Sevginin dili evrenseldir; maya sağlamsa, ruh yorulmaz. Sen değerlisin.",
-                "ses_tınısı": "Huzurlu Ney ve Su Sesi",
-                "görsel_efekt": "Eski Takvim Yaprağı Düşüşü"
+                "mesaj": "Sevginin dili evrenseldir; maya sağlamsa ruh yorulmaz. Sen değerlisin.",
+                "ses": "Huzurlu Ney ve Su", "efekt": "Eski Takvim Yaprağı"
             }
         }
         return takvim_verisi[self.hedef_kitle]
 
     def pdf_rapor_olustur(self, puan, potansiyel_maas):
-        """PDF Motoru: Kariyer Raporu ve Sertifika Altyapısı"""
+        """PDF Motoru: Refah Katsayısı ve Resmi Tavsiye Metinleri"""
         ucret = self.ekonomi[self.bolge]
         katsayi = potansiyel_maas / ucret["asgari_ucret"]
+        
+        # Resmi Tavsiye Metinleri (Eksiksiz ve Yazım Kurallarına Uygun)
+        tavsiye = (
+            "Analiz sonuçlarınız, onur ve azimle birleştiğinde topluma yön verecek bir güç taşımaktadır."
+            if self.hedef_kitle == "Genç" else
+            "Bu rapor, yılların biriktirdiği bilgeliğin bir onur nişanesidir. Yalnız değilsiniz."
+        )
 
-        # Bu kısım raporun 'kağıda dökülecek' resmi içeriğini hazırlar:
         rapor_icerigi = {
             "baslik": f"PACDI GLOBAL - {self.hedef_kitle.upper()} ANALİZ RAPORU",
-            "kullanıcı": self.kullanıcı_adı,
+            "kullanici": self.kullanici_adi,
             "refah_seviyesi": f"{round(katsayi, 2)} x Asgari Ücret",
-            "durum": "Sertifika Onaylandı" if puan > 70 else "Gelişim Önerilir",
-            "mühür": "PACDI GLOBAL - ONUR MÜHRÜ"
+            "tavsiye_notu": tavsiye,
+            "muhur": "PACDI GLOBAL - MENŞEİ: ONUR"
         }
         return rapor_icerigi
 
-        # PDF İçerik Hazırlığı
-        rapor_icerigi = {
-            "baslik": f"PACDI GLOBAL - {self.hedef_kitle.upper()} ANALİZ RAPORU",
-            "kullanıcı": self.kullanıcı_adı,
-            "refah_seviyesi": f"{round(katsayi, 2)} x Asgari Ücret",
-            "durum": "Sertifika Onaylandı" if puan > 70 else "Gelişim Önerilir",
-            "mühür": "PACDI GLOBAL - ONUR MÜHRÜ"
+    def sosyal_medya_karti_hazirla(self):
+        """Mühürlü ve Paylaşılabilir Görsel Kart Şablonu"""
+        mesaj = self.gunun_pusulasi_motoru()["mesaj"]
+        return {
+            "tasarim": "Mühürlü Takvim Yaprağı",
+            "icerik": mesaj,
+            "filigran": "PACDI Global - Onur Pusulası"
         }
-        return rapor_icerigi
 
-    def ozel_gun_kontrol(self, dogum_gunu=False):
-        """Kutlama Modülü: Konfeti ve Çiçek Tetikleyicisi"""
-        if dogum_gunu:
-            return "🎉 KONFETİ PATLATMA: İyi ki doğdun! PACDI mührüyle onurlandırıldın."
-        return "Bugün standart bir onur günü."
-
-# --- SİSTEMİ ÇALIŞTIRMA VE TEST ---
-
-# Örnek 1: Türkiye'deki Genç (PusulaPro)
-ali = PACDIGlobal("TR", "Genç", "Ali Yılmaz")
-rapor = ali.pdf_rapor_olustur(85, 60000)
-print(f"--- {ali.kullanıcı_adı} İçin PDF Hazırlanıyor ---")
-print(f"Rapor Özeti: {rapor['refah_seviyesi']} refah katsayısı ile yolun açık.")
-print(f"Mesaj: {ali.gunun_pusulasi_motoru()['mesaj']}")
-
-print("\n" + "="*40 + "\n")
-
-# Örnek 2: Avrupa'daki Kıdemli Dostumuz (Silver Compass)
-hans = PACDIGlobal("EU", "Kıdemli", "Hans Müller")
-print(f"--- {hans.kullanıcı_adı} İçin Sabah Karşılaması ---")
-print(f"Tetikleyici: {hans.gunun_pusulasi_motoru()['ses_tınısı']} çalıyor...")
-print(f"Bilgelik: {hans.gunun_pusulasi_motoru()['mesaj']}")
-print(hans.ozel_gun_kontrol(dogum_gunu=True))
+# --- Uygulama Testi ---
+if __name__ == "__main__":
+    pusula = PACDIGlobal("TR", "Genç", "Ali Yılmaz")
+    print(f"Mesaj: {pusula.gunun_pusulasi_motoru()['mesaj']}")
+    print(f"Rapor: {pusula.pdf_rapor_olustur(85, 55000)['refah_seviyesi']}")
