@@ -1,79 +1,70 @@
-# =================================================================
-# PROJE: PACDI GLOBAL - ONUR VE REFAH REHBERİ (v3.0)
-# MODÜLLER: PusulaPro (Gençlik) & Silver Compass (Kıdemli Dostlar)
-# ÖZELLİKLER: Refah Analizi, PDF Motoru, Sesli Yoldaş, Sosyal Mühür
-# =================================================================
-
 import datetime
 
 class PACDIGlobal:
     def __init__(self, bolge, hedef_kitle, kullanici_adi):
-        self.bolge = bolge  # "TR" veya "EU"
-        self.hedef_kitle = hedef_kitle  # "Genç" veya "Kıdemli"
+        self.bolge = bolge
+        self.hedef_kitle = hedef_kitle
         self.kullanici_adi = kullanici_adi
-        
-        # 1. Ekonomik Veri Bankası (Asgari Ücret Katsayıları)
         self.ekonomi = {
-            "TR": {"birim": "TL", "asgari_ucret": 17002, "pro": "149 TL", "vip": "499 TL"},
-            "EU": {"birim": "€", "asgari_ucret": 2100, "pro": "9.90 €", "vip": "44.90 €"}
+            "TR": {"birim": "TL", "asgari_ucret": 17002},
+            "EU": {"birim": "€", "asgari_ucret": 2100}
+        }
+
+    def giris_animasyonu_tetikle(self):
+        """Açılış Şöleni: Ney ve Pusula"""
+        return {
+            "gorsel": "Dönen Gümüş Pusula 🧭",
+            "ses": "Huzurlu Ney Tınısı",
+            "mesaj": "Pusulanız Onura Ayarlanıyor..."
         }
 
     def gunun_pusulasi_motoru(self):
-        """Takvim Yaprağı Masumiyetinde Günlük Rehberlik"""
+        """Günlük Takvim Yaprağı Mesajları"""
         veriler = {
-            "Genç": {
-                "mesaj": "Kendi yolunu çizmezsen, başkasının haritasında figüran olursun.",
-                "ses": "Dinamik Piyano", "efekt": "Yükselen Işıklar"
-            },
-            "Kıdemli": {
-                "mesaj": "Sevginin dili evrenseldir; maya sağlamsa ruh yorulmaz. Sen değerlisin.",
-                "ses": "Huzurlu Ney ve Su", "efekt": "Eski Takvim Yaprağı"
-            }
+            "Genç": {"mesaj": "Kendi yolunu çizmezsen, başkasının haritasında figüran olursun.", "ses": "Piyano"},
+            "Kıdemli": {"mesaj": "Sevginin dili evrenseldir; maya sağlamsa ruh yorulmaz. Sen değerlisin.", "ses": "Ney"}
         }
         return veriler[self.hedef_kitle]
 
     def pdf_rapor_olustur(self, puan, potansiyel_maas):
-        """Resmi PDF Raporu ve Sertifika Metinleri (Eksiksiz ve Yazım Kurallarına Uygun)"""
-        ucret_verisi = self.ekonomi[self.bolge]
-        katsayi = potansiyel_maas / ucret_verisi["asgari_ucret"]
-        
-        tavsiye = (
-            "Analiz sonuçlarınız, onur ve azimle birleştiğinde topluma yön verecek bir güç taşımaktadır."
-            if self.hedef_kitle == "Genç" else
-            "Bu rapor, yılların biriktirdiği bilgeliğin bir onur nişanesidir. Yalnız değilsiniz."
-        )
-
+        """Refah Analizi ve Resmi PDF Metni"""
+        ucret = self.ekonomi[self.bolge]["asgari_ucret"]
+        katsayi = round(potansiyel_maas / ucret, 2)
         return {
             "baslik": f"PACDI GLOBAL - {self.hedef_kitle.upper()} ONUR RAPORU",
-            "refah_seviyesi": f"{round(katsayi, 2)} x Asgari Ücret",
-            "tavsiye": tavsiye,
+            "kullanici": self.kullanici_adi,
+            "refah_seviyesi": f"{katsayi}x Asgari Ücret",
             "muhur": "PACDI GLOBAL - MENŞEİ: ONUR"
         }
 
-    def grafik_verisi_olustur(self, katsayi):
-        """Rapor İçin Görsel Kadran Mantığı"""
-        if self.hedef_kitle == "Genç":
-            durum = "Refah İçinde" if katsayi >= 2.5 else "Gelişmekte"
-            return f"Refah Kadranı: {katsayi}x | Durum: {durum}"
-        return "Huzur Kadranı: %100 Saf Sevgi ve Onur"
+    def kariyer_projeksiyonu(self, meslek, baslangic_katsayisi):
+        """5 ve 10 Yıllık Gelecek Vizyonu"""
+        oranlar = {"Yazılım": 1.4, "Sağlık": 1.2, "Zanaat": 1.3}
+        oran = oranlar.get(meslek, 1.1)
+        bes_yil = round(baslangic_katsayisi * (oran ** 5), 1)
+        on_yil = round(baslangic_katsayisi * (oran ** 10), 1)
+        return {"5_yil": f"{bes_yil}x", "10_yil": f"{on_yil}x"}
 
-    def sesli_yoldas_metni(self, zaman="Sabah"):
-        """Call Center İhtiyacını Bitiren Şefkatli Ses Modülü"""
-        metinler = {
-            "Sabah": f"Günaydın {self.kullanici_adi}. Yeni bir gün, yeni bir umut. Seninle olmak güzel.",
-            "Destek": "Buradayım, seni duyuyorum. Pusulan daima senin yanında."
+    def sesli_yoldas_diyaloglari(self, durum="Yalnizlik"):
+        """Call Center İhtiyacını Bitiren Şefkatli Sesler"""
+        diyaloglar = {
+            "Yalnizlik": f"Sesimi duyduğuna göre artık yalnız değilsin {self.kullanici_adi}. Ben buradayım.",
+            "Basari": "Bugün bir adım daha attın, seninle gurur duyuyorum.",
+            "Huzur": "Gözlerini kapat ve sadece nefes al. Pusulan seni huzura götürecek."
         }
-        return metinler.get(zaman, metinler["Sabah"])
+        return diyaloglar.get(durum, diyaloglar["Yalnizlik"])
 
-    def sosyal_muhur_hazirla(self):
-        """Mühürlü ve Paylaşılabilir Takvim Yaprağı Görseli"""
+    def altin_muhurlu_sertifika_mantigi(self):
+        """Sosyal Medya İçin Paylaşılabilir Onur Belgesi"""
         return {
-            "ikon": "Gümüş Pusula 🧭",
-            "metin": self.gunun_pusulasi_motoru()["mesaj"],
-            "muhur": "PACDI GLOBAL - MENŞEİ: ONUR"
+            "cerceve": "Altın Yaldızlı Kenarlar",
+            "baslik": "PACDI ONUR SERTİFİKASI",
+            "onay": f"Sayın {self.kullanici_adi} onuruyla tescillenmiştir.",
+            "muhur": "Gümüş Pusula & Menşei: Onur"
         }
 
 # --- SİSTEM TESTİ ---
 if __name__ == "__main__":
     pusula = PACDIGlobal("TR", "Genç", "Ali Yılmaz")
-    print(f"PACDI Core v3.0 Aktif. Kullanıcı: {pusula.kullanici_adi}")
+    print(f"Sistem Hazır: {pusula.giris_animasyonu_tetikle()['mesaj']}")
+    print(f"Sesli Yoldaş: {pusula.sesli_yoldas_diyaloglari('Yalnizlik')}")
