@@ -39,11 +39,6 @@ class PACDIGlobal:
         ucret = self.ekonomi[self.bolge]
         katsayi = potansiyel_maas / ucret["asgari_ucret"]
 
-            def pdf_rapor_olustur(self, puan, potansiyel_maas):
-        """PDF Motoru: Kariyer Raporu ve Sertifika Altyapısı"""
-        ucret = self.ekonomi[self.bolge]
-        katsayi = potansiyel_maas / ucret["asgari_ucret"]
-        
         # Bu kısım raporun 'kağıda dökülecek' resmi içeriğini hazırlar:
         rapor_icerigi = {
             "baslik": f"PACDI GLOBAL - {self.hedef_kitle.upper()} ANALİZ RAPORU",
