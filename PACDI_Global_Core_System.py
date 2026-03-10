@@ -93,6 +93,23 @@ class PACDIGlobal:
             "mühür_açısı": "15 Derece Sağ Eğik (Islak İmza Hissi)",
             "yazı_tipi": "Serif (Klasik ve Güven Verici)"
         }
+    def yetenek_rehberi_analizi(self, cevaplar):
+        """10 soruluk analize göre kariyer pusulası sonucu üretir."""
+        # cevaplar: [0, 1, 0, 1...] şeklinde bir liste
+        toplam_puan = sum(cevaplar)
+        
+        if toplam_puan > 8:
+            sonuc = "Yüksek Teknoloji ve Liderlik (Geleceğin Mimarı)"
+        elif toplam_puan > 5:
+            sonuc = "Yaratıcı Sanatlar ve Tasarım (Duyguların Ustası)"
+        else:
+            sonuc = "Sosyal Girişimcilik ve Eğitim (Toplumun Kalbi)"
+            
+        return {
+            "kariyer_pusulasi": sonuc,
+            "analiz_notu": f"Sayın {self.kullanici_adi}, potansiyeliniz {sonuc} alanında parlıyor."
+        }
+    
 
 # --- SİSTEM TESTİ ---
 if __name__ == "__main__":
