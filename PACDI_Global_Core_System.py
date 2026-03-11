@@ -1,62 +1,62 @@
 # =================================================================
-# PROJE: PACDI GLOBAL - EASYGOV & APARTMENTS PARTNER SİSTEMİ
-# SÜRÜM: v8.0 (Geniş Yataklı Nehir - Bayi Modüllü)
-# İLKELER: ONUR, SEVGI, SABIR
+# PROJE: PACDI GLOBAL - GERMANY & PARTNER EDITION
+# VERSION: 9.0 (Onur, Sevgi ve Sabır Mührüyle)
+# PARA BİRİMİ: € (Euro) | DİLLER: Almanca & Türkçe
 # =================================================================
 
 import datetime
 
-class PACDI_Global_Core:
-    def __init__(self, partner_adi="Merkez", partner_tipi="Ana Yönetim"):
-        self.partner_adi = partner_adi
-        self.partner_tipi = partner_tipi # Caritas, Diakoni, Arzuhalci, Bayi
-        self.tarih = datetime.datetime.now().strftime("%d/%m/%Y")
-        
-    def yetki_dogrula(self):
-        """İşlemi yapan paydaşın yetki seviyesini belirler."""
-        return f"[{self.partner_tipi}] {self.partner_adi} - Yetki Doğrulandı. İşlem Başlatılıyor..."
+class PACDIGlobal:
+    def __init__(self, kullanici_adi, dil="Almanca", partner="Merkez"):
+        self.kullanici_adi = kullanici_adi
+        self.dil = dil # "Almanca" veya "Türkçe"
+        self.partner = partner # Caritas, Diakoni, Hukuk Derneği vb.
+        self.para_birimi = "€"
+        self.asgari_ucret = 2100 # Almanya brüt asgari ücret (yaklaşık)
 
-    def apartments_yonetim_paneli(self, daire_no, kiraci_adi, bedel_katsayisi):
-        """Mülk yönetimi ve kiralama modülü."""
-        kira_bedeli = 17002 * bedel_katsayisi  # Asgari ücret üzerinden dinamik hesap
+    def hosgeldin_mesaji(self):
+        """Kullanıcıyı seçtiği dilde karşılar."""
+        mesajlar = {
+            "Almanca": f"Willkommen bei PACDI Global, {self.kullanici_adi}. [EHRE, LIEBE, GEDULD]",
+            "Türkçe": f"PACDI Global'e hoş geldiniz, {self.kullanici_adi}. [ONUR, SEVGİ, SABIR]"
+        }
+        return mesajlar.get(self.dil, mesajlar["Almanca"])
+
+    def refah_analizi(self, katsayi):
+        """Refah katsayısını Euro üzerinden hesaplar."""
+        tutar = self.asgari_ucret * katsayi
+        if self.dil == "Almanca":
+            return f"Wohlstandsindex: {tutar}{self.para_birimi} (Faktor: {katsayi}x)"
+        return f"Refah Endeksi: {tutar}{self.para_birimi} (Katsayı: {katsayi}x)"
+
+    def kurumsal_indirim(self, kurum_adi):
+        """Sigorta veya Hukuk Derneği üyelerine özel alan açar."""
+        indirimler = {"HUKUK_DERNEGI": 0.50, "SIGORTA_GURUP": 0.20}
+        oran = indirimler.get(kurum_adi, 0)
+        durum = "Indirim uygulandı" if self.dil == "Türkçe" else "Rabatt angewendet"
+        return f"{kurum_adi}: %{oran*100} {durum}."
+
+    def easygov_islem(self, evrak_adi):
+        """EasyGov bürokrasi çözücü (Partner bazlı)."""
+        detay = "Bürokraside bir nefes." if self.dil == "Türkçe" else "Ein Atemzug in der Bürokratie."
         return {
-            "islem": "Apartments Kiralama",
-            "detay": f"Daire {daire_no} - Kiracı: {kiraci_adi}",
-            "mali_durum": f"Kira: {kira_bedeli} TL (Katsayı: {bedel_katsayisi}x)",
-            "muhur": f"Yöneten: {self.partner_adi} | Onurla Mühürlenmiştir."
+            "Partner": self.partner,
+            "Evrak": evrak_adi,
+            "Durum": "Bereit / Hazır",
+            "Mesaj": detay
         }
 
-    def easygov_islem_motoru(self, evrak_tipi, kullanıcı):
-        """EasyGov bürokrasi çözücü ve dilekçe hazırlayıcı."""
-        return {
-            "evrak": f"Hatasız {evrak_tipi} Hazırlandı.",
-            "kullanici": kullanıcı,
-            "servis_noktasi": f"EasyGov Partner: {self.partner_adi}",
-            "not": "Bürokrasinin karmaşasında bir nefes borusu.",
-            "motto": "Adalet bir nehir gibidir, paylaştıkça çoğalır."
-        }
+    def vicdan_muhuru(self):
+        """Evrensel mühür."""
+        muhur = "HERKUNFT: EHRE, LIEBE UND GEDULD" if self.dil == "Almanca" else "MENŞEİ: ONUR, SEVGİ VE SABIR"
+        return f"[{self.partner}] - {muhur}"
 
-    def vicdan_muhuru_bas(self):
-        """Tüm paydaş işlemlerinin altına basılan kadim mühür."""
-        return {
-            "ana_ilkeler": ["Onur", "Sevgi", "Sabır"],
-            "izlenebilirlik": f"İşlem Kaynağı: {self.partner_adi}",
-            "mesaj": "Bu evrak sabırla hazırlanmış, sevgiyle mühürlenmiştir."
-        }
-
-# --- SİSTEM SİMÜLASYONU (Örnek Kullanım) ---
+# --- SİSTEM SİMÜLASYONU ---
 if __name__ == "__main__":
-    # Örnek 1: Caritas üzerinden bir EasyGov işlemi
-    caritas_panel = PACDI_Global_Core("Caritas Berlin", "Kurumsal Paydaş")
-    print(caritas_panel.yetki_dogrula())
-    print(caritas_panel.easygov_islem_motoru("İkametgah İzni", "Ali Yılmaz"))
-    
-    print("-" * 50)
-    
-    # Örnek 2: Bir yakınının kiraladığı Apartment Paneli
-    bayi_paneli = PACDI_Global_Core("Öztürk Gayrimenkul", "Bayi")
-    print(bayi_paneli.yetki_dogrula())
-    print(bayi_paneli.apartments_yonetim_paneli(102, "Hansa Müller", 2.5))
-    
-    print("-" * 50)
-    print(caritas_panel.vicdan_muhuru_bas())
+    # Örnek: Caritas üzerinden Almanca işlem yapan bir kullanıcı
+    app = PACDIGlobal("Onur Dostu", "Almanca", "Caritas Berlin")
+    print(app.hosgeldin_mesaji())
+    print(app.refah_analizi(2.8))
+    print(app.kurumsal_indirim("HUKUK_DERNEGI"))
+    print(app.easygov_islem("Widerspruch Rente (Emeklilik İtirazı)"))
+    print(app.vicdan_muhuru())
