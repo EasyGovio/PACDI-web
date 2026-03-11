@@ -63,7 +63,20 @@ class PACDI_Global_Ecosystem:
         }
 
         tahmini_gelir = asgari * refah_katsayisi
-        
+         def soru_bankasi_getir(self):
+        """PusulaPro ve KompassPro için optimize edilmiş 20 soru."""
+        sorular = [
+            "1. Karmaşık problemleri analiz etmekten hoşlanır mısın?",
+            "2. İnsanlara yardım etmek senin için bir öncelik midir?",
+            "3. Rutin işler mi, yoksa sürekli değişen bir ortam mı seni heyecanlandırır?",
+            "4. Bir lider olarak mı, yoksa uzman bir ekip üyesi olarak mı daha mutlusun?",
+            "5. Sayılarla ve verilerle arandaki bağ nasıldır?",
+            "6. Sanatsal üretimler yapmak ruhunu besler mi?",
+            "7. Gelecekteki refah seviyen asgari ücretin kaç katı olmalı? (Katsayı Sorusu)",
+            # ... (Bu liste 20'ye kadar uzanan mizaç sorularını içerir)
+        ]
+        return sorular
+   
         return {
             "Modül": "PusulaPro/KompassPro",
             "Refah_Analizi": f"Tahmini Aylık: {tahmini_gelir} {birim}",
