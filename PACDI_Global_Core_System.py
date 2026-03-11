@@ -54,6 +54,31 @@ class PACDIGlobal:
             "Motto": "Adalet bir nehir gibidir, paylaştıkça çoğalır.",
             "Bilgi": detay
         }
+    def hukuki_itiraz_hazirla(self, itiraz_konusu, tarih):
+        """
+        Dernek üyeleri için profesyonel Almanca itiraz dilekçesi taslağı oluşturur.
+        """
+        if self.dil == "Almanca":
+            sablon = f"""
+            Betreff: Widerspruch gegen den Bescheid vom {tarih}
+            Sehr geehrte Damen und Herren,
+            hiermit lege ich fristgerecht Widerspruch gegen den oben genannten Bescheid ein.
+            Grund: {itiraz_konusu}.
+            Mit freundlichen Grüßen,
+            {self.kullanici_adi}
+            (Bestätigtes Mitglied durch: {self.partner})
+            """
+        else:
+            sablon = f"""
+            Konu: {tarih} tarihli karara itiraz
+            Sayın ilgili,
+            Yukarıda belirtilen karara karşı süresi içinde itirazımı sunuyorum.
+            Neden: {itiraz_konusu}.
+            Saygılarımla,
+            {self.kullanici_adi}
+            (Onaylı Üye: {self.partner})
+            """
+        return sablon
 
     def vicdan_muhuru(self):
         """Tüm işlemlerin altına basılan evrensel mühür."""
