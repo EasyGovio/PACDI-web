@@ -1,50 +1,62 @@
 # =================================================================
-# PROJE: PACDI GLOBAL - ONUR, SEVGİ VE SABIR REHBERİ
-# VİZYONER: [SİZİN ADINIZ] | TEKNİK DANIŞMAN: GEMINI
+# PROJE: PACDI GLOBAL - EASYGOV & APARTMENTS PARTNER SİSTEMİ
+# SÜRÜM: v8.0 (Geniş Yataklı Nehir - Bayi Modüllü)
+# İLKELER: ONUR, SEVGI, SABIR
 # =================================================================
 
 import datetime
 
-class PACDIGlobal:
-    def __init__(self, bolge, hedef_kitle, kullanici_adi):
-        self.bolge = bolge
-        self.hedef_kitle = hedef_kitle
-        self.kullanici_adi = kullanici_adi
-        self.ekonomi = {
-            "TR": {"birim": "TL", "asgari_ucret": 17002},
-            "EU": {"birim": "€", "asgari_ucret": 2100}
-        }
+class PACDI_Global_Core:
+    def __init__(self, partner_adi="Merkez", partner_tipi="Ana Yönetim"):
+        self.partner_adi = partner_adi
+        self.partner_tipi = partner_tipi # Caritas, Diakoni, Arzuhalci, Bayi
+        self.tarih = datetime.datetime.now().strftime("%d/%m/%Y")
+        
+    def yetki_dogrula(self):
+        """İşlemi yapan paydaşın yetki seviyesini belirler."""
+        return f"[{self.partner_tipi}] {self.partner_adi} - Yetki Doğrulandı. İşlem Başlatılıyor..."
 
-    def giris_animasyonu_tetikle(self):
-        """Onur, Sevgi ve Sabırla Açılan İlk Kapı."""
-        return "🧭 Gümüş Pusula Dönüyor... 🎶 Ney Tınısı... [MENŞEİ: ONUR, SEVGİ VE SABIR]"
-
-    def vicdan_muhuru_olustur(self):
-        """Sistemin manevi anayasası."""
+    def apartments_yonetim_paneli(self, daire_no, kiraci_adi, bedel_katsayisi):
+        """Mülk yönetimi ve kiralama modülü."""
+        kira_bedeli = 17002 * bedel_katsayisi  # Asgari ücret üzerinden dinamik hesap
         return {
-            "temel_degerler": ["Onur", "Sevgi", "Sabır"],
-            "muhur_metni": "PACDI GLOBAL - ONUR, SEVGİ VE SABIR İLE MÜHÜRLENMİŞTİR",
-            "tarih": datetime.datetime.now().strftime("%d/%m/%Y")
+            "islem": "Apartments Kiralama",
+            "detay": f"Daire {daire_no} - Kiracı: {kiraci_adi}",
+            "mali_durum": f"Kira: {kira_bedeli} TL (Katsayı: {bedel_katsayisi}x)",
+            "muhur": f"Yöneten: {self.partner_adi} | Onurla Mühürlenmiştir."
         }
 
-    def papirus_onur_belgesi_tasarla(self, katsayi):
-        """Antik papirüs üzerine dijital onur tescili."""
+    def easygov_islem_motoru(self, evrak_tipi, kullanıcı):
+        """EasyGov bürokrasi çözücü ve dilekçe hazırlayıcı."""
         return {
-            "zemin": "Antik Dokulu Papirüs",
-            "icerik": f"Sayın {self.kullanici_adi}, {katsayi}x refah düzeyiyle onurlandırılmıştır.",
-            "alt_not": "Bu belge sabırla örülmüş, sevgiyle tescillenmiştir."
+            "evrak": f"Hatasız {evrak_tipi} Hazırlandı.",
+            "kullanici": kullanıcı,
+            "servis_noktasi": f"EasyGov Partner: {self.partner_adi}",
+            "not": "Bürokrasinin karmaşasında bir nefes borusu.",
+            "motto": "Adalet bir nehir gibidir, paylaştıkça çoğalır."
         }
 
-    def sesli_yoldas_mesaji(self):
-        """Yalnızlığı bitiren, sevgi dolu ses modülü."""
-        mesajlar = {
-            "Kıdemli": f"Sabırla beklediğin o güzel günler burada {self.kullanici_adi}. Sevgiyle yanındayız.",
-            "Genç": "Onurunu koru, sabrını kuşan. Gelecek senin ellerinde parlıyor."
+    def vicdan_muhuru_bas(self):
+        """Tüm paydaş işlemlerinin altına basılan kadim mühür."""
+        return {
+            "ana_ilkeler": ["Onur", "Sevgi", "Sabır"],
+            "izlenebilirlik": f"İşlem Kaynağı: {self.partner_adi}",
+            "mesaj": "Bu evrak sabırla hazırlanmış, sevgiyle mühürlenmiştir."
         }
-        return mesajlar.get(self.hedef_kitle)
 
-# --- LANSMAN ATEŞİ ---
+# --- SİSTEM SİMÜLASYONU (Örnek Kullanım) ---
 if __name__ == "__main__":
-    pusula = PACDIGlobal("TR", "Kıdemli", "Onur Dostu")
-    print(pusula.giris_animasyonu_tetikle())
-    print(f"Sistem Mührü: {pusula.vicdan_muhuru_olustur()['muhur_metni']}")
+    # Örnek 1: Caritas üzerinden bir EasyGov işlemi
+    caritas_panel = PACDI_Global_Core("Caritas Berlin", "Kurumsal Paydaş")
+    print(caritas_panel.yetki_dogrula())
+    print(caritas_panel.easygov_islem_motoru("İkametgah İzni", "Ali Yılmaz"))
+    
+    print("-" * 50)
+    
+    # Örnek 2: Bir yakınının kiraladığı Apartment Paneli
+    bayi_paneli = PACDI_Global_Core("Öztürk Gayrimenkul", "Bayi")
+    print(bayi_paneli.yetki_dogrula())
+    print(bayi_paneli.apartments_yonetim_paneli(102, "Hansa Müller", 2.5))
+    
+    print("-" * 50)
+    print(caritas_panel.vicdan_muhuru_bas())
