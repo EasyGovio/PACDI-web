@@ -79,6 +79,27 @@ class PACDIGlobal:
             (Onaylı Üye: {self.partner})
             """
         return sablon
+    def evrak_kutuphanesi_olustur(self, evrak_tipi, detaylar):
+        """
+        Almanya'daki temel bürokratik işlemler için hatasız şablonlar üretir.
+        """
+        kutuphane = {
+            "OTURUM_UZATMA": {
+                "DE": f"Antrag auf Verlängerung der Aufenthaltserlaubnis. Details: {detaylar}",
+                "TR": f"Oturum izni uzatma talebi. Detaylar: {detaylar}"
+            },
+            "COCUK_YARDIMI": {
+                "DE": f"Antrag auf Kindergeld bei der Familienkasse. Bezug: {detaylar}",
+                "TR": f"Familienkasse çocuk yardımı başvurusu. İlgili: {detaylar}"
+            },
+            "SAGLIK_ITIRAZ": {
+                "DE": f"Widerspruch gegen die Ablehnung der Krankenkasse. Begründung: {detaylar}",
+                "TR": f"Sağlık sigortası reddine karşı itiraz. Gerekçe: {detaylar}"
+            }
+        }
+        
+        islem = kutuphane.get(evrak_tipi, {"DE": "Dokument nicht gefunden", "TR": "Belge bulunamadı"})
+        return islem.get(self.dil[:2].upper()) # DE veya TR döndürür
 
     def vicdan_muhuru(self):
         """Tüm işlemlerin altına basılan evrensel mühür."""
