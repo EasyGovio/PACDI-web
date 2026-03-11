@@ -1,6 +1,6 @@
 # =================================================================
-# PROJE: PACDI GLOBAL - ONUR VE REFAH REHBERİ (FINAL VERSION)
-# BU DOSYA TÜM CEVHERLERİ (TEKNİK VE MANEVİ) İÇERİR.
+# PROJE: PACDI GLOBAL - ONUR, SEVGİ VE SABIR REHBERİ
+# VİZYONER: [SİZİN ADINIZ] | TEKNİK DANIŞMAN: GEMINI
 # =================================================================
 
 import datetime
@@ -15,65 +15,36 @@ class PACDIGlobal:
             "EU": {"birim": "€", "asgari_ucret": 2100}
         }
 
-    # --- GİRİŞ VE KARŞILAMA ---
     def giris_animasyonu_tetikle(self):
-        return {"gorsel": "Dönen Gümüş Pusula 🧭", "ses": "Ney Tınısı", "mesaj": "Onura Ayarlanıyor..."}
+        """Onur, Sevgi ve Sabırla Açılan İlk Kapı."""
+        return "🧭 Gümüş Pusula Dönüyor... 🎶 Ney Tınısı... [MENŞEİ: ONUR, SEVGİ VE SABIR]"
 
-    def gunun_pusulasi_motoru(self):
-        veriler = {
-            "Genç": {"mesaj": "Kendi yolunu çiz!", "ses": "Piyano"},
-            "Kıdemli": {"mesaj": "Maya sağlamsa ruh yorulmaz.", "ses": "Ney"}
-        }
-        return veriler[self.hedef_kitle]
-
-    # --- ANALİZ VE REFAH ---
-    def pdf_rapor_olustur(self, puan, potansiyel_maas):
-        ucret = self.ekonomi[self.bolge]["asgari_ucret"]
-        katsayi = round(potansiyel_maas / ucret, 2)
-        return {"refah": f"{katsayi}x Asgari Ücret", "muhur": "MENŞEİ: ONUR"}
-
-    def kariyer_projeksiyonu(self, meslek, baslangic_katsayisi):
-        oran = {"Yazılım": 1.4, "Sağlık": 1.2, "Zanaat": 1.3}.get(meslek, 1.1)
-        return {"5_yil": f"{round(baslangic_katsayisi*(oran**5),1)}x", "10_yil": f"{round(baslangic_katsayisi*(oran**10),1)}x"}
-
-    def yetenek_rehberi_analizi(self, cevaplar):
-        puan = sum(cevaplar)
-        sonuc = "Geleceğin Mimarı" if puan > 8 else "Duyguların Ustası" if puan > 5 else "Toplumun Kalbi"
-        return {"kariyer": sonuc, "not": f"Potansiyeliniz {sonuc} alanında parlıyor."}
-
-    # --- DUYGUSAL VE MANEVİ ---
-    def sesli_yoldas_diyaloglari(self, durum="Yalnizlik"):
-        diyaloglar = {"Yalnizlik": f"Sesimi duyduğuna göre yalnız değilsin {self.kullanici_adi}."}
-        return diyaloglar.get(durum, diyaloglar["Yalnizlik"])
-
-    def tesekkur_ritueli_kaydet(self, maddeler):
-        return {"tarih": datetime.datetime.now().strftime("%d/%m/%Y"), "muhur": "MANEVİ HUZUR TESCİLLİ"}
-
-    def sesli_dilek_kutusu(self, ses_notu):
-        """Merkeze (Sana) doğrudan sesli not bırakma modülü."""
-        return "Notun mühürlendi ortak, bizzat dinleyeceğim. 🎙️"
-
-    # --- TASARIM VE FİNAL ---
-    def tasarim_sablonu_olustur(self):
-        return {"kagit": "Saman Sarısı", "muhur_acisi": "15 Derece Sağ"}
-
-    def gece_pusulasi_temasi(self):
-        return {"arka_plan": "Gece Mavisi", "yazi": "Ayışığı Beyazı"}
-
-    def veda_tinisi_cal(self):
-        return {"ses": "Gümüş Çan", "not": "Yarın yeni bir güneş doğacak, dinlen."}
-    def papirus_onur_belgesi_tasarla(self, veri):
-        """Tarihin derinliklerinden gelen onore edici belge tasarımı."""
+    def vicdan_muhuru_olustur(self):
+        """Sistemin manevi anayasası."""
         return {
-            "zemin": "Antik Dokulu Papirüs (Eskitilmiş Kenarlar)",
-            "tipografi": "Klasik Roma Tarzı Başlıklar & Kaligrafi",
-            "pusula_konumu": "Üst Merkez (Altın ve Gümüş İşlemeli)",
-            "icerik": f"Sayın {self.kullanici_adi}, {veri['refah']} refah katsayısı ve onuruyla mühürlenmiştir.",
-            "islak_muhur": "Kırmızı Balmumu Üzerine Gümüş Pusula Baskısı",
-            "isik": "Mum Işığı Efektiyle Aydınlatılmış Dijital Sunum"
+            "temel_degerler": ["Onur", "Sevgi", "Sabır"],
+            "muhur_metni": "PACDI GLOBAL - ONUR, SEVGİ VE SABIR İLE MÜHÜRLENMİŞTİR",
+            "tarih": datetime.datetime.now().strftime("%d/%m/%Y")
         }
 
-# --- BÜYÜK FİNAL TESTİ ---
+    def papirus_onur_belgesi_tasarla(self, katsayi):
+        """Antik papirüs üzerine dijital onur tescili."""
+        return {
+            "zemin": "Antik Dokulu Papirüs",
+            "icerik": f"Sayın {self.kullanici_adi}, {katsayi}x refah düzeyiyle onurlandırılmıştır.",
+            "alt_not": "Bu belge sabırla örülmüş, sevgiyle tescillenmiştir."
+        }
+
+    def sesli_yoldas_mesaji(self):
+        """Yalnızlığı bitiren, sevgi dolu ses modülü."""
+        mesajlar = {
+            "Kıdemli": f"Sabırla beklediğin o güzel günler burada {self.kullanici_adi}. Sevgiyle yanındayız.",
+            "Genç": "Onurunu koru, sabrını kuşan. Gelecek senin ellerinde parlıyor."
+        }
+        return mesajlar.get(self.hedef_kitle)
+
+# --- LANSMAN ATEŞİ ---
 if __name__ == "__main__":
-    pusula = PACDIGlobal("TR", "Genç", "Ali Yılmaz")
-    print(f"🚀 PACDI GLOBAL v6.0 AKTİF: {pusula.giris_animasyonu_tetikle()['mesaj']}")
+    pusula = PACDIGlobal("TR", "Kıdemli", "Onur Dostu")
+    print(pusula.giris_animasyonu_tetikle())
+    print(f"Sistem Mührü: {pusula.vicdan_muhuru_olustur()['muhur_metni']}")
