@@ -1,118 +1,86 @@
 # =================================================================
-# PROJE: PACDI GLOBAL - GERMANY & PARTNER EDITION
-# VERSION: 9.0 (Onur, Sevgi ve Sabır Mührüyle)
-# PARA BİRİMİ: € (Euro) | DİLLER: Almanca & Türkçe
+# PROJE: PACDI GLOBAL - FULL LAUNCH ECOSYSTEM
+# VERSION: 10.0 (Lojistik Kontrol & Finansal Motor)
+# ODAK: PusulaPro, KompassPro, UniRoute, EasyGov, Apartments
+# PARA BİRİMİ: € / ₺ | DİLLER: Almanca & Türkçe
 # =================================================================
 
 import datetime
 
-class PACDIGlobal:
-    def __init__(self, kullanici_adi, dil="Almanca", partner="Merkez"):
-        """
-        Sistemi Almanya odağında, Euro ve Partner yapısıyla başlatır.
-        """
-        self.kullanici_adi = kullanici_adi
-        self.dil = dil # "Almanca" veya "Türkçe"
-        self.partner = partner # Caritas, Diakoni, Hukuk Derneği, Bayi vb.
-        self.para_birimi = "€"
-        self.asgari_ucret = 2100 # Almanya brüt asgari ücret (yaklaşık)
-
-    def hosgeldin_mesaji(self):
-        """Kullanıcıyı seçtiği dilde karşılar ve ilkeleri fısıldar."""
-        mesajlar = {
-            "Almanca": f"Willkommen bei PACDI Global, {self.kullanici_adi}. [EHRE, LIEBE, GEDULD]",
-            "Türkçe": f"PACDI Global'e hoş geldiniz, {self.kullanici_adi}. [ONUR, SEVGİ, SABIR]"
-        }
-        return mesajlar.get(self.dil, mesajlar["Almanca"])
-
-    def refah_analizi(self, katsayi):
-        """Refah katsayısını Almanya şartlarında Euro üzerinden hesaplar."""
-        tutar = self.asgari_ucret * katsayi
-        if self.dil == "Almanca":
-            return f"Wohlstandsindex: {tutar}{self.para_birimi} (Faktor: {katsayi}x)"
-        return f"Refah Endeksi: {tutar}{self.para_birimi} (Katsayı: {katsayi}x)"
-
-    def kurumsal_indirim_uygula(self, kurum_adi):
-        """Hukuk dernekleri veya sigorta üyeleri için indirimli alan açar."""
-        indirimler = {
-            "HUKUK_DERNEGI": 0.50, # %50 İndirim/Aidat Kapsamı
-            "SIGORTA_GURUP": 0.20  # %20 İndirim
-        }
-        oran = indirimler.get(kurum_adi, 0)
-        mesaj = f"{kurum_adi} üyeliği doğrulandı. %{oran*100} indirim tanımlandı." if self.dil == "Türkçe" else \
-                f"{kurum_adi} Mitgliedschaft bestätigt. %{oran*100} Rabatt angewendet."
-        return mesaj
-
-    def easygov_islem_motoru(self, evrak_adi):
-        """Bürokrasiyi partner bazlı çözen EasyGov motoru."""
-        detay = "Bürokrasinin karmaşasında bir nefes borusu." if self.dil == "Türkçe" else \
-                "Ein Atemzug in der bürokratischen Komplexität."
-        return {
-            "Partner": self.partner,
-            "Evrak": evrak_adi,
-            "Durum": "Bereit / Hazır",
-            "Motto": "Adalet bir nehir gibidir, paylaştıkça çoğalır.",
-            "Bilgi": detay
-        }
-    def hukuki_itiraz_hazirla(self, itiraz_konusu, tarih):
-        """
-        Dernek üyeleri için profesyonel Almanca itiraz dilekçesi taslağı oluşturur.
-        """
-        if self.dil == "Almanca":
-            sablon = f"""
-            Betreff: Widerspruch gegen den Bescheid vom {tarih}
-            Sehr geehrte Damen und Herren,
-            hiermit lege ich fristgerecht Widerspruch gegen den oben genannten Bescheid ein.
-            Grund: {itiraz_konusu}.
-            Mit freundlichen Grüßen,
-            {self.kullanici_adi}
-            (Bestätigtes Mitglied durch: {self.partner})
-            """
-        else:
-            sablon = f"""
-            Konu: {tarih} tarihli karara itiraz
-            Sayın ilgili,
-            Yukarıda belirtilen karara karşı süresi içinde itirazımı sunuyorum.
-            Neden: {itiraz_konusu}.
-            Saygılarımla,
-            {self.kullanici_adi}
-            (Onaylı Üye: {self.partner})
-            """
-        return sablon
-    def evrak_kutuphanesi_olustur(self, evrak_tipi, detaylar):
-        """
-        Almanya'daki temel bürokratik işlemler için hatasız şablonlar üretir.
-        """
-        kutuphane = {
-            "OTURUM_UZATMA": {
-                "DE": f"Antrag auf Verlängerung der Aufenthaltserlaubnis. Details: {detaylar}",
-                "TR": f"Oturum izni uzatma talebi. Detaylar: {detaylar}"
-            },
-            "COCUK_YARDIMI": {
-                "DE": f"Antrag auf Kindergeld bei der Familienkasse. Bezug: {detaylar}",
-                "TR": f"Familienkasse çocuk yardımı başvurusu. İlgili: {detaylar}"
-            },
-            "SAGLIK_ITIRAZ": {
-                "DE": f"Widerspruch gegen die Ablehnung der Krankenkasse. Begründung: {detaylar}",
-                "TR": f"Sağlık sigortası reddine karşı itiraz. Gerekçe: {detaylar}"
-            }
-        }
+class PACDI_Global_Ecosystem:
+    def __init__(self, kullanici_adi, bolge="EU", dil="Almanca", partner="Merkez"):
+        self.kullanici = kullanici_adi
+        self.bolge = bolge # "EU" veya "TR"
+        self.dil = dil
+        self.partner = partner
+        self.tarih = datetime.datetime.now().strftime("%d/%m/%Y")
         
-        islem = kutuphane.get(evrak_tipi, {"DE": "Dokument nicht gefunden", "TR": "Belge bulunamadı"})
-        return islem.get(self.dil[:2].upper()) # DE veya TR döndürür
+        # LOJİSTİK VE YASAL ONAY TAKİP SİSTEMİ
+        self.onaylar = {
+            "TUV_Sertifikasi": False,
+            "Hukuki_Gorus_Raporu": False,
+            "Frankfurt_Sunucu_Uyumu": False,
+            "Nakit_Birikim_Hedefi": False
+        }
 
-    def vicdan_muhuru(self):
-        """Tüm işlemlerin altına basılan evrensel mühür."""
-        muhur = "HERKUNFT: EHRE, LIEBE UND GEDULD" if self.dil == "Almanca" else "MENŞEİ: ONUR, SEVGİ VE SABIR"
-        return f"[{self.partner} Onaylı] - {muhur} - {datetime.datetime.now().strftime('%d/%m/%Y')}"
+    def lojistik_durum_ozeti(self):
+        """Sistemin devreye alınması için gereken yasal ve teknik engelleri takip eder."""
+        hazir_mi = all(self.onaylar.values())
+        durum = "✅ OPERASYONEL" if hazir_mi else "⏳ LOJİSTİK HAZIRLIKTA"
+        return f"Sistem Durumu: {durum} | Onaylananlar: {sum(self.onaylar.values())}/{len(self.onaylar)}"
 
-# --- SİSTEM SİMÜLASYONU (Lansman Öncesi Son Test) ---
+    def kariyer_pusulasi_uret(self, puan, refah_katsayisi):
+        """
+        PusulaPro & KompassPro: Düşük maliyetli, yüksek nakit getirili modül.
+        """
+        asgari = 2100 if self.bolge == "EU" else 17002
+        birim = "€" if self.bolge == "EU" else "₺"
+        
+        fiyatlar = {
+            "EU": {"Tier2": "9.90 €", "Tier3": "44.90 €"},
+            "TR": {"Tier2": "149 ₺", "Tier3": "499 ₺"}
+        }
+
+        tahmini_gelir = asgari * refah_katsayisi
+        
+        return {
+            "Modül": "PusulaPro/KompassPro",
+            "Refah_Analizi": f"Tahmini Aylık: {tahmini_gelir} {birim}",
+            "Ucret_Tablosu": fiyatlar[self.bolge],
+            "Mesaj": "Geleceğiniz onurla inşa ediliyor." if self.dil == "Türkçe" else "Ihre Zukunft wird mit Ehre aufgebaut."
+        }
+
+    def easygov_islem_motoru(self, evrak_adi, detay):
+        """Ağır sıklet bürokrasi navigasyonu (Lojistik Onay Gerekli)."""
+        if not self.onaylar["Hukuki_Gorus_Raporu"]:
+            return "HATA: Hukuki onay belgesi alınmadan bu modül aktif edilemez."
+        
+        return {
+            "Servis": "EasyGov Navigasyon",
+            "Evrak": evrak_adi,
+            "Partner": self.partner,
+            "Motto": "Adalet bir nehir gibidir."
+        }
+
+    def vicdan_muhuru_bas(self):
+        """Tüm modüllerin altına basılan kadim mühür."""
+        muhur = "MENŞEİ: ONUR, SEVGİ VE SABIR" if self.dil == "Türkçe" else "HERKUNFT: EHRE, LIEBE UND GEDULD"
+        return f"[{self.partner}] {muhur} | {self.tarih}"
+
+# --- SİSTEM SİMÜLASYONU ---
 if __name__ == "__main__":
-    # Örnek: Hukuk Derneği paydaşlığıyla Türkçe kullanan bir emekli
-    app = PACDIGlobal("Onur Dostu", "Türkçe", "Hukuk Derneği Üyesi")
+    # 1. Aşama: Nakit Biriktirme ve Kariyer Modülü (Hafif Sıklet)
+    p_pro = PACDI_Global_Ecosystem("Genç Vizyoner", "TR", "Türkçe")
+    print(p_pro.lojistik_durum_ozeti())
+    print(p_pro.kariyer_pusulasi_uret(85, 2.5))
     
-    print(app.hosgeldin_mesaji())
-    print(app.refah_analizi(2.5))
-    print(app.kurumsal_indirim_uygula("HUKUK_DERNEGI"))
-    print(app.easygov_islem_motoru("Emeklilik İtiraz Dilekçesi (Widerspruch)"))
-    print(app.vicdan_muhuru())
+    print("-" * 50)
+    
+    # 2. Aşama: Lojistik Onayların Tamamlanması
+    p_pro.onaylar["Hukuki_Gorus_Raporu"] = True
+    p_pro.onaylar["Frankfurt_Sunucu_Uyumu"] = True
+    print(p_pro.lojistik_durum_ozeti())
+    
+    # 3. Aşama: Ağır Sıklet EasyGov'un Devreye Girmesi
+    print(p_pro.easygov_islem_motoru("Widerspruch Rente", "Emeklilik puanı hatası"))
+    print(p_pro.vicdan_muhuru_bas())
