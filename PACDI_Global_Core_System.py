@@ -28,6 +28,27 @@ class PACDI_Global_Ecosystem:
         hazir_mi = all(self.onaylar.values())
         durum = "✅ OPERASYONEL" if hazir_mi else "⏳ LOJİSTİK HAZIRLIKTA"
         return f"Sistem Durumu: {durum} | Onaylananlar: {sum(self.onaylar.values())}/{len(self.onaylar)}"
+    def karargah_finans_paneli(self, toplam_gelir_birim):
+        """
+        Gelen nakiti %40 Lojistik, %25 Ar-Ge, %20 Pazarlama, %15 Acil Durum 
+        olarak bölüştüren ve lojistik hedefleri takip eden panel.
+        """
+        paylar = {
+            "Lojistik_Rezervi": toplam_gelir_birim * 0.40,
+            "Ar_Ge": toplam_gelir_birim * 0.25,
+            "Pazarlama": toplam_gelir_birim * 0.20,
+            "Acil_Durum": toplam_gelir_birim * 0.15
+        }
+        
+        # Lojistik Hedef Kontrolü (Örnek: Frankfurt Sunucu yıllık 1000 Birim varsayalım)
+        hedef_sunucu = 1000
+        kalan_sunucu = max(0, hedef_sunucu - paylar["Lojistik_Rezervi"])
+        
+        return {
+            "Finansal_Dagitim": paylar,
+            "Lojistik_Hedef_Durumu": f"Frankfurt Sunucu İçin Kalan: {kalan_sunucu} {self.bolge == 'EU' and '€' or '₺'}",
+            "Mesaj": "Para biriktikçe mühürler açılır, onurla büyümeye devam."
+        }
 
     def kariyer_pusulasi_uret(self, puan, refah_katsayisi):
         """
