@@ -1,147 +1,630 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PACDI Global | Social Tech Berlin</title>
-    <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f0f3f5; }
-        header { text-align: center; padding: 80px 20px; background: #1a252f; color: white; border-radius: 20px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .lang-switch { position: absolute; top: 25px; right: 25px; }
-        .lang-switch button { background: none; border: 1px solid #444; color: #bdc3c7; font-weight: bold; cursor: pointer; margin-left: 8px; padding: 5px 12px; border-radius: 5px; transition: 0.3s; }
-        .lang-switch button:hover, .lang-switch button.active { color: #e67e22; border-color: #e67e22; background: rgba(230, 126, 34, 0.1); }
-        h1 { margin: 0; font-size: 3.5em; letter-spacing: 3px; }
-        .slogan { font-style: italic; font-size: 1.6em; color: #e67e22; margin-top: 15px; font-weight: 300; }
-        section { background: white; margin: 30px 0; padding: 45px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        h2 { color: #1a252f; border-bottom: 4px solid #e67e22; padding-bottom: 12px; margin-bottom: 30px; font-size: 2em; }
-        .app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .app-card { border: 1px solid #eee; padding: 30px; border-radius: 15px; text-align: center; background: #fff; transition: all 0.4s ease; border-top: 5px solid #1a252f; }
-        .app-card:hover { transform: translateY(-10px); border-color: #e67e22; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .app-card h3 { margin-top: 0; color: #2c3e50; font-size: 1.6em; }
-        .app-card p { font-size: 1em; color: #555; line-height: 1.5; height: 60px; }
-        .badge { display: inline-block; padding: 4px 12px; background: #e67e22; color: white; border-radius: 20px; font-size: 0.8em; margin-bottom: 15px; text-transform: uppercase; font-weight: bold; }
-        .footer { text-align: center; padding: 40px; color: #7f8c8d; border-top: 1px solid #ddd; margin-top: 60px; }
-        .quote { font-style: italic; color: #34495e; text-align: center; margin-bottom: 40px; font-size: 1.2em; border-left: 5px solid #e67e22; padding: 20px; background: #f9f9f9; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PACDI Global | Social Tech Berlin</title>
+  <meta name="description" content="PACDI Global — Technologie im Dienste der Menschlichkeit. Berlin." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --navy:    #04162E;
+  --navy2:   #0A1F3A;
+  --gold:    #F6B45F;
+  --teal:    #0D7377;
+  --teal-lt: #14BDBD;
+  --cream:   #F5F0E8;
+  --white:   #FFFFFF;
+  --muted:   rgba(245,240,232,0.6);
+}
+
+html { scroll-behavior: smooth; background: var(--navy); }
+
+body {
+  background: var(--navy) !important;
+  color: var(--cream) !important;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  backdrop-filter: blur(14px);
+  background: rgba(4,22,46,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.lang-switch { display: flex; gap: 0.5rem; }
+
+.lang-switch button {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(245,240,232,0.5);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.lang-switch button:hover,
+.lang-switch button.active {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(246,180,95,0.08);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8rem 3rem 5rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-glow.g1 {
+  width: 500px; height: 500px;
+  right: -100px; top: -50px;
+  background: radial-gradient(circle, rgba(246,180,95,0.1) 0%, transparent 70%);
+  animation: breathe 9s ease-in-out infinite;
+}
+.hero-glow.g2 {
+  width: 350px; height: 350px;
+  left: 40%; bottom: 10%;
+  background: radial-gradient(circle, rgba(13,115,119,0.1) 0%, transparent 70%);
+  animation: breathe 7s ease-in-out infinite reverse;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+.hero-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal-lt);
+  border: 1px solid rgba(20,189,189,0.3);
+  padding: 0.3rem 0.9rem;
+  margin-bottom: 2rem;
+  display: inline-block;
+  animation: fadeUp 1s ease both;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 1s ease 0.15s both;
+}
+
+.hero-title span { color: var(--gold); }
+
+.hero-manifesto {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  animation: fadeUp 1s ease 0.3s both;
+}
+
+.hero-desc {
+  max-width: 500px;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: rgba(245,240,232,0.75);
+  animation: fadeUp 1s ease 0.45s both;
+}
+
+/* ── QUOTE STRIP ── */
+.quote-strip {
+  background: rgba(246,180,95,0.06);
+  border-top: 1px solid rgba(246,180,95,0.15);
+  border-bottom: 1px solid rgba(246,180,95,0.15);
+  padding: 2.5rem 3rem;
+  text-align: center;
+}
+
+.quote-strip p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  font-style: italic;
+  color: var(--cream);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+}
+
+.quote-strip em { color: var(--gold); font-style: normal; }
+
+/* ── SECTIONS ── */
+.section {
+  padding: 6rem 3rem;
+  background: var(--navy);
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal-lt);
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+
+.section-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 3rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── APP GRID ── */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.app-card {
+  background: var(--navy);
+  padding: 2.5rem 2rem;
+  position: relative;
+  transition: background 0.3s;
+  overflow: hidden;
+}
+
+.app-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.app-card:hover { background: rgba(246,180,95,0.04); }
+.app-card:hover::after { transform: scaleX(1); }
+
+.app-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--teal-lt);
+  border: 1px solid rgba(20,189,189,0.25);
+  padding: 0.25rem 0.7rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.app-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+}
+
+.app-desc {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: rgba(245,240,232,0.65);
+  margin-bottom: 1rem;
+}
+
+.app-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--gold);
+  opacity: 0.8;
+  border-left: 2px solid rgba(246,180,95,0.3);
+  padding-left: 0.8rem;
+}
+
+/* ── VISION ── */
+.vision-section {
+  background: rgba(13,115,119,0.08);
+  border-top: 1px solid rgba(20,189,189,0.12);
+  border-bottom: 1px solid rgba(20,189,189,0.12);
+  padding: 5rem 3rem;
+}
+
+.vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 900px;
+}
+
+.vision-text {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: rgba(245,240,232,0.8);
+}
+
+.vision-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.pillar {
+  border-left: 2px solid var(--gold);
+  padding-left: 1.2rem;
+}
+
+.pillar-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.pillar-text {
+  font-size: 0.88rem;
+  color: rgba(245,240,232,0.7);
+  line-height: 1.6;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--navy);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-brand {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(245,240,232,0.5);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: rgba(245,240,232,0.25);
+  margin-top: 0.5rem;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.animate { opacity: 0; transform: translateY(24px); }
+.reveal.animate.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .hero { padding: 7rem 1.5rem 4rem; }
+  .section { padding: 4rem 1.5rem; }
+  .vision-section { padding: 4rem 1.5rem; }
+  .vision-grid { grid-template-columns: 1fr; gap: 2rem; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; }
+  .quote-strip { padding: 2rem 1.5rem; }
+}
+```
+
+  </style>
 </head>
 <body>
 
-<header>
+  <!-- NAV -->
+
+  <nav>
+    <a href="#" class="nav-logo">PACDI Global</a>
     <div class="lang-switch">
-        <button onclick="setLang('de')" id="btn-de" class="active">DE</button>
-        <button onclick="setLang('en')" id="btn-en">EN</button>
-        <button onclick="setLang('tr')" id="btn-tr">TR</button>
+      <button onclick="setLang('de')" id="btn-de" class="active">DE</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+      <button onclick="setLang('tr')" id="btn-tr">TR</button>
     </div>
-    <h1>PACDI GLOBAL</h1>
-    <div class="slogan" id="txt-slogan">"Ihre Würde war größer als ihr Hunger."</div>
-</header>
+  </nav>
 
-<section>
-    <h2 id="txt-mission-title">Unsere Vision</h2>
-    <div class="quote" id="txt-quote">Gemini özdeyişleri: "In einer Welt voller Daten suchen wir die menschliche Wahrheit. Technologie ist unser Werkzeug, Integrität unser Ziel."</div>
-    <p id="txt-mission-desc">PACDI Global ist eine Brücke zwischen digitaler Effizienz und sozialer Gerechtigkeit. Wir verwandeln KI in einen sozialen Kompass für Berlin und die Welt.</p>
-</section>
+  <!-- HERO -->
 
-<section>
-    <h2 id="txt-apps-title">System-Module & Anwendungen</h2>
-    <div class="app-grid" id="app-container">
+  <section class="hero">
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
+
+```
+<span class="hero-badge">Berlin · Frankfurt · Europa</span>
+<h1 class="hero-title">PACDI<br><span>GLOBAL</span></h1>
+<p class="hero-manifesto" id="txt-manifesto">"İnsan, ekmekten fazlasına layıktır."</p>
+<p class="hero-desc" id="txt-desc">PACDI Global, yapay zekayı sosyal bir pusulaya dönüştürür. Dijital dünyadan gerçek hayata köprüler kuruyoruz.</p>
+```
+
+  </section>
+
+  <!-- QUOTE STRIP -->
+
+  <div class="quote-strip">
+    <p id="txt-quote">"Pusulası olan <em>kaybolmaz.</em>"</p>
+  </div>
+
+  <!-- APPS -->
+
+  <section class="section" id="apps">
+    <p class="section-label reveal" id="txt-apps-label">Ürünler & Ekosistem</p>
+    <h2 class="section-title reveal" id="txt-apps-title">Navigasyon araçları.</h2>
+    <p class="section-sub reveal" id="txt-apps-sub">"Doğru yolu bulmak, herkesin hakkıdır."</p>
+    <div class="app-grid" id="app-container"></div>
+  </section>
+
+  <!-- VISION -->
+
+  <div class="vision-section">
+    <div class="vision-grid">
+      <div>
+        <p class="section-label reveal">Vizyon</p>
+        <h2 class="section-title reveal" id="txt-vision-title">İnsanlık onuruna<br>hizmet eden teknoloji.</h2>
+        <p class="vision-text reveal" id="txt-vision-desc">PACDI Global, bireyleri eksikleriyle değil güçleriyle görür. Her ürün, bir navigasyon aracıdır — kariyer, sağlık, bürokrasi veya mahalle dayanışması fark etmez.</p>
+      </div>
+      <div class="vision-pillars reveal">
+        <div class="pillar">
+          <p class="pillar-title" id="txt-p1-title">Onur</p>
+          <p class="pillar-text" id="txt-p1">"İnsanlık onurunu korumak toplumları birlik içinde ayakta tutar."</p>
         </div>
-</section>
-
-<div class="footer">
-    <p>© 2026 PACDI Global Social Research Board - Berlin, Germany</p>
-    <p id="txt-footer-note">Technologie im Dienste der Menschlichkeit.</p>
-    <div style="margin-top: 20px;">
-        <a href="privacy-de.html" style="color: #34495e; text-decoration: none; margin: 0 10px;">DE</a>
-        <a href="privacy-en.html" style="color: #34495e; text-decoration: none; margin: 0 10px;">EN</a>
-        <a href="privacy-tr.html" style="color: #34495e; text-decoration: none; margin: 0 10px;">TR</a>
+        <div class="pillar">
+          <p class="pillar-title" id="txt-p2-title">Dürüstlük</p>
+          <p class="pillar-text" id="txt-p2">"Hakkı hak edene teslim et — fırsatçılara değil."</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-title" id="txt-p3-title">Navigasyon</p>
+          <p class="pillar-text" id="txt-p3">"Teknoloji insana hizmet eder — tersi değil."</p>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<script>
-        const translations = {
-        de: {
-            slogan: '"Ihre Würde war größer als ihr Hunger."',
-            missionTitle: 'Unsere Vision',
-            missionDesc: 'PACDI Global verwandelt KI in einen sozialen Kompass. Wir bauen Brücken von der digitalen Welt in die reale Nachbarschaft.',
-            quote: 'Zitate von Gemini: "In einer Welt voller Daten suchen wir die menschliche Wahrheit."',
-            appsTitle: 'System-Module & Anwendungen',
-            footerNote: 'Technologie im Dienste der Menschlichkeit.',
-            apps: [
-                {b: 'Global Integration', h: 'EduConnect', p: 'Automatisierte Integration für Jobcenter- und Arbeitsagentur-Prozesse.'},
-                {b: 'Visa & Karriere', h: 'CareerMap', p: 'Digitale Begleitung für Fachkräfte mit Arbeitsvisum und Arbeitsvertrag.'},
-                {b: 'Akademisch', h: 'UniRoute', p: 'Akademische Pfade und Siedlungsunterstützung für Master-Studierende.'},
-                {b: 'Bürokratie', h: 'EasyGov', p: 'Bürokratische Prozesse einfach, würdevoll und digital erledigen.'},
-                {b: 'Kiez-Leben', h: 'WrangelKiez', p: 'Digitale Nachbarschaftshilfe und lokale Solidarität in Berlin.'},
-                {b: 'Senioren', h: 'Silver Compass', p: 'Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.'},
-                {b: 'Mizaç-Analyse', h: 'KompassPro', p: 'Temperamentbasierte Berufsberatung und Bildungswege.'},
-                {b: 'Automation', h: 'CampusFlow', p: 'Management-System für Bildungszentren und Unterkünfte.'}
-            ]
-        },
-        tr: {
-            slogan: '"Onuru açlığından büyüktü."',
-            missionTitle: 'Vizyonumuz',
-            missionDesc: 'PACDI Global, yapay zekayı sosyal bir pusulaya dönüştürür. Dijital dünyadan gerçek mahalle dayanışmasına köprüler kuruyoruz.',
-            quote: 'Gemini özdeyişleri: "Veri dolu bir dünyada insani gerçeği arıyoruz."',
-            appsTitle: 'Sistem Modülleri ve Uygulamalar',
-            footerNote: 'İnsanlık onuruna hizmet eden teknoloji.',
-            apps: [
-                {b: 'Küresel Entegrasyon', h: 'EduConnect', p: 'Jobcenter ve İş Ajansı süreçleri için otomatik entegrasyon ve takip sistemi.'},
-                {b: 'Vize ve Kariyer', h: 'CareerMap', p: 'İş sözleşmesi ve vize ile gelen profesyoneller için dijital rehber.'},
-                {b: 'Akademik Rota', h: 'UniRoute', p: 'Yüksek lisans öğrencileri için akademik yol haritası ve yerleşim desteği.'},
-                {b: 'Bürokrasi', h: 'EasyGov', p: 'Karmaşık bürokratik işlemleri sadeleştiren ve onurla çözen asistan.'},
-                {b: 'Mahalle Dayanışması', h: 'WrangelKiez', p: 'Berlin mahallelerinde dijital dayanışma ve yerel yardımlaşma ağı.'},
-                {b: 'Onurlu Yaşlanma', h: 'Silver Compass', p: 'Yaşlılar için bilişsel sağlık takibi ve mahalle katılım desteği.'},
-                {b: 'Mizaç Analizi', h: 'PusulaPro', p: 'Mizaç temelli kariyer danışmanlığı ve İşkur entegrasyonu.'},
-                {b: 'Otomasyon', h: 'CampusFlow', p: 'Eğitim merkezleri ve yurtlar için uçtan uca yönetim sistemi.'}
-            ]
-        },
-        en: {
-            slogan: '"Their dignity was greater than their hunger."',
-            missionTitle: 'Our Vision',
-            missionDesc: 'PACDI Global transforms AI into a social compass. We build bridges from the digital world to real-world neighborhoods.',
-            quote: 'Quotes by Gemini: "In a world of data, we search for the human truth."',
-            appsTitle: 'System Modules & Applications',
-            footerNote: 'Technology in the service of humanity.',
-            apps: [
-                {b: 'Global Integration', h: 'EduConnect', p: 'Automated integration for Jobcenter and Labor Agency processes.'},
-                {b: 'Visa & Career', h: 'CareerMap', p: 'Digital guidance for professionals with work visas and contracts.'},
-                {b: 'Academic Path', h: 'UniRoute', p: 'Academic pathways and settlement support for Master students.'},
-                {b: 'Bureaucracy', h: 'EasyGov', p: 'Handle bureaucratic processes simply, with dignity and digitally.'},
-                {b: 'Community', h: 'WrangelKiez', p: 'Digital neighborhood support and local solidarity in Berlin.'},
-                {b: 'Aging with Dignity', h: 'Silver Compass', p: 'Cognitive health tracking and community participation for seniors.'},
-                {b: 'Temperament', h: 'CompassPro', p: 'Temperament-based career counseling and educational paths.'},
-                {b: 'Automation', h: 'CampusFlow', p: 'Management system for education centers and accommodations.'}
-            ]
-        }
+  <!-- FOOTER -->
+
+  <footer>
+    <div>
+      <p class="footer-brand">PACDI Global</p>
+      <p class="footer-tagline" id="txt-footer-tagline">"Onur, en temel insan hakkıdır."</p>
+      <p class="footer-copy">© 2026 PACDI Global — Berlin, Germany</p>
+    </div>
+    <div>
+      <div class="footer-links">
+        <a href="privacy-de.html">Datenschutz</a>
+        <a href="privacy-en.html">Privacy</a>
+        <a href="privacy-tr.html">Gizlilik</a>
+        <a href="mailto:info@pacdi.de">info@pacdi.de</a>
+      </div>
+      <p class="footer-copy" style="margin-top:0.8rem;" id="txt-footer-note">Technologie im Dienste der Menschlichkeit.</p>
+    </div>
+  </footer>
+
+  <script>
+    const T = {
+      de: {
+        manifesto: '"Der Mensch verdient mehr als nur Brot."',
+        desc: 'PACDI Global verwandelt KI in einen sozialen Kompass. Wir bauen Brücken von der digitalen Welt in die reale Nachbarschaft.',
+        quote: '"Wer einen Kompass hat, <em>geht nicht verloren.</em>"',
+        appsLabel: 'Produkte & Ökosystem',
+        appsTitle: 'Navigations-werkzeuge.',
+        appsSub: '"Den richtigen Weg zu finden ist das Recht eines jeden Menschen."',
+        visionTitle: 'Technologie im Dienste<br>der Menschlichkeit.',
+        visionDesc: 'PACDI Global sieht den Menschen durch seine Stärken, nicht seine Defizite. Jedes Produkt ist ein Navigationsinstrument — ob Karriere, Gesundheit, Bürokratie oder Nachbarschaft.',
+        p1t: 'Würde', p1: '"Die Menschenwürde zu schützen ist unerlässlich für eine einige Gesellschaft."',
+        p2t: 'Integrität', p2: '"Gib dem, der es verdient — nicht dem Opportunisten."',
+        p3t: 'Navigation', p3: '"Technologie dient dem Menschen — nicht umgekehrt."',
+        footerTagline: '"Würde ist das grundlegendste Menschenrecht."',
+        footerNote: 'Technologie im Dienste der Menschlichkeit.',
+        apps: [
+          { badge: 'Karriere', name: 'PusulaPro', desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.', quote: '"Rotanı bilmek her şeyden önce gelir."' },
+          { badge: 'Karriere EU', name: 'KompassPro', desc: 'RIASEC-basierte Berufsberatung für den europäischen Markt.', quote: '"Jeder Mensch verdient den richtigen Weg."' },
+          { badge: 'Bürokratie', name: 'EasyGov.io', desc: 'Bürokratische Prozesse einfach, würdevoll und mehrsprachig lösen.', quote: '"Das System soll dem Menschen dienen."' },
+          { badge: 'Gesundheit', name: 'GlucoNavigator', desc: 'KI-gestützte Glukose-Navigation für ein bewussteres Leben mit Diabetes.', quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Senioren', name: 'SilverCompass', desc: 'Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.', quote: '"Würdevoll älter werden."' },
+          { badge: 'Kiez', name: 'Kiezflow', desc: 'Digitale Nachbarschaftsplattform für Vertrauen und lokale Solidarität.', quote: '"Vertrauen ist die Währung der Nachbarschaft."' },
+        ]
+      },
+      tr: {
+        manifesto: '"İnsan, ekmekten fazlasına layıktır."',
+        desc: 'PACDI Global, yapay zekayı sosyal bir pusulaya dönüştürür. Dijital dünyadan gerçek hayata köprüler kuruyoruz.',
+        quote: '"Pusulası olan <em>kaybolmaz.</em>"',
+        appsLabel: 'Ürünler & Ekosistem',
+        appsTitle: 'Navigasyon araçları.',
+        appsSub: '"Doğru yolu bulmak, herkesin hakkıdır."',
+        visionTitle: 'İnsanlık onuruna<br>hizmet eden teknoloji.',
+        visionDesc: 'PACDI Global, bireyleri eksikleriyle değil güçleriyle görür. Her ürün, bir navigasyon aracıdır — kariyer, sağlık, bürokrasi veya mahalle dayanışması fark etmez.',
+        p1t: 'Onur', p1: '"İnsanlık onurunu korumak toplumları birlik içinde ayakta tutar."',
+        p2t: 'Dürüstlük', p2: '"Hakkı hak edene teslim et — fırsatçılara değil."',
+        p3t: 'Navigasyon', p3: '"Teknoloji insana hizmet eder — tersi değil."',
+        footerTagline: '"Onur, en temel insan hakkıdır."',
+        footerNote: 'İnsanlık onuruna hizmet eden teknoloji.',
+        apps: [
+          { badge: 'Kariyer', name: 'PusulaPro', desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.', quote: '"Rotanı bilmek her şeyden önce gelir."' },
+          { badge: 'Kariyer EU', name: 'KompassPro', desc: 'Avrupa pazarı için RIASEC tabanlı kariyer rehberliği.', quote: '"Her insan doğru yolu hak eder."' },
+          { badge: 'Bürokrasi', name: 'EasyGov.io', desc: 'Bürokratik süreçleri basit, onurlu ve çok dilli çözen navigasyon aracı.', quote: '"Sistem insana hizmet etmeli."' },
+          { badge: 'Sağlık', name: 'GlucoNavigator', desc: 'Diyabetle yaşayanlar için yapay zeka destekli glükoz navigasyon platformu.', quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Yaşlı Bakım', name: 'SilverCompass', desc: 'Yaşlılar için bilişsel sağlık takibi ve onurlu yaşam desteği.', quote: '"Onurla yaşlanmak bir haktır."' },
+          { badge: 'Mahalle', name: 'Kiezflow', desc: 'Güven ve dayanışma üzerine kurulu dijital mahalle platformu.', quote: '"Güven, mahallenin para birimidir."' },
+        ]
+      },
+      en: {
+        manifesto: '"The human being deserves more than bread alone."',
+        desc: 'PACDI Global transforms AI into a social compass. We build bridges from the digital world to real neighborhoods.',
+        quote: '"Those with a compass <em>never get lost.</em>"',
+        appsLabel: 'Products & Ecosystem',
+        appsTitle: 'Navigation tools.',
+        appsSub: '"Finding the right path is everyone\'s right."',
+        visionTitle: 'Technology in service<br>of human dignity.',
+        visionDesc: 'PACDI Global sees people through their strengths, not their deficits. Every product is a navigation tool — career, health, bureaucracy or neighborhood solidarity.',
+        p1t: 'Dignity', p1: '"Protecting human dignity is essential for a united society."',
+        p2t: 'Integrity', p2: '"Give to those who deserve it — not to opportunists."',
+        p3t: 'Navigation', p3: '"Technology serves the human — not the other way around."',
+        footerTagline: '"Dignity is the most fundamental human right."',
+        footerNote: 'Technology in the service of humanity.',
+        apps: [
+          { badge: 'Career', name: 'PusulaPro', desc: 'Temperament-based career guidance platform for the Turkish market.', quote: '"Knowing your path comes first."' },
+          { badge: 'Career EU', name: 'KompassPro', desc: 'RIASEC-based career guidance for the European market.', quote: '"Every person deserves the right path."' },
+          { badge: 'Bureaucracy', name: 'EasyGov.io', desc: 'Navigate bureaucratic processes simply, with dignity and multilingually.', quote: '"The system should serve the people."' },
+          { badge: 'Health', name: 'GlucoNavigator', desc: 'AI-powered glucose navigation platform for conscious diabetes management.', quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Senior Care', name: 'SilverCompass', desc: 'Cognitive health tracking and dignified aging support for seniors.', quote: '"Aging with dignity is a right."' },
+          { badge: 'Neighborhood', name: 'Kiezflow', desc: 'Digital neighborhood platform built on trust and local solidarity.', quote: '"Trust is the currency of the neighborhood."' },
+        ]
+      }
     };
 
     function setLang(lang) {
-        document.getElementById('txt-slogan').innerText = translations[lang].slogan;
-        document.getElementById('txt-mission-title').innerText = translations[lang].missionTitle;
-        document.getElementById('txt-mission-desc').innerText = translations[lang].missionDesc;
-        document.getElementById('txt-quote').innerText = translations[lang].quote;
-        document.getElementById('txt-apps-title').innerText = translations[lang].appsTitle;
-        document.getElementById('txt-footer-note').innerText = translations[lang].footerNote;
+      const t = T[lang];
+      document.getElementById('txt-manifesto').innerText = t.manifesto;
+      document.getElementById('txt-desc').innerText = t.desc;
+      document.getElementById('txt-quote').innerHTML = t.quote;
+      document.getElementById('txt-apps-label').innerText = t.appsLabel;
+      document.getElementById('txt-apps-title').innerText = t.appsTitle;
+      document.getElementById('txt-apps-sub').innerText = t.appsSub;
+      document.getElementById('txt-vision-title').innerHTML = t.visionTitle;
+      document.getElementById('txt-vision-desc').innerText = t.visionDesc;
+      document.getElementById('txt-p1-title').innerText = t.p1t;
+      document.getElementById('txt-p1').innerText = t.p1;
+      document.getElementById('txt-p2-title').innerText = t.p2t;
+      document.getElementById('txt-p2').innerText = t.p2;
+      document.getElementById('txt-p3-title').innerText = t.p3t;
+      document.getElementById('txt-p3').innerText = t.p3;
+      document.getElementById('txt-footer-tagline').innerText = t.footerTagline;
+      document.getElementById('txt-footer-note').innerText = t.footerNote;
 
-        const container = document.getElementById('app-container');
-        container.innerHTML = '';
-        translations[lang].apps.forEach(app => {
-            container.innerHTML += `
-                <div class="app-card">
-                    <span class="badge">${app.b}</span>
-                    <h3>${app.h}</h3>
-                    <p>${app.p}</p>
-                </div>
-            `;
-        });
+      const container = document.getElementById('app-container');
+      container.innerHTML = '';
+      t.apps.forEach(app => {
+        container.innerHTML += `
+          <div class="app-card">
+            <span class="app-badge">${app.badge}</span>
+            <h3 class="app-name">${app.name}</h3>
+            <p class="app-desc">${app.desc}</p>
+            <p class="app-quote">${app.quote}</p>
+          </div>`;
+      });
 
-        document.querySelectorAll('.lang-switch button').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('btn-' + lang).classList.add('active');
+      document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-' + lang).classList.add('active');
+      document.documentElement.lang = lang;
     }
 
-    setLang('de'); // Default DE
-</script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      reveals.forEach(el => el.classList.add('animate'));
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 80);
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      reveals.forEach(el => obs.observe(el));
+    }
+
+    setLang('de');
+  </script>
 
 </body>
 </html>
