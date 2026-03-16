@@ -1,20 +1,292 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Datenschutzerklärung | PACDI Global</title>
-    <style>body { font-family: sans-serif; line-height: 1.6; padding: 40px; color: #333; max-width: 800px; margin: auto; }</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung — PACDI Global</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #04162E;
+      --gold: #F6B45F;
+      --teal: #14BDBD;
+      --cream: #F5F0E8;
+    }
+    html { background: var(--navy); }
+    body {
+      background: #04162E !important;
+      color: #F5F0E8 !important;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      backdrop-filter: blur(14px);
+      background: rgba(4,22,46,0.9);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.3rem 0.8rem;
+      transition: all 0.3s;
+    }
+    .nav-back:hover { color: var(--gold); border-color: var(--gold); }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 8rem 3rem 5rem;
+    }
+    .page-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .page-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: rgba(245,240,232,0.4);
+      margin-bottom: 3rem;
+    }
+    .divider {
+      height: 1px;
+      background: rgba(246,180,95,0.2);
+      margin: 2.5rem 0;
+    }
+    .section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
+    p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: rgba(245,240,232,0.85);
+      margin-bottom: 0.8rem;
+    }
+    ul {
+      list-style: none;
+      margin: 0.5rem 0 1rem 0;
+    }
+    ul li {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.85);
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+    ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+    }
+    .highlight-box {
+      background: rgba(20,189,189,0.06);
+      border-left: 2px solid var(--teal);
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .highlight-box p { margin: 0; color: rgba(245,240,232,0.9); }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { color: var(--gold); }
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 3rem;
+      text-align: center;
+      background: #04162E;
+    }
+    .footer-brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(245,240,232,0.3);
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1.1rem 1.5rem; }
+      .container { padding: 7rem 1.5rem 4rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Datenschutzerklärung</h1>
-    <p><strong>Stand: März 2026</strong></p>
-    <p>PACDI Global legt höchsten Wert auf den Schutz Ihrer persönlichen Daten. Unsere Technologie dient der Menschenwürde, nicht der Datenverarbeitung.</p>
-    <h2>1. Verantwortliche Stelle</h2>
-    <p>PACDI Global Social Research Board, Berlin, Germany.<br>Kontakt: info@pacdi.de</p>
-    <h2>2. Datensparsamkeit</h2>
-    <p>Wir erheben nur Daten, die für die Funktion unserer sozialen Dienste (Silver Compass, WrangelKiez etc.) zwingend erforderlich sind.</p>
-    <h2>3. Ihre Rechte</h2>
-    <p>Gemäß DSGVO haben Sie jederzeit das Recht auf Auskunft, Berichtigung und Löschung Ihrer Daten.</p>
-    <p><a href="index.html">Zurück zur Startseite</a></p>
+  <nav>
+    <a href="index.html" class="nav-logo">PACDI Global</a>
+    <a href="index.html" class="nav-back">← Startseite</a>
+  </nav>
+
+  <div class="container">
+    <p class="page-label">Rechtliches</p>
+    <h1 class="page-title">Datenschutz-<br>erklärung</h1>
+    <p class="page-date">Stand: März 2026 — PACDI Global</p>
+    <div class="divider"></div>
+
+```
+<div class="highlight-box">
+  <p>"Technologie dient dem Menschen — nicht der Datenverarbeitung. Ihre Würde und Privatsphäre sind für uns unverhandelbar."</p>
+</div>
+
+<div class="divider"></div>
+
+<p class="section-title">01</p>
+<p class="section-num">Verantwortlicher</p>
+<p>PACDI Global Social Research Board, Berlin, Germany.<br>
+Kontakt: <a href="mailto:info@pacdi.de">info@pacdi.de</a> — <a href="https://pacdi.de">pacdi.de</a></p>
+
+<div class="divider"></div>
+
+<p class="section-title">02</p>
+<p class="section-num">Erhobene Daten</p>
+<ul>
+  <li>Name und E-Mail-Adresse (bei Registrierung)</li>
+  <li>Sprachpräferenz und Nutzungsverhalten (anonym)</li>
+  <li>Holland / RIASEC-Testergebnisse (PusulaPro / KompassPro)</li>
+  <li>Gesundheitsbezogene Wellnessdaten (GlucoNavigator — anonym)</li>
+  <li>Zahlungsdaten (über Stripe / iyzico — keine Kartendaten gespeichert)</li>
+</ul>
+
+<div class="divider"></div>
+
+<p class="section-title">03</p>
+<p class="section-num">Zweck der Verarbeitung</p>
+<ul>
+  <li>Personalisierte Navigationsempfehlungen</li>
+  <li>PDF-Berichterstellung (Karriere, Wellness)</li>
+  <li>Verbesserung der App-Erfahrung</li>
+  <li>Premium-Mitgliedschaftsverwaltung</li>
+  <li>Wissenschaftliche Forschung (nur anonym — GlucoNavigator)</li>
+</ul>
+
+<div class="divider"></div>
+
+<p class="section-title">04</p>
+<p class="section-num">Rechtsgrundlage (DSGVO)</p>
+<ul>
+  <li>Art. 6 Abs. 1 lit. a DSGVO — Einwilligung</li>
+  <li>Art. 6 Abs. 1 lit. b DSGVO — Vertragserfüllung</li>
+  <li>Art. 6 Abs. 1 lit. f DSGVO — Berechtigte Interessen</li>
+  <li>Art. 9 Abs. 2 lit. a DSGVO — Ausdrückliche Einwilligung (Gesundheitsdaten)</li>
+</ul>
+
+<div class="divider"></div>
+
+<p class="section-title">05</p>
+<p class="section-num">Datenweitergabe</p>
+<p>Wir verkaufen Ihre Daten nicht. Weitergabe nur an:</p>
+<ul>
+  <li>Firebase (Google) — Datenspeicherung</li>
+  <li>Stripe / iyzico — Zahlungsabwicklung</li>
+  <li>Behörden — bei gesetzlicher Verpflichtung</li>
+</ul>
+
+<div class="divider"></div>
+
+<p class="section-title">06</p>
+<p class="section-num">Datensicherheit</p>
+<ul>
+  <li>SSL/TLS-Verschlüsselung für alle Übertragungen</li>
+  <li>Firebase-Sicherheitsregeln aktiv</li>
+  <li>Kartendaten werden nicht auf unseren Servern gespeichert</li>
+  <li>GlucoNavigator: vollständig anonymisierte Verarbeitung</li>
+</ul>
+
+<div class="divider"></div>
+
+<p class="section-title">07</p>
+<p class="section-num">Speicherdauer</p>
+<p>Daten werden gespeichert solange das Konto aktiv ist. Nach Löschungsantrag werden alle Daten innerhalb von 30 Tagen gelöscht. Kontakt: <a href="mailto:info@pacdi.de">info@pacdi.de</a></p>
+
+<div class="divider"></div>
+
+<p class="section-title">08</p>
+<p class="section-num">Ihre Rechte (DSGVO Art. 15–22)</p>
+<ul>
+  <li>Auskunftsrecht über gespeicherte Daten</li>
+  <li>Recht auf Berichtigung und Löschung</li>
+  <li>Recht auf Datenübertragbarkeit</li>
+  <li>Widerspruchsrecht gegen Verarbeitung</li>
+  <li>Beschwerderecht bei der Aufsichtsbehörde</li>
+</ul>
+<p>Anfragen: <a href="mailto:info@pacdi.de">info@pacdi.de</a></p>
+
+<div class="divider"></div>
+
+<p class="section-title">09</p>
+<p class="section-num">Zuständige Aufsichtsbehörde</p>
+<p>Berliner Beauftragte für Datenschutz und Informationsfreiheit (BlnBDI)<br>
+<a href="https://www.datenschutz-berlin.de" target="_blank">www.datenschutz-berlin.de</a></p>
+
+<div class="divider"></div>
+
+<p class="section-title">10</p>
+<p class="section-num">Minderjährigenschutz</p>
+<p>Wir erheben keine Daten von Kindern unter 13 Jahren. Für Nutzer zwischen 13 und 18 Jahren wird die elterliche Einwilligung empfohlen.</p>
+
+<div class="divider"></div>
+
+<p class="section-title">11</p>
+<p class="section-num">Änderungen dieser Erklärung</p>
+<p>Änderungen werden per In-App-Benachrichtigung oder E-Mail mitgeteilt. Die jeweils aktuelle Version ist auf <a href="https://pacdi.de">pacdi.de</a> verfügbar.</p>
+```
+
+  </div>
+
+  <footer>
+    <p class="footer-brand">PACDI Global</p>
+    <p class="footer-copy">© 2026 PACDI Global — Berlin, Germany — <a href="mailto:info@pacdi.de">info@pacdi.de</a></p>
+  </footer>
 </body>
 </html>
