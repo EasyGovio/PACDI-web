@@ -35,7 +35,6 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-/* ── NAV ── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -79,7 +78,6 @@ nav {
   background: rgba(246,180,95,0.08);
 }
 
-/* ── HERO ── */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -162,7 +160,6 @@ nav {
   animation: fadeUp 1s ease 0.45s both;
 }
 
-/* ── QUOTE STRIP ── */
 .quote-strip {
   background: rgba(246,180,95,0.06);
   border-top: 1px solid rgba(246,180,95,0.15);
@@ -182,7 +179,6 @@ nav {
 
 .quote-strip em { color: var(--gold); font-style: normal; }
 
-/* ── SECTIONS ── */
 .section {
   padding: 6rem 3rem;
   background: var(--navy);
@@ -215,7 +211,6 @@ nav {
   letter-spacing: 0.04em;
 }
 
-/* ── APP GRID ── */
 .app-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -283,7 +278,6 @@ nav {
   padding-left: 0.8rem;
 }
 
-/* ── VISION ── */
 .vision-section {
   background: rgba(13,115,119,0.08);
   border-top: 1px solid rgba(20,189,189,0.12);
@@ -331,7 +325,6 @@ nav {
   line-height: 1.6;
 }
 
-/* ── FOOTER ── */
 footer {
   padding: 3rem;
   border-top: 1px solid rgba(255,255,255,0.06);
@@ -384,7 +377,6 @@ footer {
   margin-top: 0.5rem;
 }
 
-/* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -398,7 +390,6 @@ footer {
 .reveal.animate { opacity: 0; transform: translateY(24px); }
 .reveal.animate.visible { opacity: 1; transform: translateY(0); }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 1.1rem 1.5rem; }
   .hero { padding: 7rem 1.5rem 4rem; }
@@ -414,8 +405,6 @@ footer {
 </head>
 <body style="background:#04162E !important;color:#F5F0E8 !important;">
 
-  <!-- NAV -->
-
   <nav>
     <a href="#" class="nav-logo">PACDI Global</a>
     <div class="lang-switch">
@@ -425,28 +414,18 @@ footer {
     </div>
   </nav>
 
-  <!-- HERO -->
-
   <section class="hero" style="background:#04162E !important;">
     <div class="hero-glow g1"></div>
     <div class="hero-glow g2"></div>
-
-```
-<span class="hero-badge">Berlin · Frankfurt · Europa</span>
-<h1 class="hero-title">PACDI<br><span>GLOBAL</span></h1>
-<p class="hero-manifesto" id="txt-manifesto">"İnsan, ekmekten fazlasına layıktır."</p>
-<p class="hero-desc" id="txt-desc">PACDI Global, yapay zekayı sosyal bir pusulaya dönüştürür. Dijital dünyadan gerçek hayata köprüler kuruyoruz.</p>
-```
-
+    <span class="hero-badge">Berlin · Frankfurt · Europa</span>
+    <h1 class="hero-title">PACDI<br><span>GLOBAL</span></h1>
+    <p class="hero-manifesto" id="txt-manifesto">"İnsan, ekmekten fazlasına layıktır."</p>
+    <p class="hero-desc" id="txt-desc">PACDI Global, yapay zekayı sosyal bir pusulaya dönüştürür. Dijital dünyadan gerçek hayata köprüler kuruyoruz.</p>
   </section>
-
-  <!-- QUOTE STRIP -->
 
   <div class="quote-strip" style="background:#061828;">
     <p id="txt-quote">"Pusulası olan <em>kaybolmaz.</em>"</p>
   </div>
-
-  <!-- APPS -->
 
   <section class="section" id="apps" style="background:#04162E;">
     <p class="section-label reveal" id="txt-apps-label">Ürünler & Ekosistem</p>
@@ -454,8 +433,6 @@ footer {
     <p class="section-sub reveal" id="txt-apps-sub">"Doğru yolu bulmak, herkesin hakkıdır."</p>
     <div class="app-grid" id="app-container"></div>
   </section>
-
-  <!-- VISION -->
 
   <div class="vision-section" style="background:#071e35;">
     <div class="vision-grid">
@@ -466,8 +443,8 @@ footer {
       </div>
       <div class="vision-pillars reveal">
         <div class="pillar">
-          <p class="pillar-title" id="txt-p1-title">Onur</p>
-          <p class="pillar-text" id="txt-p1">"İnsanlık onurunu korumak toplumları birlik içinde ayakta tutar."</p>
+          <p class="pillar-title" id="txt-p1-title">Hak</p>
+          <p class="pillar-text" id="txt-p1">"Doğru bilgiye erişmek, lüks değil — temel bir haktır."</p>
         </div>
         <div class="pillar">
           <p class="pillar-title" id="txt-p2-title">Dürüstlük</p>
@@ -480,8 +457,6 @@ footer {
       </div>
     </div>
   </div>
-
-  <!-- FOOTER -->
 
   <footer style="background:#04162E;">
     <div>
@@ -511,18 +486,18 @@ footer {
         appsSub: '"Den richtigen Weg zu finden ist das Recht eines jeden Menschen."',
         visionTitle: 'Technologie im Dienste<br>der Menschlichkeit.',
         visionDesc: 'PACDI Global sieht den Menschen durch seine Stärken, nicht seine Defizite. Jedes Produkt ist ein Navigationsinstrument — ob Karriere, Gesundheit, Bürokratie oder Nachbarschaft.',
-        p1t: 'Würde', p1: '"Die Menschenwürde zu schützen ist unerlässlich für eine einige Gesellschaft."',
-        p2t: 'Integrität', p2: '"Gib dem, der es verdient — nicht dem Opportunisten."',
-        p3t: 'Navigation', p3: '"Technologie dient dem Menschen — nicht umgekehrt."',
+        p1t: 'Recht',       p1: '"Zugang zu richtigen Informationen ist kein Luxus — es ist ein Grundrecht."',
+        p2t: 'Integrität',  p2: '"Gib dem, der es verdient — nicht dem Opportunisten."',
+        p3t: 'Navigation',  p3: '"Technologie dient dem Menschen — nicht umgekehrt."',
         footerTagline: '"Würde ist das grundlegendste Menschenrecht."',
         footerNote: 'Technologie im Dienste der Menschlichkeit.',
         apps: [
-          { badge: 'Karriere', name: 'PusulaPro', desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.', quote: '"Rotanı bilmek her şeyden önce gelir."' },
-          { badge: 'Karriere EU', name: 'KompassPro', desc: 'RIASEC-basierte Berufsberatung für den europäischen Markt.', quote: '"Jeder Mensch verdient den richtigen Weg."' },
-          { badge: 'Bürokratie', name: 'EasyGov.io', desc: 'Bürokratische Prozesse einfach, würdevoll und mehrsprachig lösen.', quote: '"Das System soll dem Menschen dienen."' },
-          { badge: 'Gesundheit', name: 'GlucoNavigator', desc: 'KI-gestützte Glukose-Navigation für ein bewussteres Leben mit Diabetes.', quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Senioren', name: 'SilverCompass', desc: 'Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.', quote: '"Würdevoll älter werden."' },
-          { badge: 'Kiez', name: 'Kiezflow', desc: 'Digitale Nachbarschaftsplattform für Vertrauen und lokale Solidarität.', quote: '"Vertrauen ist die Währung der Nachbarschaft."' },
+          { badge: 'Karriere',    name: 'PusulaPro',       desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
+          { badge: 'Karriere EU', name: 'KompassPro',      desc: 'RIASEC-basierte Berufsberatung für den europäischen Markt.',                          quote: '"Jeder Mensch verdient den richtigen Weg."' },
+          { badge: 'Bürokratie', name: 'EasyGov.io',       desc: 'Bürokratische Prozesse einfach, würdevoll und mehrsprachig lösen.',                   quote: '"Das System soll dem Menschen dienen."' },
+          { badge: 'Gesundheit', name: 'GlucoNavigator',   desc: 'KI-gestützte Glukose-Navigation für ein bewussteres Leben mit Diabetes.',             quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Senioren',   name: 'SilverCompass',    desc: 'Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.',                    quote: '"Würdevoll älter werden."' },
+          { badge: 'Kiez',       name: 'Kiezflow',         desc: 'Digitale Nachbarschaftsplattform für Vertrauen und lokale Solidarität.',              quote: '"Vertrauen ist die Währung der Nachbarschaft."' },
         ]
       },
       tr: {
@@ -534,18 +509,18 @@ footer {
         appsSub: '"Doğru yolu bulmak, herkesin hakkıdır."',
         visionTitle: 'İnsanlık onuruna<br>hizmet eden teknoloji.',
         visionDesc: 'PACDI Global, bireyleri eksikleriyle değil güçleriyle görür. Her ürün, bir navigasyon aracıdır — kariyer, sağlık, bürokrasi veya mahalle dayanışması fark etmez.',
-        p1t: 'Onur', p1: '"İnsanlık onurunu korumak toplumları birlik içinde ayakta tutar."',
-        p2t: 'Dürüstlük', p2: '"Hakkı hak edene teslim et — fırsatçılara değil."',
-        p3t: 'Navigasyon', p3: '"Teknoloji insana hizmet eder — tersi değil."',
+        p1t: 'Hak',         p1: '"Doğru bilgiye erişmek, lüks değil — temel bir haktır."',
+        p2t: 'Dürüstlük',   p2: '"Hakkı hak edene teslim et — fırsatçılara değil."',
+        p3t: 'Navigasyon',  p3: '"Teknoloji insana hizmet eder — tersi değil."',
         footerTagline: '"Onur, en temel insan hakkıdır."',
         footerNote: 'İnsanlık onuruna hizmet eden teknoloji.',
         apps: [
-          { badge: 'Kariyer', name: 'PusulaPro', desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.', quote: '"Rotanı bilmek her şeyden önce gelir."' },
-          { badge: 'Kariyer EU', name: 'KompassPro', desc: 'Avrupa pazarı için RIASEC tabanlı kariyer rehberliği.', quote: '"Her insan doğru yolu hak eder."' },
-          { badge: 'Bürokrasi', name: 'EasyGov.io', desc: 'Bürokratik süreçleri basit, onurlu ve çok dilli çözen navigasyon aracı.', quote: '"Sistem insana hizmet etmeli."' },
-          { badge: 'Sağlık', name: 'GlucoNavigator', desc: 'Diyabetle yaşayanlar için yapay zeka destekli glükoz navigasyon platformu.', quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Yaşlı Bakım', name: 'SilverCompass', desc: 'Yaşlılar için bilişsel sağlık takibi ve onurlu yaşam desteği.', quote: '"Onurla yaşlanmak bir haktır."' },
-          { badge: 'Mahalle', name: 'Kiezflow', desc: 'Güven ve dayanışma üzerine kurulu dijital mahalle platformu.', quote: '"Güven, mahallenin para birimidir."' },
+          { badge: 'Kariyer',      name: 'PusulaPro',      desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
+          { badge: 'Kariyer EU',   name: 'KompassPro',     desc: 'Avrupa pazarı için RIASEC tabanlı kariyer rehberliği.',                               quote: '"Her insan doğru yolu hak eder."' },
+          { badge: 'Bürokrasi',    name: 'EasyGov.io',     desc: 'Bürokratik süreçleri basit, onurlu ve çok dilli çözen navigasyon aracı.',             quote: '"Sistem insana hizmet etmeli."' },
+          { badge: 'Sağlık',       name: 'GlucoNavigator', desc: 'Diyabetle yaşayanlar için yapay zeka destekli glükoz navigasyon platformu.',         quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Yaşlı Bakım', name: 'SilverCompass',   desc: 'Yaşlılar için bilişsel sağlık takibi ve onurlu yaşam desteği.',                      quote: '"Onurla yaşlanmak bir haktır."' },
+          { badge: 'Mahalle',      name: 'Kiezflow',       desc: 'Güven ve dayanışma üzerine kurulu dijital mahalle platformu.',                        quote: '"Güven, mahallenin para birimidir."' },
         ]
       },
       en: {
@@ -557,18 +532,18 @@ footer {
         appsSub: '"Finding the right path is everyone\'s right."',
         visionTitle: 'Technology in service<br>of human dignity.',
         visionDesc: 'PACDI Global sees people through their strengths, not their deficits. Every product is a navigation tool — career, health, bureaucracy or neighborhood solidarity.',
-        p1t: 'Dignity', p1: '"Protecting human dignity is essential for a united society."',
-        p2t: 'Integrity', p2: '"Give to those who deserve it — not to opportunists."',
-        p3t: 'Navigation', p3: '"Technology serves the human — not the other way around."',
+        p1t: 'Right',       p1: '"Access to the right information is not a luxury — it is a fundamental right."',
+        p2t: 'Integrity',   p2: '"Give to those who deserve it — not to opportunists."',
+        p3t: 'Navigation',  p3: '"Technology serves the human — not the other way around."',
         footerTagline: '"Dignity is the most fundamental human right."',
         footerNote: 'Technology in the service of humanity.',
         apps: [
-          { badge: 'Career', name: 'PusulaPro', desc: 'Temperament-based career guidance platform for the Turkish market.', quote: '"Knowing your path comes first."' },
-          { badge: 'Career EU', name: 'KompassPro', desc: 'RIASEC-based career guidance for the European market.', quote: '"Every person deserves the right path."' },
-          { badge: 'Bureaucracy', name: 'EasyGov.io', desc: 'Navigate bureaucratic processes simply, with dignity and multilingually.', quote: '"The system should serve the people."' },
-          { badge: 'Health', name: 'GlucoNavigator', desc: 'AI-powered glucose navigation platform for conscious diabetes management.', quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Senior Care', name: 'SilverCompass', desc: 'Cognitive health tracking and dignified aging support for seniors.', quote: '"Aging with dignity is a right."' },
-          { badge: 'Neighborhood', name: 'Kiezflow', desc: 'Digital neighborhood platform built on trust and local solidarity.', quote: '"Trust is the currency of the neighborhood."' },
+          { badge: 'Career',      name: 'PusulaPro',       desc: 'Temperament-based career guidance platform for the Turkish market.',                  quote: '"Knowing your path comes first."' },
+          { badge: 'Career EU',   name: 'KompassPro',      desc: 'RIASEC-based career guidance for the European market.',                              quote: '"Every person deserves the right path."' },
+          { badge: 'Bureaucracy', name: 'EasyGov.io',      desc: 'Navigate bureaucratic processes simply, with dignity and multilingually.',           quote: '"The system should serve the people."' },
+          { badge: 'Health',      name: 'GlucoNavigator',  desc: 'AI-powered glucose navigation platform for conscious diabetes management.',          quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Senior Care', name: 'SilverCompass',   desc: 'Cognitive health tracking and dignified aging support for seniors.',                 quote: '"Aging with dignity is a right."' },
+          { badge: 'Neighborhood',name: 'Kiezflow',        desc: 'Digital neighborhood platform built on trust and local solidarity.',                 quote: '"Trust is the currency of the neighborhood."' },
         ]
       }
     };
@@ -609,7 +584,6 @@ footer {
       document.documentElement.lang = lang;
     }
 
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
       reveals.forEach(el => el.classList.add('animate'));
