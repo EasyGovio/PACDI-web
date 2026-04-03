@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
@@ -12,395 +11,392 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-```
-:root {
-  --navy:    #04162E;
-  --navy2:   #0A1F3A;
-  --gold:    #F6B45F;
-  --teal:    #0D7377;
-  --teal-lt: #14BDBD;
-  --cream:   #F5F0E8;
-  --white:   #FFFFFF;
-  --muted:   rgba(245,240,232,0.95);
-}
+    :root {
+      --navy:    #04162E;
+      --navy2:   #0A1F3A;
+      --gold:    #F6B45F;
+      --teal:    #0D7377;
+      --teal-lt: #14BDBD;
+      --cream:   #F5F0E8;
+      --white:   #FFFFFF;
+      --muted:   rgba(245,240,232,0.95);
+    }
 
-html { scroll-behavior: smooth; background: var(--navy); }
+    html { scroll-behavior: smooth; background: var(--navy); }
 
-body {
-  background: var(--navy) !important;
-  color: var(--cream) !important;
-  font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
-}
+    body {
+      background: var(--navy) !important;
+      color: var(--cream) !important;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
 
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.2rem 3rem;
-  backdrop-filter: blur(14px);
-  background: rgba(4,22,46,0.85);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      backdrop-filter: blur(14px);
+      background: rgba(4,22,46,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
-.nav-logo {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
-  color: var(--gold);
-  text-transform: uppercase;
-  text-decoration: none;
-}
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
 
-.lang-switch { display: flex; gap: 0.5rem; }
+    .lang-switch { display: flex; gap: 0.5rem; }
 
-.lang-switch button {
-  background: none;
-  border: 1px solid rgba(255,255,255,0.15);
-  color: rgba(245,240,232,0.85);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+    .lang-switch button {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(245,240,232,0.85);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
 
-.lang-switch button:hover,
-.lang-switch button.active {
-  color: var(--gold);
-  border-color: var(--gold);
-  background: rgba(246,180,95,0.08);
-}
+    .lang-switch button:hover,
+    .lang-switch button.active {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: rgba(246,180,95,0.08);
+    }
 
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 8rem 3rem 5rem;
-  position: relative;
-  overflow: hidden;
-  background: var(--navy);
-}
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 8rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+    }
 
-.hero-glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-.hero-glow.g1 {
-  width: 500px; height: 500px;
-  right: -100px; top: -50px;
-  background: radial-gradient(circle, rgba(246,180,95,0.1) 0%, transparent 70%);
-  animation: breathe 9s ease-in-out infinite;
-}
-.hero-glow.g2 {
-  width: 350px; height: 350px;
-  left: 40%; bottom: 10%;
-  background: radial-gradient(circle, rgba(13,115,119,0.1) 0%, transparent 70%);
-  animation: breathe 7s ease-in-out infinite reverse;
-}
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-glow.g1 {
+      width: 500px; height: 500px;
+      right: -100px; top: -50px;
+      background: radial-gradient(circle, rgba(246,180,95,0.1) 0%, transparent 70%);
+      animation: breathe 9s ease-in-out infinite;
+    }
+    .hero-glow.g2 {
+      width: 350px; height: 350px;
+      left: 40%; bottom: 10%;
+      background: radial-gradient(circle, rgba(13,115,119,0.1) 0%, transparent 70%);
+      animation: breathe 7s ease-in-out infinite reverse;
+    }
 
-@keyframes breathe {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.6; }
-}
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.6; }
+    }
 
-.hero-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--teal-lt);
-  border: 1px solid rgba(20,189,189,0.3);
-  padding: 0.3rem 0.9rem;
-  margin-bottom: 2rem;
-  display: inline-block;
-  animation: fadeUp 1s ease both;
-}
+    .hero-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal-lt);
+      border: 1px solid rgba(20,189,189,0.3);
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 2rem;
+      display: inline-block;
+      animation: fadeUp 1s ease both;
+    }
 
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(4rem, 10vw, 8rem);
-  font-weight: 300;
-  line-height: 0.9;
-  letter-spacing: 0.08em;
-  color: var(--cream);
-  margin-bottom: 1.5rem;
-  animation: fadeUp 1s ease 0.15s both;
-}
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1s ease 0.15s both;
+    }
 
-.hero-title span { color: var(--gold); }
+    .hero-title span { color: var(--gold); }
 
-.hero-manifesto {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-  font-style: italic;
-  font-weight: 300;
-  color: var(--gold);
-  letter-spacing: 0.04em;
-  max-width: 600px;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  animation: fadeUp 1s ease 0.3s both;
-}
+    .hero-manifesto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      max-width: 600px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      animation: fadeUp 1s ease 0.3s both;
+    }
 
-.hero-desc {
-  max-width: 500px;
-  font-size: 0.95rem;
-  line-height: 1.85;
-  color: rgba(245,240,232,0.95);
-  animation: fadeUp 1s ease 0.45s both;
-}
+    .hero-desc {
+      max-width: 500px;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(245,240,232,0.95);
+      animation: fadeUp 1s ease 0.45s both;
+    }
 
-.quote-strip {
-  background: rgba(246,180,95,0.06);
-  border-top: 1px solid rgba(246,180,95,0.15);
-  border-bottom: 1px solid rgba(246,180,95,0.15);
-  padding: 2.5rem 3rem;
-  text-align: center;
-}
+    .quote-strip {
+      background: rgba(246,180,95,0.06);
+      border-top: 1px solid rgba(246,180,95,0.15);
+      border-bottom: 1px solid rgba(246,180,95,0.15);
+      padding: 2.5rem 3rem;
+      text-align: center;
+    }
 
-.quote-strip p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 2.2vw, 1.4rem);
-  font-style: italic;
-  color: var(--cream);
-  letter-spacing: 0.04em;
-  line-height: 1.7;
-}
+    .quote-strip p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      font-style: italic;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+    }
 
-.quote-strip em { color: var(--gold); font-style: normal; }
+    .quote-strip em { color: var(--gold); font-style: normal; }
 
-.section {
-  padding: 6rem 3rem;
-  background: var(--navy);
-}
+    .section {
+      padding: 6rem 3rem;
+      background: var(--navy);
+    }
 
-.section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--teal-lt);
-  margin-bottom: 0.8rem;
-}
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal-lt);
+      margin-bottom: 0.8rem;
+    }
 
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  color: var(--cream);
-  line-height: 1.15;
-  margin-bottom: 0.8rem;
-}
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+    }
 
-.section-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--gold);
-  margin-bottom: 3rem;
-  letter-spacing: 0.04em;
-}
+    .section-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 3rem;
+      letter-spacing: 0.04em;
+    }
 
-.app-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.05);
-}
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
 
-.app-card {
-  background: var(--navy);
-  padding: 2.5rem 2rem;
-  position: relative;
-  transition: background 0.3s;
-  overflow: hidden;
-}
+    .app-card {
+      background: var(--navy);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: background 0.3s;
+      overflow: hidden;
+    }
 
-.app-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
+    .app-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
 
-.app-card:hover { background: rgba(246,180,95,0.04); }
-.app-card:hover::after { transform: scaleX(1); }
+    .app-card:hover { background: rgba(246,180,95,0.04); }
+    .app-card:hover::after { transform: scaleX(1); }
 
-.app-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--teal-lt);
-  border: 1px solid rgba(20,189,189,0.25);
-  padding: 0.25rem 0.7rem;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
+    .app-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal-lt);
+      border: 1px solid rgba(20,189,189,0.25);
+      padding: 0.25rem 0.7rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
 
-.app-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--cream);
-  margin-bottom: 0.6rem;
-}
+    .app-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
 
-.app-desc {
-  font-size: 0.92rem;
-  line-height: 1.75;
-  color: #F5F0E8;
-  margin-bottom: 1rem;
-}
+    .app-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #F5F0E8;
+      margin-bottom: 1rem;
+    }
 
-.app-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--gold);
-  opacity: 0.8;
-  border-left: 2px solid rgba(246,180,95,0.3);
-  padding-left: 0.8rem;
-}
+    .app-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--gold);
+      opacity: 0.8;
+      border-left: 2px solid rgba(246,180,95,0.3);
+      padding-left: 0.8rem;
+    }
 
-.vision-section {
-  background: rgba(13,115,119,0.08);
-  border-top: 1px solid rgba(20,189,189,0.12);
-  border-bottom: 1px solid rgba(20,189,189,0.12);
-  padding: 5rem 3rem;
-}
+    .vision-section {
+      background: rgba(13,115,119,0.08);
+      border-top: 1px solid rgba(20,189,189,0.12);
+      border-bottom: 1px solid rgba(20,189,189,0.12);
+      padding: 5rem 3rem;
+    }
 
-.vision-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  max-width: 900px;
-}
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 900px;
+    }
 
-.vision-text {
-  font-size: 0.95rem;
-  line-height: 1.9;
-  color: #F5F0E8;
-}
+    .vision-text {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #F5F0E8;
+    }
 
-.vision-pillars {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
+    .vision-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
 
-.pillar {
-  border-left: 2px solid var(--gold);
-  padding-left: 1.2rem;
-}
+    .pillar {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.2rem;
+    }
 
-.pillar-title {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.3rem;
-}
+    .pillar-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
 
-.pillar-text {
-  font-size: 0.88rem;
-  color: rgba(245,240,232,0.95);
-  line-height: 1.6;
-}
+    .pillar-text {
+      font-size: 0.88rem;
+      color: rgba(245,240,232,0.95);
+      line-height: 1.6;
+    }
 
-footer {
-  padding: 3rem;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  background: var(--navy);
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
+    footer {
+      padding: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: var(--navy);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
 
-.footer-brand {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
+    .footer-brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
 
-.footer-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 0.95rem;
-  color: rgba(245,240,232,0.85);
-}
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(245,240,232,0.85);
+    }
 
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  align-items: center;
-}
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-.footer-links a {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(245,240,232,0.75);
-  text-decoration: none;
-  transition: color 0.3s;
-}
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.75);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-.footer-links a:hover { color: var(--gold); }
+    .footer-links a:hover { color: var(--gold); }
 
-.footer-copy {
-  font-size: 0.78rem;
-  color: rgba(245,240,232,0.6);
-  margin-top: 0.5rem;
-}
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(245,240,232,0.6);
+      margin-top: 0.5rem;
+    }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-.reveal {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.animate { opacity: 0; transform: translateY(24px); }
-.reveal.animate.visible { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.animate { opacity: 0; transform: translateY(24px); }
+    .reveal.animate.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 768px) {
-  nav { padding: 1.1rem 1.5rem; }
-  .hero { padding: 7rem 1.5rem 4rem; }
-  .section { padding: 4rem 1.5rem; }
-  .vision-section { padding: 4rem 1.5rem; }
-  .vision-grid { grid-template-columns: 1fr; gap: 2rem; }
-  footer { padding: 2rem 1.5rem; flex-direction: column; }
-  .quote-strip { padding: 2rem 1.5rem; }
-}
-```
-
+    @media (max-width: 768px) {
+      nav { padding: 1.1rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .section { padding: 4rem 1.5rem; }
+      .vision-section { padding: 4rem 1.5rem; }
+      .vision-grid { grid-template-columns: 1fr; gap: 2rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; }
+      .quote-strip { padding: 2rem 1.5rem; }
+    }
   </style>
 </head>
 <body style="background:#04162E !important;color:#F5F0E8 !important;">
@@ -476,7 +472,7 @@ footer {
   </footer>
 
   <script>
-    const T = {
+    var T = {
       de: {
         manifesto: '"Der Mensch verdient mehr als nur Brot."',
         desc: 'PACDI Global verwandelt KI in einen sozialen Kompass. Wir bauen Brücken von der digitalen Welt in die reale Nachbarschaft.',
@@ -492,12 +488,16 @@ footer {
         footerTagline: '"Würde ist das grundlegendste Menschenrecht."',
         footerNote: 'Technologie im Dienste der Menschlichkeit.',
         apps: [
-          { badge: 'Karriere',    name: 'PusulaPro',       desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
-          { badge: 'Karriere EU', name: 'KompassPro',      desc: 'RIASEC-basierte Berufsberatung für den europäischen Markt.',                          quote: '"Jeder Mensch verdient den richtigen Weg."' },
-          { badge: 'Bürokratie', name: 'EasyGov.io',       desc: 'Bürokratische Prozesse einfach, würdevoll und mehrsprachig lösen.',                   quote: '"Das System soll dem Menschen dienen."' },
-          { badge: 'Gesundheit', name: 'GlucoNavigator',   desc: 'KI-gestützte Glukose-Navigation für ein bewussteres Leben mit Diabetes.',             quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Senioren',   name: 'SilverCompass',    desc: 'Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.',                    quote: '"Würdevoll älter werden."' },
-          { badge: 'Kiez',       name: 'Kiezflow',         desc: 'Digitale Nachbarschaftsplattform für Vertrauen und lokale Solidarität.',              quote: '"Vertrauen ist die Währung der Nachbarschaft."' },
+          { badge: 'Karriere',    name: 'PusulaPro',       url: '#',         desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
+          { badge: 'Karriere EU', name: 'KompassPro',      url: '#',         desc: 'RIASEC-basierte Berufsberatung für den europäischen Markt.',                          quote: '"Jeder Mensch verdient den richtigen Weg."' },
+          { badge: 'Bürokratie',  name: 'EasyGov.io',      url: 'https://easygov.io', desc: 'Bürokratische Prozesse einfach, würdevoll und mehrsprachig lösen.',                   quote: '"Das System soll dem Menschen dienen."' },
+          { badge: 'Gesundheit',  name: 'GlucoNavigator',  url: 'https://gluconavigator.io', desc: 'KI-gestützte Glukose-Navigation für ein bewussteres Leben mit Diabetes.',             quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Senioren',    name: 'SilverCompass',   url: 'https://silvercompass.world', desc: 'Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.',                    quote: '"Würdevoll älter werden."' },
+          { badge: 'Kiez',        name: 'Kiezflow',        url: 'https://kiezflow.de', desc: 'Digitale Nachbarschaftsplattform für Vertrauen und lokale Solidarität.',              quote: '"Vertrauen ist die Währung der Nachbarschaft."' },
+          { badge: 'Karriere EU', name: 'NavigoPro',       url: 'https://navigopro.de', desc: 'Trilinguales Karriere-Assessment — 6 Module, 90 Fragen für den europäischen Markt.', quote: '"Dein Weg beginnt mit Selbsterkenntnis."' },
+          { badge: 'Bildung',     name: 'SchulRoute',      url: 'https://schulroute.de', desc: 'Bildungsnavigation für Migranten — Schulwahl, Anmeldung und Sprachunterstützung.', quote: '"Bildungsweg leicht gemacht."' },
+          { badge: 'Wohnen',      name: 'WohnRoute',       url: 'https://wohnroute.de', desc: 'Wohnungssuche, Mietvertrag und Kaution-Rechte für Neuankömmlinge.',              quote: '"Ihr Zuhause. Ihr Weg."' },
+          { badge: 'Kognition',   name: 'CogniRoute',      url: 'https://cogniroute.de', desc: 'Kognitive Navigationsunterstützung für ältere Menschen und pflegende Angehörige.', quote: '"Die Route des Geistes, der Hafen des Vertrauens."' }
         ]
       },
       tr: {
@@ -515,12 +515,16 @@ footer {
         footerTagline: '"Onur, en temel insan hakkıdır."',
         footerNote: 'İnsanlık onuruna hizmet eden teknoloji.',
         apps: [
-          { badge: 'Kariyer',      name: 'PusulaPro',      desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
-          { badge: 'Kariyer EU',   name: 'KompassPro',     desc: 'Avrupa pazarı için RIASEC tabanlı kariyer rehberliği.',                               quote: '"Her insan doğru yolu hak eder."' },
-          { badge: 'Bürokrasi',    name: 'EasyGov.io',     desc: 'Bürokratik süreçleri basit, onurlu ve çok dilli çözen navigasyon aracı.',             quote: '"Sistem insana hizmet etmeli."' },
-          { badge: 'Sağlık',       name: 'GlucoNavigator', desc: 'Diyabetle yaşayanlar için yapay zeka destekli glükoz navigasyon platformu.',         quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Yaşlı Bakım', name: 'SilverCompass',   desc: 'Yaşlılar için bilişsel sağlık takibi ve onurlu yaşam desteği.',                      quote: '"Onurla yaşlanmak bir haktır."' },
-          { badge: 'Mahalle',      name: 'Kiezflow',       desc: 'Güven ve dayanışma üzerine kurulu dijital mahalle platformu.',                        quote: '"Güven, mahallenin para birimidir."' },
+          { badge: 'Kariyer',      name: 'PusulaPro',      url: '#',         desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
+          { badge: 'Kariyer EU',   name: 'KompassPro',     url: '#',         desc: 'Avrupa pazarı için RIASEC tabanlı kariyer rehberliği.',                               quote: '"Her insan doğru yolu hak eder."' },
+          { badge: 'Bürokrasi',    name: 'EasyGov.io',     url: 'https://easygov.io', desc: 'Bürokratik süreçleri basit, onurlu ve çok dilli çözen navigasyon aracı.',             quote: '"Sistem insana hizmet etmeli."' },
+          { badge: 'Sağlık',       name: 'GlucoNavigator', url: 'https://gluconavigator.io', desc: 'Diyabetle yaşayanlar için yapay zeka destekli glükoz navigasyon platformu.',         quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Yaşlı Bakım',  name: 'SilverCompass',  url: 'https://silvercompass.world', desc: 'Yaşlılar için bilişsel sağlık takibi ve onurlu yaşam desteği.',                      quote: '"Onurla yaşlanmak bir haktır."' },
+          { badge: 'Mahalle',      name: 'Kiezflow',       url: 'https://kiezflow.de', desc: 'Güven ve dayanışma üzerine kurulu dijital mahalle platformu.',                        quote: '"Güven, mahallenin para birimidir."' },
+          { badge: 'Kariyer EU',   name: 'NavigoPro',      url: 'https://navigopro.de', desc: 'Üç dilli kariyer değerlendirmesi — Avrupa pazarı için 6 modül, 90 soru.',        quote: '"Yolun özü kendini bilmekten geçer."' },
+          { badge: 'Eğitim',       name: 'SchulRoute',     url: 'https://schulroute.de', desc: 'Göçmenler için eğitim navigasyonu — okul seçimi, kayıt ve dil desteği.',        quote: '"Bildungsweg leicht gemacht."' },
+          { badge: 'Konut',        name: 'WohnRoute',      url: 'https://wohnroute.de', desc: 'Yeni gelenler için kiralık daire, sözleşme ve depozito hakları rehberi.',        quote: '"Ihr Zuhause. Ihr Weg."' },
+          { badge: 'Biliş',        name: 'CogniRoute',     url: 'https://cogniroute.de', desc: 'Yaşlılar ve bakıcılar için bilişsel navigasyon desteği.',                     quote: '"Zihnin Rotası, Güvenin Limanı."' }
         ]
       },
       en: {
@@ -538,18 +542,22 @@ footer {
         footerTagline: '"Dignity is the most fundamental human right."',
         footerNote: 'Technology in the service of humanity.',
         apps: [
-          { badge: 'Career',      name: 'PusulaPro',       desc: 'Temperament-based career guidance platform for the Turkish market.',                  quote: '"Knowing your path comes first."' },
-          { badge: 'Career EU',   name: 'KompassPro',      desc: 'RIASEC-based career guidance for the European market.',                              quote: '"Every person deserves the right path."' },
-          { badge: 'Bureaucracy', name: 'EasyGov.io',      desc: 'Navigate bureaucratic processes simply, with dignity and multilingually.',           quote: '"The system should serve the people."' },
-          { badge: 'Health',      name: 'GlucoNavigator',  desc: 'AI-powered glucose navigation platform for conscious diabetes management.',          quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Senior Care', name: 'SilverCompass',   desc: 'Cognitive health tracking and dignified aging support for seniors.',                 quote: '"Aging with dignity is a right."' },
-          { badge: 'Neighborhood',name: 'Kiezflow',        desc: 'Digital neighborhood platform built on trust and local solidarity.',                 quote: '"Trust is the currency of the neighborhood."' },
+          { badge: 'Career',      name: 'PusulaPro',       url: '#',         desc: 'Temperament-based career guidance platform for the Turkish market.',                  quote: '"Knowing your path comes first."' },
+          { badge: 'Career EU',   name: 'KompassPro',      url: '#',         desc: 'RIASEC-based career guidance for the European market.',                              quote: '"Every person deserves the right path."' },
+          { badge: 'Bureaucracy', name: 'EasyGov.io',      url: 'https://easygov.io', desc: 'Navigate bureaucratic processes simply, with dignity and multilingually.',           quote: '"The system should serve the people."' },
+          { badge: 'Health',      name: 'GlucoNavigator',  url: 'https://gluconavigator.io', desc: 'AI-powered glucose navigation platform for conscious diabetes management.',          quote: '"Beyond Sensing, Into Living."' },
+          { badge: 'Senior Care', name: 'SilverCompass',   url: 'https://silvercompass.world', desc: 'Cognitive health tracking and dignified aging support for seniors.',                 quote: '"Aging with dignity is a right."' },
+          { badge: 'Neighborhood',name: 'Kiezflow',        url: 'https://kiezflow.de', desc: 'Digital neighborhood platform built on trust and local solidarity.',                 quote: '"Trust is the currency of the neighborhood."' },
+          { badge: 'Career EU',   name: 'NavigoPro',       url: 'https://navigopro.de', desc: 'Trilingual career assessment — 6 modules, 90 questions for the European market.', quote: '"Your path begins with self-knowledge."' },
+          { badge: 'Education',   name: 'SchulRoute',      url: 'https://schulroute.de', desc: 'Education navigation for migrants — school selection, registration and language support.', quote: '"Bildungsweg leicht gemacht."' },
+          { badge: 'Housing',     name: 'WohnRoute',       url: 'https://wohnroute.de', desc: 'Apartment search, rental contract and deposit rights guide for newcomers.',         quote: '"Ihr Zuhause. Ihr Weg."' },
+          { badge: 'Cognition',   name: 'CogniRoute',      url: 'https://cogniroute.de', desc: 'Cognitive navigation support for seniors and caregivers.',                    quote: '"The Route of the Mind, the Harbor of Trust."' }
         ]
       }
     };
 
     function setLang(lang) {
-      const t = T[lang];
+      var t = T[lang];
       document.getElementById('txt-manifesto').innerText = t.manifesto;
       document.getElementById('txt-desc').innerText = t.desc;
       document.getElementById('txt-quote').innerHTML = t.quote;
@@ -567,35 +575,40 @@ footer {
       document.getElementById('txt-footer-tagline').innerText = t.footerTagline;
       document.getElementById('txt-footer-note').innerText = t.footerNote;
 
-      const container = document.getElementById('app-container');
+      var container = document.getElementById('app-container');
       container.innerHTML = '';
-      t.apps.forEach(app => {
-        container.innerHTML += `
-          <div class="app-card">
-            <span class="app-badge">${app.badge}</span>
-            <h3 class="app-name">${app.name}</h3>
-            <p class="app-desc">${app.desc}</p>
-            <p class="app-quote">${app.quote}</p>
-          </div>`;
+      t.apps.forEach(function(app) {
+        var cardHtml = '<a href="' + app.url + '" target="_blank" rel="noopener" style="text-decoration:none; display:block; color:inherit;">' +
+          '<div class="app-card">' +
+            '<span class="app-badge">' + app.badge + '</span>' +
+            '<h3 class="app-name">' + app.name + '</h3>' +
+            '<p class="app-desc">' + app.desc + '</p>' +
+            '<p class="app-quote">' + app.quote + '</p>' +
+          '</div>' +
+        '</a>';
+        container.innerHTML += cardHtml;
       });
 
-      document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+      var btns = document.querySelectorAll('.lang-switch button');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('active');
+      }
       document.getElementById('btn-' + lang).classList.add('active');
       document.documentElement.lang = lang;
     }
 
-    const reveals = document.querySelectorAll('.reveal');
+    var reveals = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
-      reveals.forEach(el => el.classList.add('animate'));
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((e, i) => {
+      reveals.forEach(function(el) { el.classList.add('animate'); });
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e, i) {
           if (e.isIntersecting) {
-            setTimeout(() => e.target.classList.add('visible'), i * 80);
+            setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
             obs.unobserve(e.target);
           }
         });
       }, { threshold: 0.05 });
-      reveals.forEach(el => obs.observe(el));
+      reveals.forEach(function(el) { obs.observe(el); });
     }
 
     setLang('de');
