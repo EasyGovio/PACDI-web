@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PACDI — Neden Biz? Neden Şimdi?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #04162E;
+    --navy-mid: #0A1628;
+    --gold: #D4AF37;
+    --gold-light: #F6B45F;
+    --gold-pale: #f6e9c0;
+    --cream: #FAF6EE;
+    --text-dark: #1a1a2e;
+    --text-mid: #3d3d5c;
+    --red-soft: #C0392B;
+    --green-soft: #1a6b3c;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+font-family: ‘Crimson Pro’, Georgia, serif;
+background: var(–cream);
+color: var(–text-dark);
+overflow-x: hidden;
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar {
+position: fixed; top: 0; left: 0; height: 3px;
+background: linear-gradient(90deg, var(–gold), var(–gold-light));
+width: 0%; z-index: 9999;
+transition: width 0.2s;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed; top: 3px; left: 0; right: 0;
+background: rgba(4,22,46,0.97);
+padding: 10px 40px;
+display: flex; align-items: center; justify-content: space-between;
+z-index: 999;
+border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.nav-logo {
+font-family: ‘Playfair Display’, serif;
+color: var(–gold);
+font-size: 1.1rem;
+letter-spacing: 2px;
+font-weight: 700;
+}
+.nav-links {
+display: flex; gap: 8px; flex-wrap: wrap;
+}
+.nav-links a {
+color: rgba(212,175,55,0.7);
+text-decoration: none;
+font-size: 0.72rem;
+letter-spacing: 1px;
+font-family: ‘JetBrains Mono’, monospace;
+padding: 4px 8px;
+border: 1px solid rgba(212,175,55,0.15);
+border-radius: 2px;
+transition: all 0.2s;
+}
+.nav-links a:hover {
+color: var(–gold);
+border-color: var(–gold);
+background: rgba(212,175,55,0.05);
+}
+
+/* ── SECTIONS ── */
+section {
+min-height: 100vh;
+display: flex; align-items: center; justify-content: center;
+padding: 100px 40px 60px;
+position: relative;
+}
+
+.inner { max-width: 900px; width: 100%; }
+
+/* ── HERO ── */
+#hero {
+background: var(–navy);
+flex-direction: column;
+text-align: center;
+overflow: hidden;
+}
+#hero::before {
+content: ‘’;
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 70% 50% at 50% 100%, rgba(212,175,55,0.08) 0%, transparent 70%),
+radial-gradient(ellipse 40% 30% at 80% 20%, rgba(212,175,55,0.04) 0%, transparent 60%);
+}
+.hero-eyebrow {
+font-family: ‘JetBrains Mono’, monospace;
+color: var(–gold);
+font-size: 0.75rem;
+letter-spacing: 4px;
+margin-bottom: 24px;
+opacity: 0;
+animation: fadeUp 0.8s 0.3s forwards;
+}
+.hero-title {
+font-family: ‘Playfair Display’, serif;
+color: #fff;
+font-size: clamp(2.8rem, 6vw, 5rem);
+line-height: 1.1;
+font-weight: 900;
+margin-bottom: 16px;
+opacity: 0;
+animation: fadeUp 0.8s 0.5s forwards;
+}
+.hero-title span { color: var(–gold); }
+.hero-subtitle {
+color: rgba(255,255,255,0.55);
+font-size: 1.25rem;
+font-style: italic;
+margin-bottom: 48px;
+opacity: 0;
+animation: fadeUp 0.8s 0.7s forwards;
+}
+.hero-quote {
+border-left: 3px solid var(–gold);
+padding: 16px 24px;
+text-align: left;
+background: rgba(212,175,55,0.05);
+max-width: 600px;
+margin: 0 auto;
+opacity: 0;
+animation: fadeUp 0.8s 0.9s forwards;
+}
+.hero-quote p {
+color: rgba(255,255,255,0.8);
+font-size: 1.1rem;
+font-style: italic;
+line-height: 1.7;
+}
+.hero-quote cite {
+display: block;
+margin-top: 10px;
+color: var(–gold);
+font-size: 0.85rem;
+font-family: ‘JetBrains Mono’, monospace;
+font-style: normal;
+}
+
+/* ── SECTION TITLES ── */
+.section-label {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 4px;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 12px;
+}
+.section-title {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(2rem, 4vw, 3rem);
+font-weight: 900;
+line-height: 1.15;
+margin-bottom: 24px;
+color: var(–navy);
+}
+.section-title.light { color: #fff; }
+.section-intro {
+font-size: 1.15rem;
+line-height: 1.85;
+color: var(–text-mid);
+margin-bottom: 36px;
+}
+.section-intro.light { color: rgba(255,255,255,0.75); }
+
+/* ── DARK SECTIONS ── */
+.dark-section { background: var(–navy); }
+.dark-section .section-title { color: #fff; }
+.dark-section .section-intro { color: rgba(255,255,255,0.72); }
+
+/* ── STAT CARDS ── */
+.stat-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 20px;
+margin: 32px 0;
+}
+.stat-card {
+background: rgba(212,175,55,0.06);
+border: 1px solid rgba(212,175,55,0.2);
+border-radius: 4px;
+padding: 24px 20px;
+text-align: center;
+transition: transform 0.3s, border-color 0.3s;
+}
+.stat-card:hover {
+transform: translateY(-4px);
+border-color: var(–gold);
+}
+.stat-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 2.4rem;
+font-weight: 900;
+color: var(–gold);
+line-height: 1;
+margin-bottom: 8px;
+}
+.stat-label {
+font-size: 0.9rem;
+color: rgba(255,255,255,0.65);
+line-height: 1.4;
+}
+
+/* ── LIGHT STAT CARDS ── */
+.stat-card.light-card {
+background: #fff;
+border: 1px solid rgba(4,22,46,0.1);
+box-shadow: 0 2px 12px rgba(4,22,46,0.06);
+}
+.stat-card.light-card .stat-num { color: var(–navy); }
+.stat-card.light-card .stat-label { color: var(–text-mid); }
+
+/* ── BLOCKQUOTE ── */
+blockquote {
+border-left: 3px solid var(–gold);
+padding: 20px 28px;
+margin: 32px 0;
+background: rgba(212,175,55,0.04);
+border-radius: 0 4px 4px 0;
+}
+blockquote p {
+font-size: 1.15rem;
+font-style: italic;
+line-height: 1.8;
+color: var(–text-dark);
+}
+blockquote.dark-bq { background: rgba(212,175,55,0.06); }
+blockquote.dark-bq p { color: rgba(255,255,255,0.85); }
+
+/* ── TIMELINE ── */
+.timeline {
+position: relative;
+padding-left: 32px;
+margin: 32px 0;
+}
+.timeline::before {
+content: ‘’;
+position: absolute; left: 8px; top: 0; bottom: 0;
+width: 2px;
+background: linear-gradient(to bottom, var(–gold), transparent);
+}
+.tl-item {
+position: relative;
+margin-bottom: 32px;
+opacity: 0;
+transform: translateX(-20px);
+transition: all 0.5s;
+}
+.tl-item.visible { opacity: 1; transform: none; }
+.tl-item::before {
+content: ‘’;
+position: absolute; left: -28px; top: 6px;
+width: 10px; height: 10px;
+border-radius: 50%;
+background: var(–gold);
+box-shadow: 0 0 0 3px rgba(212,175,55,0.2);
+}
+.tl-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.2rem;
+font-weight: 700;
+color: var(–gold);
+margin-bottom: 6px;
+}
+.tl-body {
+font-size: 1rem;
+line-height: 1.75;
+color: rgba(255,255,255,0.75);
+}
+
+/* ── PRODUCT CARDS ── */
+.product-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 20px;
+margin: 32px 0;
+}
+.product-card {
+background: #fff;
+border: 1px solid rgba(4,22,46,0.1);
+border-radius: 6px;
+padding: 24px;
+box-shadow: 0 2px 16px rgba(4,22,46,0.06);
+transition: all 0.3s;
+position: relative;
+overflow: hidden;
+}
+.product-card::before {
+content: ‘’;
+position: absolute; top: 0; left: 0; right: 0; height: 3px;
+background: linear-gradient(90deg, var(–gold), var(–gold-light));
+}
+.product-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 12px 40px rgba(4,22,46,0.12);
+}
+.product-icon {
+font-size: 1.8rem;
+margin-bottom: 12px;
+}
+.product-name {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.15rem;
+font-weight: 700;
+color: var(–navy);
+margin-bottom: 8px;
+}
+.product-desc {
+font-size: 0.9rem;
+color: var(–text-mid);
+line-height: 1.6;
+}
+.product-badge {
+display: inline-block;
+margin-top: 12px;
+padding: 3px 10px;
+background: var(–navy);
+color: var(–gold);
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 1px;
+border-radius: 2px;
+}
+
+/* ── TWO COL ── */
+.two-col {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 48px;
+align-items: start;
+}
+@media (max-width: 680px) {
+.two-col { grid-template-columns: 1fr; gap: 24px; }
+nav { padding: 8px 16px; }
+.nav-links { display: none; }
+section { padding: 80px 20px 50px; }
+}
+
+/* ── CALLOUT BOXES ── */
+.callout {
+border-radius: 6px;
+padding: 24px 28px;
+margin: 24px 0;
+}
+.callout-problem {
+background: rgba(192,57,43,0.06);
+border: 1px solid rgba(192,57,43,0.2);
+}
+.callout-solution {
+background: rgba(26,107,60,0.06);
+border: 1px solid rgba(26,107,60,0.2);
+}
+.callout-title {
+font-family: ‘Playfair Display’, serif;
+font-size: 1rem;
+font-weight: 700;
+margin-bottom: 10px;
+letter-spacing: 0.5px;
+}
+.callout-title.problem { color: var(–red-soft); }
+.callout-title.solution { color: var(–green-soft); }
+.callout p {
+font-size: 0.97rem;
+line-height: 1.75;
+color: var(–text-mid);
+}
+
+/* ── SEARCH TERM PILLS ── */
+.search-pills {
+display: flex; flex-wrap: wrap; gap: 10px;
+margin: 24px 0;
+}
+.pill {
+background: var(–navy);
+color: var(–gold-light);
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.78rem;
+padding: 7px 14px;
+border-radius: 20px;
+border: 1px solid rgba(212,175,55,0.25);
+transition: all 0.2s;
+cursor: default;
+}
+.pill:hover {
+border-color: var(–gold);
+background: rgba(212,175,55,0.1);
+}
+.pill-count {
+font-size: 0.65rem;
+color: rgba(212,175,55,0.5);
+margin-left: 4px;
+}
+
+/* ── WHY US ITEMS ── */
+.why-list { list-style: none; margin: 24px 0; }
+.why-list li {
+display: flex; align-items: flex-start; gap: 16px;
+padding: 18px 0;
+border-bottom: 1px solid rgba(4,22,46,0.08);
+opacity: 0; transform: translateY(15px); transition: all 0.4s;
+}
+.why-list li.visible { opacity: 1; transform: none; }
+.why-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 2rem;
+font-weight: 900;
+color: rgba(212,175,55,0.25);
+line-height: 1;
+min-width: 40px;
+}
+.why-content h4 {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.1rem;
+color: var(–navy);
+margin-bottom: 6px;
+}
+.why-content p {
+font-size: 0.95rem;
+color: var(–text-mid);
+line-height: 1.7;
+}
+
+/* ── SECURITY SECTION ── */
+.security-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 16px;
+margin: 28px 0;
+}
+.sec-item {
+text-align: center;
+padding: 24px 16px;
+background: rgba(255,255,255,0.04);
+border: 1px solid rgba(212,175,55,0.15);
+border-radius: 4px;
+}
+.sec-icon { font-size: 2rem; margin-bottom: 10px; }
+.sec-title {
+font-family: ‘Playfair Display’, serif;
+color: var(–gold);
+font-size: 0.95rem;
+font-weight: 700;
+margin-bottom: 6px;
+}
+.sec-desc {
+font-size: 0.85rem;
+color: rgba(255,255,255,0.6);
+line-height: 1.5;
+}
+
+/* ── GAIN TABLE ── */
+.gain-section { margin: 28px 0; }
+.gain-row {
+display: flex; align-items: flex-start; gap: 20px;
+padding: 20px 0;
+border-bottom: 1px solid rgba(212,175,55,0.1);
+}
+.gain-who {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 2px;
+color: var(–gold);
+text-transform: uppercase;
+min-width: 120px;
+padding-top: 2px;
+}
+.gain-what {
+font-size: 0.97rem;
+color: rgba(255,255,255,0.75);
+line-height: 1.7;
+}
+
+/* ── FINAL CTA ── */
+#finale {
+background: var(–navy);
+text-align: center;
+}
+.finale-title {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(2.2rem, 5vw, 4rem);
+font-weight: 900;
+color: #fff;
+line-height: 1.1;
+margin-bottom: 20px;
+}
+.finale-title span { color: var(–gold); }
+.finale-text {
+font-size: 1.15rem;
+color: rgba(255,255,255,0.7);
+line-height: 1.85;
+max-width: 680px;
+margin: 0 auto 40px;
+font-style: italic;
+}
+.sign {
+display: inline-block;
+border: 1px solid rgba(212,175,55,0.3);
+padding: 20px 40px;
+border-radius: 4px;
+background: rgba(212,175,55,0.04);
+}
+.sign-name {
+font-family: ‘Playfair Display’, serif;
+font-size: 1.5rem;
+color: var(–gold);
+font-style: italic;
+}
+.sign-title {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.7rem;
+letter-spacing: 2px;
+color: rgba(212,175,55,0.5);
+margin-top: 6px;
+}
+
+/* ── DIVIDER ── */
+.divider {
+border: none;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+margin: 40px 0;
+opacity: 0.3;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+opacity: 0; transform: translateY(30px);
+transition: all 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── FOOTER ── */
+footer {
+background: #02090F;
+text-align: center;
+padding: 30px;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.68rem;
+color: rgba(212,175,55,0.3);
+letter-spacing: 2px;
+}
+
+/* ── GRUNDRENTE BOX ── */
+.grundrente-box {
+background: rgba(4,22,46,0.04);
+border: 1px solid rgba(4,22,46,0.12);
+border-radius: 6px;
+padding: 28px;
+margin: 24px 0;
+}
+.grundrente-box h4 {
+font-family: ‘Playfair Display’, serif;
+color: var(–navy);
+font-size: 1.1rem;
+margin-bottom: 10px;
+}
+.grundrente-box p {
+font-size: 0.97rem;
+color: var(–text-mid);
+line-height: 1.75;
+}
+.grundrente-box .gap-note {
+margin-top: 12px;
+font-style: italic;
+color: var(–red-soft);
+font-size: 0.9rem;
+}
+
+/* ── MILESTONE BAR ── */
+.milestone-bar {
+margin: 32px 0;
+}
+.ms-item {
+display: flex; align-items: center; gap: 16px;
+padding: 12px 0;
+border-bottom: 1px solid rgba(4,22,46,0.07);
+}
+.ms-dot {
+width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.ms-dot.done { background: var(–green-soft); }
+.ms-dot.inprogress { background: var(–gold); }
+.ms-dot.plan { background: rgba(4,22,46,0.25); border: 1px solid rgba(4,22,46,0.3); }
+.ms-text { font-size: 0.95rem; color: var(–text-mid); }
+.ms-text strong { color: var(–navy); font-weight: 600; }
+.ms-tag {
+margin-left: auto;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 0.65rem;
+padding: 2px 8px;
+border-radius: 2px;
+white-space: nowrap;
+}
+.ms-tag.done { background: rgba(26,107,60,0.1); color: var(–green-soft); }
+.ms-tag.inprogress { background: rgba(212,175,55,0.1); color: var(–gold); }
+.ms-tag.plan { background: rgba(4,22,46,0.05); color: var(–text-mid); }
+
+/* Print */
+@media print {
+nav, #progress-bar { display: none; }
+section { break-inside: avoid; }
+}
+</style>
+
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <div class="nav-logo">PACDI</div>
+  <div class="nav-links">
+    <a href="#problem">Sorun</a>
+    <a href="#products">Ürünler</a>
+    <a href="#grundrente">Grundrente</a>
+    <a href="#search">Arama</a>
+    <a href="#security">Güvenlik</a>
+    <a href="#gains">Kazanımlar</a>
+    <a href="#why-us">Neden Biz</a>
+    <a href="#finale">Sonuç</a>
+  </div>
+</nav>
+
+<!-- ───── HERO ───── -->
+
+<section id="hero">
+  <div class="inner" style="position:relative;z-index:1">
+    <div class="hero-eyebrow">BİR SUNUM — BİR DAVET</div>
+    <h1 class="hero-title">
+      Teknoloji<br><span>İnsanın</span> Hizmetinde
+    </h1>
+    <p class="hero-subtitle">PACDI Dijital Navigasyon Ekosistemi — Neden? Nasıl? Neden Biz?</p>
+    <div class="hero-quote">
+      <p>"İki ülkenin tam ortasında, iki dili ve iki sistemi içten bilen insanlar olarak bu boşluğu başkasının doldurmasını beklemek lüksümüz yok."</p>
+      <cite>— PACDI Felsefesi</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 1: SORUN ───── -->
+
+<section id="problem" class="dark-section">
+  <div class="inner">
+    <div class="section-label">01 — Zemin</div>
+    <h2 class="section-title light">Almanya'nın Sessiz Krizi</h2>
+    <p class="section-intro light">
+      Almanya dünyanın en güçlü ekonomilerinden biri. Ama aynı zamanda yaşlanan nüfusu, karmaşık bürokratik sistemi ve dijital okuryazarlık açığıyla baş başa kalan bir ülke. Bu kriz sessiz ama derin.
+    </p>
+
+```
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-num">18.6M</div>
+    <div class="stat-label">Almanya'da 65 yaş üstü vatandaş — nüfusun %22'si</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">1.8M</div>
+    <div class="stat-label">Almanya'da yaşayan Türkiye kökenli kişi</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">1.3M+</div>
+    <div class="stat-label">Aktif yasal vasi (Betreuer) davası — sürekli artıyor</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">8.1M</div>
+    <div class="stat-label">Almanya'da diyabetli birey (IDF Atlas 11. Ed.)</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">1.8M</div>
+    <div class="stat-label">Almanya'da demans hastası — 2050'de iki katına çıkması bekleniyor</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">€17.7B</div>
+    <div class="stat-label">AB Bağlantılı Bakım pazarı büyüklüğü — 2028 hedefi</div>
+  </div>
+</div>
+
+<blockquote class="dark-bq">
+  <p>Avrupa'nın en zengin ülkesinde insanlar hangi sosyal yardıma hak kazandıklarını bilemiyor, yaşlı bir anne hangi Pflegegrad'a başvuracağını bulamiyor, bir Türkiyeli emekli Grundrente'den nasıl faydalanacağını anlamıyor. Bilgi eksikliği, bir adaletsizlik meselesidir.</p>
+</blockquote>
+
+<div class="section-label" style="margin-top:40px">Meslek Okulları da Kırılma Noktasında</div>
+<div class="two-col" style="margin-top:16px">
+  <div>
+    <p style="color:rgba(255,255,255,0.75);line-height:1.8;font-size:1rem;">
+      Almanya'da mesleki eğitim (Berufsschule) sistemi öğrenci bulamıyor. Öğrenciler giderek daha fazla kariyer yönlendirmesine ihtiyaç duyuyor ama yeterli rehber yok. Bir eğitimci olarak sahada bu açığı her gün yaşıyoruz. <strong style="color:var(--gold-light)">NavigoPro</strong> ve <strong style="color:var(--gold-light)">CareerMap</strong> tam bu noktadan doğdu.
+    </p>
+  </div>
+  <div>
+    <p style="color:rgba(255,255,255,0.75);line-height:1.8;font-size:1rem;">
+      Türkiye'de ise 113 Teknopark ve 12.800+ startup ile büyüyen bir ekosistem var. TÜBİTAK-DFG ikili programları, KOSGEB dijital dönüşüm destekleri ve İYTE gibi kuluçka merkezleri bu fikrin tam arkasında duruyor.
+    </p>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 2: ÜRÜNLER ───── -->
+
+<section id="products">
+  <div class="inner">
+    <div class="section-label reveal">02 — Ekosistem</div>
+    <h2 class="section-title reveal">Ne Yaptık? Ne Yapıyoruz?</h2>
+    <p class="section-intro reveal">
+      Her ürün tek başına ayakta durabilecek, ama birbirine bağlandığında katlanarak büyüyecek şekilde tasarlandı. Hepsi aynı felsefeden doğdu: <em>İnsan onuru, ekonomik faydanın önünde gelir.</em>
+    </p>
+
+```
+<div class="product-grid">
+  <div class="product-card reveal">
+    <div class="product-icon">🧭</div>
+    <div class="product-name">EasyGov</div>
+    <div class="product-desc">Almanya'nın karmaşık sosyal yardım sistemini üç dilde anlatan rehber. Türkçe konuşan ailelerin en büyük ihtiyacı: neye hakları olduğunu bilmek.</div>
+    <span class="product-badge">CANLI</span>
+  </div>
+  <div class="product-card reveal">
+    <div class="product-icon">🧠</div>
+    <div class="product-name">SilverCompass</div>
+    <div class="product-desc">65+ yaş için bilişsel egzersiz platformu. Alzheimer/demans riskini erken fark etmek, aileyi uyarmak, yaşlıyı yalnız bırakmamak. "Zihniniz, en güvenilir limanınız."</div>
+    <span class="product-badge">GELİŞTİRİLİYOR</span>
+  </div>
+  <div class="product-card reveal">
+    <div class="product-icon">🩺</div>
+    <div class="product-name">GlucoNavigatör</div>
+    <div class="product-desc">Diyabet farkındalık ve yaşam tarzı koçluğu uygulaması. 8.1 milyon Alman diyabetlisi için bilim destekli, insani bir rehber. TÜRKPATENT tescilli.</div>
+    <span class="product-badge">BETA — CANLI</span>
+  </div>
+  <div class="product-card reveal">
+    <div class="product-icon">⚖️</div>
+    <div class="product-name">BetreuerPro</div>
+    <div class="product-desc">1.3 milyonun üzerinde yasal vasi davasını dijitalleştiren SaaS. Vasiler için rehber, platform ve eğitim. Almanya'da hiç bu kadar büyük bir boşluk olmadı.</div>
+    <span class="product-badge">STEALTH GELİŞTİRME</span>
+  </div>
+  <div class="product-card reveal">
+    <div class="product-icon">🗺️</div>
+    <div class="product-name">NavigoPro</div>
+    <div class="product-desc">90 soruluk kariyer keşif aracı. Gençlere, meslek değiştirmek isteyenlere ve meslek okulu öğrencilerine yol gösteren trilingual platform.</div>
+    <span class="product-badge">CANLI</span>
+  </div>
+  <div class="product-card reveal">
+    <div class="product-icon">🏙️</div>
+    <div class="product-name">KiezFlow</div>
+    <div class="product-desc">Mahalle entegrasyon rehberi. Göçmenlerin yeni şehirlerine adapte olmasını kolaylaştıran, topluluk bağlarını güçlendiren araç.</div>
+    <span class="product-badge">GELİŞTİRİLİYOR</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-label reveal">Nerede Duruyoruz?</div>
+<div class="milestone-bar reveal">
+  <div class="ms-item"><div class="ms-dot done"></div><div class="ms-text"><strong>GlucoNavigatör</strong> — Beta canlı, TÜRKPATENT tescillenmiş</div><span class="ms-tag done">TAMAM</span></div>
+  <div class="ms-item"><div class="ms-dot done"></div><div class="ms-text"><strong>NavigoPro</strong> — Trilingual, Alman uzman revizyonu tamamlandı</div><span class="ms-tag done">TAMAM</span></div>
+  <div class="ms-item"><div class="ms-dot done"></div><div class="ms-text"><strong>EasyGov</strong> — Canlı, GDPR uyumlu</div><span class="ms-tag done">TAMAM</span></div>
+  <div class="ms-item"><div class="ms-dot inprogress"></div><div class="ms-text"><strong>SilverCompass</strong> — Bilişsel oyunlar geliştirilmekte, Water Sort tamamlandı</div><span class="ms-tag inprogress">DEVAM</span></div>
+  <div class="ms-item"><div class="ms-dot inprogress"></div><div class="ms-text"><strong>Türkiye Şahıs Kaydı</strong> — TÜBİTAK & KOSGEB başvuruları için zemin hazırlanıyor</div><span class="ms-tag inprogress">DEVAM</span></div>
+  <div class="ms-item"><div class="ms-dot plan"></div><div class="ms-text"><strong>BetreuerPro</strong> — EasyGov + SilverCompass entegrasyonu sonrası lansman</div><span class="ms-tag plan">PLAN</span></div>
+  <div class="ms-item"><div class="ms-dot plan"></div><div class="ms-text"><strong>IP Şirketi + Operasyonel Şirket</strong> — Çift yapı kurulum</div><span class="ms-tag plan">PLAN</span></div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 3: GRUNDRENTE ───── -->
+
+<section id="grundrente" class="dark-section">
+  <div class="inner">
+    <div class="section-label">03 — Kritik Mesele</div>
+    <h2 class="section-title light">Grundrente & Kindererziehungszeiten:<br>Milyonların Bilmediği Haklar</h2>
+    <p class="section-intro light">
+      Almanya'nın emeklilik sistemi inanılmaz karmaşık. Ve bu karmaşıklık, en savunmasız insanları en çok etkiliyor.
+    </p>
+
+```
+<div class="grundrente-box" style="background:rgba(212,175,55,0.05);border-color:rgba(212,175,55,0.2);">
+  <h4 style="color:var(--gold)">Grundrente Nedir?</h4>
+  <p style="color:rgba(255,255,255,0.75);">
+    2021'de yürürlüğe giren bu düzenleme, 33 yıldan fazla prim ödemiş ve düşük gelirle çalışmış kişilere emekli maaşlarına ek ödeme yapılmasını sağlıyor. Hak kazananların büyük çoğunluğu: çocuk yetiştirmiş kadınlar, part-time çalışmak zorunda kalmış bireyler, bakım işleriyle uğraşmış insanlar.
+  </p>
+  <p class="gap-note">⚠ Sorun: Hak sahiplerinin önemli bir kısmı bu eklemeyi aldıklarını bile fark etmiyor. Bir kısmı başvurmak yerine bekliyor. Bir kısmı ise sistemin yeterince açık olmaması nedeniyle hak ettiklerini alamıyor.</p>
+</div>
+
+<div class="grundrente-box" style="background:rgba(212,175,55,0.05);border-color:rgba(212,175,55,0.2);margin-top:16px">
+  <h4 style="color:var(--gold)">Kindererziehungszeiten Nedir?</h4>
+  <p style="color:rgba(255,255,255,0.75);">
+    Çocuk yetiştirme dönemleri (doğumdan sonraki ilk 2-3 yıl), emeklilik puanına sayılıyor. Ama hesaplama karmaşık: hangi yıl doğumun gerçekleştiği, eşin durumu, diğer sigorta dönemleri gibi onlarca değişken var. Türkiye'den göç etmiş ve yarı zamanlı çalışmış annelerin büyük çoğunluğu bu haktan tam olarak yararlanamıyor.
+  </p>
+  <p class="gap-note">⚠ Sorun: Bu konuyu bilen bir sosyal danışman bulmak için aylarca beklemek gerekiyor. Ve danışmanlar Türkçe konuşmuyor.</p>
+</div>
+
+<blockquote class="dark-bq" style="margin-top:32px">
+  <p>Biz bu boşluğu sadece fırsatçı bir gözle görmüyoruz. Bu bir <strong style="color:var(--gold-light)">adaletsizlik</strong>. İnsanlar kendi emeğinin karşılığını alamıyor çünkü sistemi okuyamıyor. EasyGov ve SilverCompass'ın içindeki Rente Pusulası modülü tam bu noktayı hedefliyor.</p>
+</blockquote>
+
+<div style="margin-top:32px">
+  <p style="color:rgba(255,255,255,0.75);font-size:1rem;line-height:1.8">
+    Bu konuya toplumda kaç kişi vakıf? Bir Alman sosyal danışmanı kuralları biliyor ama Türkçe bilmiyor. Bir Türk toplum gönüllüsü ilgileniyor ama yasal detayları bilmiyor. Biz her ikisini de biliyoruz — ve bunu sistematik, ölçeklenebilir ve güvenilir biçimde sunabiliriz.
+  </p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 4: ARAMA VERİLERİ ───── -->
+
+<section id="search">
+  <div class="inner">
+    <div class="section-label reveal">04 — Talep Kanıtı</div>
+    <h2 class="section-title reveal">İnsanlar Ne Arıyor?</h2>
+    <p class="section-intro reveal">
+      Bir ürün yapmadan önce şunu sorduk: insanlar bu konuları gerçekten arıyor mu? Cevap evet — ve bu aramaların büyük bölümüne kaliteli bir Türkçe kaynak yok.
+    </p>
+
+```
+<div class="section-label reveal" style="margin-bottom:12px">Almanya'da Türkçe Arama Terimleri</div>
+<div class="search-pills reveal">
+  <span class="pill">Almanya'da emeklilik hesaplama <span class="pill-count">yüksek hacim</span></span>
+  <span class="pill">Grundrente nasıl alınır Türkçe</span>
+  <span class="pill">Pflegegrad başvurusu Türkçe</span>
+  <span class="pill">Krankenkasse değiştirme</span>
+  <span class="pill">Almanya'da diyabet koçu</span>
+  <span class="pill">yaşlı ebeveyn bakımı Almanya</span>
+  <span class="pill">Elterngeld nasıl hesaplanır</span>
+  <span class="pill">Almanya meslek okulu rehberlik</span>
+  <span class="pill">Betreuungsrecht nedir</span>
+  <span class="pill">Türk göçmen sosyal yardım hakları</span>
+</div>
+
+<div class="section-label reveal" style="margin-top:32px;margin-bottom:12px">Türkiye'deki Hedef Aramalar</div>
+<div class="search-pills reveal">
+  <span class="pill">alzheimer belirtileri neler</span>
+  <span class="pill">diyabet takip uygulaması</span>
+  <span class="pill">bilişsel egzersiz yaşlı <span class="pill-count">büyük hacim</span></span>
+  <span class="pill">kariyer testi ücretsiz</span>
+  <span class="pill">meslek seçimi yardım</span>
+  <span class="pill">Almanya emekliliği Türk</span>
+  <span class="pill">beyin sağlığı oyunları</span>
+</div>
+
+<div class="callout callout-solution reveal" style="margin-top:32px">
+  <div class="callout-title solution">✓ Fırsatın Büyüklüğü</div>
+  <p>Bu aramalar yapılıyor — ama karşılarında güvenilir, ücretsiz, Türkçe/Almanca, bilimsel dayanaklı bir kaynak yok. Biz o kaynağı inşa ediyoruz. Ve bunu yaparken SEO organik trafik, lead geliri ve B2B SaaS aboneliklerini bir arada işletiyoruz.</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 5: GÜVENLİK ───── -->
+
+<section id="security" class="dark-section">
+  <div class="inner">
+    <div class="section-label">05 — Güven Altyapısı</div>
+    <h2 class="section-title light">Veri Güvenliği — Sözde Değil, Özde</h2>
+    <p class="section-intro light">
+      Bir platform sağlık ve hukuki verilerle çalışıyorsa, güvenlik birinci önceliktir. Bunu başından beri böyle tasarladık.
+    </p>
+
+```
+<div class="security-grid">
+  <div class="sec-item">
+    <div class="sec-icon">🔒</div>
+    <div class="sec-title">DSGVO / GDPR Tam Uyum</div>
+    <div class="sec-desc">Tüm ürünler AB veri koruma mevzuatına uygun tasarlandı. Hukuki metinler Türkçe, Almanca ve İngilizce hazırlandı.</div>
+  </div>
+  <div class="sec-item">
+    <div class="sec-icon">🇪🇺</div>
+    <div class="sec-title">Avrupa Sunucuları</div>
+    <div class="sec-desc">Firebase eur3 (Avrupa bölgesi) — veriler AB sınırları içinde kalıyor. CLOUD Act'e karşı maksimum önlem.</div>
+  </div>
+  <div class="sec-item">
+    <div class="sec-icon">🏥</div>
+    <div class="sec-title">Tıbbi Değil, Koçluk</div>
+    <div class="sec-desc">GlucoNavigatör bilinçli olarak wellness/lifestyle konumlandırması aldı. Hiçbir ürün teşhis veya reçete içermiyor — sınırlar nettir.</div>
+  </div>
+  <div class="sec-item">
+    <div class="sec-icon">🔑</div>
+    <div class="sec-title">Sıfır Kimlik Bilgisi Paylaşımı</div>
+    <div class="sec-desc">Güvenlik ihlali yaşandığında derhal anahtar iptal edildi. Katı bir kural oluşturuldu: hiçbir sistem kimlik bilgisi üçüncü tarafla paylaşılmaz.</div>
+  </div>
+  <div class="sec-item">
+    <div class="sec-icon">📋</div>
+    <div class="sec-title">ISO Denetim Altyapısı</div>
+    <div class="sec-desc">ISO denetçi sertifikası, ürünlerin kalite ve süreç yönetiminin uluslararası standartlara göre kurulmasını sağlıyor.</div>
+  </div>
+  <div class="sec-item">
+    <div class="sec-icon">🛡️</div>
+    <div class="sec-title">Kullanıcı Asla Satılmaz</div>
+    <div class="sec-desc">PACDI temel ilkesi: kullanıcı verisi asla reklam geliri için satılmaz. Bu ticari değil, etik bir karardır.</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 6: KAZANIMLAR ───── -->
+
+<section id="gains">
+  <div class="inner">
+    <div class="section-label reveal">06 — Büyük Tablo</div>
+    <h2 class="section-title reveal">Başarılı Olursak Kim Ne Kazanır?</h2>
+    <p class="section-intro reveal">
+      Bu sadece bir iş kurmak değil. Başarılı bir PACDI ekosistemi birden fazla taraf için somut değer üretiyor.
+    </p>
+
+```
+<div class="gain-section reveal">
+  <div class="gain-row">
+    <div class="gain-who">Yaşlı Bireyler</div>
+    <div class="gain-what">Alzheimer riskini erken fark ederek erken müdahale şansı kazanıyor. Emeklilik haklarını tam olarak kullanabiliyor. Dijital dünyada yalnız kalmıyor.</div>
+  </div>
+  <div class="gain-row">
+    <div class="gain-who">Aileler</div>
+    <div class="gain-what">Almanya'daki anne-babalarının bilişsel durumunu uzaktan takip edebiliyor. Yasal vasi süreçlerinde rehber buluyor. Sosyal yardım haklarını öğreniyor.</div>
+  </div>
+  <div class="gain-row">
+    <div class="gain-who">Gençler & Öğrenciler</div>
+    <div class="gain-what">NavigoPro ve CareerMap ile gerçek kapasite ve değerlerine uygun kariyer yönlendirmesi alıyor. Sahte vaatler değil, gerçek analiz.</div>
+  </div>
+  <div class="gain-row">
+    <div class="gain-who">Almanya</div>
+    <div class="gain-what">Entegrasyon maliyetleri düşüyor. Sosyal sistemin kullanımı daha adil hale geliyor. Dijital bakım açığı kapanmaya başlıyor.</div>
+  </div>
+  <div class="gain-row">
+    <div class="gain-who">Türkiye</div>
+    <div class="gain-what">Almanya pazarına nitelikli dijital ürün ihraç eden bir startup ekosistemi oluşuyor. TÜBİTAK ve KOSGEB destekleriyle büyüyen bir model.</div>
+  </div>
+  <div class="gain-row">
+    <div class="gain-who">Biz — Aile Olarak</div>
+    <div class="gain-what">Anlam dolu bir iş. Ölçeklenebilir gelir. Coğrafi bağımsızlık. Ve en önemlisi: yaptığımız şeyin insanların hayatına gerçekten dokunduğunu bilerek uyumak.</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-label reveal">Gelir Modeli — Kısa Özet</div>
+<div class="stat-grid reveal">
+  <div class="stat-card light-card">
+    <div class="stat-num" style="font-size:1.6rem">19.90€</div>
+    <div class="stat-label">BetreuerPro vasi aboneliği / ay — 1.000 kullanıcıda 20.000€/ay</div>
+  </div>
+  <div class="stat-card light-card">
+    <div class="stat-num" style="font-size:1.6rem">50-150€</div>
+    <div class="stat-label">Pflegegrad lead başına — Almanya'da sürekli talep var</div>
+  </div>
+  <div class="stat-card light-card">
+    <div class="stat-num" style="font-size:1.6rem">₺499</div>
+    <div class="stat-label">PusulaPro kariyer raporu — Türkiye pazarı</div>
+  </div>
+  <div class="stat-card light-card">
+    <div class="stat-num" style="font-size:1.6rem">B2B</div>
+    <div class="stat-label">Hastane, sigorta, belediye entegrasyonları — ikinci büyüme dalgası</div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 7: NEDEN BİZ ───── -->
+
+<section id="why-us" class="dark-section">
+  <div class="inner">
+    <div class="section-label">07 — Temel Soru</div>
+    <h2 class="section-title light">Neden Başkası Değil, <span style="color:var(--gold)">Biz?</span></h2>
+    <p class="section-intro light">
+      Bu soruyu kendimize sormak zorundayız. Ve cevap, bizi rahatsız edecek kadar net.
+    </p>
+
+```
+<ul class="why-list">
+  <li>
+    <div class="why-num">01</div>
+    <div class="why-content">
+      <h4>İki Sistemi İçten Biliyoruz</h4>
+      <p>Türk aile yapısını, Alman bürokratik sistemini, her iki ülkenin sağlık anlayışını ve sosyal güvenlik mantığını aynı anda içselleştirmiş çok az insan var. Biz o insanlarız. Bu eşsiz bir konum.</p>
+    </div>
+  </li>
+  <li>
+    <div class="why-num">02</div>
+    <div class="why-content">
+      <h4>Saha Deneyimi Akademiyle Buluşuyor</h4>
+      <p>Sosyoloji, kamu yönetimi, jobcoaching, NLP Master Trainer ve ISO denetçisi. Bu kombinasyon başka hiçbir "app developer"ın elinde yok. Ürünlerimizin derinliği bu arka plandan geliyor.</p>
+    </div>
+  </li>
+  <li>
+    <div class="why-num">03</div>
+    <div class="why-content">
+      <h4>Meslek Okulundaki Sandalye Bize Veri Akıtıyor</h4>
+      <p>Öğrencilerin gerçek kariyer kaygılarını, meslek sisteminin açıklarını, Almanya'daki gençlerin ihtiyaçlarını günlük olarak gözlemliyoruz. NavigoPro ve EduFlow bu gözlemden doğdu.</p>
+    </div>
+  </li>
+  <li>
+    <div class="why-num">04</div>
+    <div class="why-content">
+      <h4>Teknoloji Takımı Kurmadan Çalışıyoruz</h4>
+      <p>Multi-AI iş akışı (Claude, DeepSeek, Gemini) ile tam zamanlı bir geliştirici ekibinin üretebileceği çıktıyı çok daha düşük maliyetle üretiyoruz. Bu, başlangıç aşamasında ezici bir avantaj.</p>
+    </div>
+  </li>
+  <li>
+    <div class="why-num">05</div>
+    <div class="why-content">
+      <h4>Felsefemiz Bizi Koruyucu Bir Çit Gibi Çevreliyor</h4>
+      <p>"Technologie im Dienste der Menschlichkeit" sadece bir slogan değil. Bu felsefe, yanlış karar almamızı zorlaştırıyor. Kullanıcıyı manipüle eden, veriyi satan, false promise yapan her yolu kapatıyor. Bu ayrım, uzun vadeli güven inşasında temel.</p>
+    </div>
+  </li>
+  <li>
+    <div class="why-num">06</div>
+    <div class="why-content">
+      <h4>Daha Erken Başlamak Mümkün Değildi — Daha Geç Başlamak Tehlikeli</h4>
+      <p>AB'nin Connected Care pazarı 2028'de 17.7 milyar Euro'ya ulaşacak. Almanya'daki demografik dönüşüm ivme kazanıyor. Türkiye'deki startup ekosistemine olan ilgi dorukta. Bu pencere kapanmadan önce yerimizi almamız gerekiyor.</p>
+    </div>
+  </li>
+</ul>
+```
+
+  </div>
+</section>
+
+<!-- ───── BÖLÜM 8: SONUÇ ───── -->
+
+<section id="finale">
+  <div class="inner" style="position:relative;z-index:1;text-align:center">
+    <div class="hero-eyebrow" style="animation:none;opacity:1;color:rgba(212,175,55,0.6);">SON SÖZ</div>
+    <h2 class="finale-title">Bu Bir <span>Şans</span> Değil.<br>Bir <span>Sorumluluk.</span></h2>
+    <p class="finale-text">
+      Milyonlarca insan bilgi eksikliği yüzünden hakkını alamıyor. Yaşlı anneler dijital dünyada kaybolup gidiyor. Gençler yanlış kariyer seçimiyle yıllarını harcıyor. Bunu görmek ve elimizdeki araçlarla çözüm üretebilecek durumda olmak — ve yine de yapmamak — mümkün değil.
+    </p>
+    <p class="finale-text" style="font-size:1rem;margin-bottom:48px">
+      Bu iş büyürse, her ikimiz de anlam dolu ve ekonomik olarak özgür bir hayat kurmuş olacağız. Büyümese bile, dünyayı biraz daha iyi bir yere taşımaya çalışmış olacağız. İkisi de yeterli bir sebep.
+    </p>
+    <div class="sign">
+      <div class="sign-name">PACDI Dijital Navigasyon Ekosistemi</div>
+      <div class="sign-title">Technologie im Dienste der Menschlichkeit — Berlin / İzmir</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  PACDI — Tüm Hakları Saklıdır · pacdi.io · Hazırlayan: PACDI Strateji Ekibi
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const s = document.documentElement.scrollTop;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = (s/h*100) + '%';
+  });
+
+  // Intersection observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .tl-item, .why-list li').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Stagger why list items
+  document.querySelectorAll('.why-list li').forEach((li, i) => {
+    li.style.transitionDelay = `${i * 0.08}s`;
+  });
+</script>
+
+</body>
+</html>
