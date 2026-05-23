@@ -238,6 +238,13 @@
       background: #04162e; color: #f6b45f;
       font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 1px; border-radius: 20px;
     }
+    .product-domain {
+      display: block; margin-top: 10px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+      color: rgba(4,22,46,0.45); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .product-domain:hover { color: #04162e; text-decoration: underline; }
 
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
     @media (max-width: 720px) {
@@ -282,6 +289,8 @@
     .gain-row { display: flex; align-items: flex-start; gap: 24px; padding: 24px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
     .gain-who { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 2px; color: #d4af37; text-transform: uppercase; min-width: 140px; padding-top: 2px; }
     .gain-what { font-size: 1rem; color: rgba(255, 255, 255, 0.9); line-height: 1.7; }
+    .gain-what a { color: #f6b45f; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+    .gain-what a:hover { text-decoration: underline; }
 
     #finale { background: #04162e; text-align: center; }
     .finale-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 900; color: #ffffff; line-height: 1.1; margin-bottom: 24px; }
@@ -533,19 +542,19 @@
     <h2 class="section-title reveal">Ne Yaptık? Ne Yapıyoruz?</h2>
     <p class="section-intro reveal">Her ürün <strong>üç dilde (DE / TR / EN)</strong>, tek başına ayakta durabilecek ama birbirine bağlandığında katlanarak büyüyecek şekilde tasarlandı. Hepsi aynı felsefeden doğdu: <em>İnsan onuru, ekonomik faydanın önünde gelir.</em></p>
     <div class="product-grid">
-      <div class="product-card reveal"><div class="product-icon">🧭</div><div class="product-name">EasyGov</div><div class="product-desc">Almanya'nın karmaşık sosyal yardım sistemini <strong>üç dilde, yalın ve anlaşılır biçimde</strong> anlatan rehber. Bürokratik dili çözemeyen herkes için.</div><span class="product-badge">CANLI · 3 DİL</span></div>
-      <div class="product-card reveal"><div class="product-icon">🧠</div><div class="product-name">SilverCompass</div><div class="product-desc">65+ yaş için çok dilli bilişsel egzersiz platformu. Alzheimer riskini erken fark etmek, aileyi uyarmak, yaşlıyı yalnız bırakmamak.</div><span class="product-badge">GELİŞTİRİLİYOR</span></div>
-      <div class="product-card reveal"><div class="product-icon">🩺</div><div class="product-name">GlucoNavigator</div><div class="product-desc">Diyabet farkındalık ve yaşam tarzı koçluğu uygulaması. 8.1 milyon Alman diyabetlisi için bilim destekli, insani bir rehber. TÜRKPATENT tescilli.</div><span class="product-badge">BETA · 3 DİL</span></div>
-      <div class="product-card reveal"><div class="product-icon">⚖️</div><div class="product-name">BetreuerPro</div><div class="product-desc">1.3 milyonun üzerinde yasal vasi davasını dijitalleştiren SaaS. Vasiler için çok dilli rehber, platform ve eğitim. <strong>İlk 10 eğitim modülü senaryoları hazır, rafta.</strong></div><span class="product-badge">STEALTH + HAZIR MODÜL</span></div>
-      <div class="product-card reveal"><div class="product-icon">🗺️</div><div class="product-name">NavigoPro</div><div class="product-desc">90 soruluk kariyer keşif aracı. Gençlere, meslek değiştirmek isteyenlere yol gösteren <strong>üç dilli</strong> platform.</div><span class="product-badge">CANLI · 3 DİL</span></div>
-      <div class="product-card reveal"><div class="product-icon">🏙️</div><div class="product-name">KiezFlow</div><div class="product-desc">Mahalle entegrasyon rehberi. Göçmenlerin yeni şehirlerine adaptasyonunu kolaylaştıran çok dilli araç.</div><span class="product-badge">GELİŞTİRİLİYOR</span></div>
+      <div class="product-card reveal"><div class="product-icon">🧭</div><div class="product-name">EasyGov</div><div class="product-desc">Almanya'nın karmaşık sosyal yardım sistemini <strong>üç dilde, yalın ve anlaşılır biçimde</strong> anlatan rehber. Bürokratik dili çözemeyen herkes için.</div><span class="product-badge">CANLI · 3 DİL</span><a href="https://easygov.io" target="_blank" class="product-domain">easygov.io ↗</a></div>
+      <div class="product-card reveal"><div class="product-icon">🧠</div><div class="product-name">SilverCompass</div><div class="product-desc">65+ yaş için çok dilli bilişsel egzersiz platformu. Alzheimer riskini erken fark etmek, aileyi uyarmak, yaşlıyı yalnız bırakmamak.</div><span class="product-badge">GELİŞTİRİLİYOR</span><a href="https://silvercompass.world" target="_blank" class="product-domain">silvercompass.world ↗</a></div>
+      <div class="product-card reveal"><div class="product-icon">🩺</div><div class="product-name">GlucoNavigator</div><div class="product-desc">Diyabet farkındalık ve yaşam tarzı koçluğu uygulaması. 8.1 milyon Alman diyabetlisi için bilim destekli, insani bir rehber. TÜRKPATENT tescilli.</div><span class="product-badge">BETA · 3 DİL</span><a href="https://gluconavigator.io" target="_blank" class="product-domain">gluconavigator.io ↗</a></div>
+      <div class="product-card reveal"><div class="product-icon">⚖️</div><div class="product-name">BetreuerPro</div><div class="product-desc">1.3 milyonun üzerinde yasal vasi davasını dijitalleştiren SaaS. Vasiler için çok dilli rehber, platform ve eğitim. <strong>İlk 10 eğitim modülü senaryoları hazır, rafta.</strong></div><span class="product-badge">STEALTH + HAZIR MODÜL</span><a href="https://betreuerpro.io" target="_blank" class="product-domain">betreuerpro.io ↗</a></div>
+      <div class="product-card reveal"><div class="product-icon">🗺️</div><div class="product-name">NavigoPro</div><div class="product-desc">90 soruluk kariyer keşif aracı. Gençlere, meslek değiştirmek isteyenlere yol gösteren <strong>üç dilli</strong> platform.</div><span class="product-badge">CANLI · 3 DİL</span><a href="https://navigopro.de" target="_blank" class="product-domain">navigopro.de ↗</a></div>
+      <div class="product-card reveal"><div class="product-icon">🏙️</div><div class="product-name">KiezFlow</div><div class="product-desc">Mahalle entegrasyon rehberi. Göçmenlerin yeni şehirlerine adaptasyonunu kolaylaştıran çok dilli araç.</div><span class="product-badge">CANLI</span><a href="https://kiezflow.de" target="_blank" class="product-domain">kiezflow.de ↗</a></div>
     </div>
     <hr class="divider">
     <div class="section-label reveal">Yeni Canlı Ürünler</div>
     <div class="product-grid reveal">
-      <div class="product-card"><div class="product-icon">🏦</div><div class="product-name">grundrente.io</div><div class="product-desc">Grundrente hakkı sorgulama ve rehberlik. Gelir testi, başvuru adımları, hesaplama aracı. <strong>Üç dilde.</strong></div><span class="product-badge">CANLI ✅</span></div>
-      <div class="product-card"><div class="product-icon">👶</div><div class="product-name">kindererziehungszeiten.io</div><div class="product-desc">Çocuk yetiştirme sürelerinin emekliliğe etkisini hesaplayan, anneler için özel, çok dilli rehber.</div><span class="product-badge">CANLI ✅</span></div>
-      <div class="product-card"><div class="product-icon">🧮</div><div class="product-name">rentenrechner.html</div><div class="product-desc">Almanya emeklilik maaşı hesaplayıcı. Tüm parametreler güncel, DRV verileriyle uyumlu.</div><span class="product-badge">CANLI ✅</span></div>
+      <div class="product-card"><div class="product-icon">🏦</div><div class="product-name">grundrente.io</div><div class="product-desc">Grundrente hakkı sorgulama ve rehberlik. Gelir testi, başvuru adımları, hesaplama aracı. <strong>Üç dilde.</strong></div><span class="product-badge">CANLI ✅</span><a href="https://grundrente.io" target="_blank" class="product-domain">grundrente.io ↗</a></div>
+      <div class="product-card"><div class="product-icon">👶</div><div class="product-name">kindererziehungszeiten.io</div><div class="product-desc">Çocuk yetiştirme sürelerinin emekliliğe etkisini hesaplayan, anneler için özel, çok dilli rehber.</div><span class="product-badge">CANLI ✅</span><a href="https://kindererziehungszeiten.io" target="_blank" class="product-domain">kindererziehungszeiten.io ↗</a></div>
+      <div class="product-card"><div class="product-icon">🧮</div><div class="product-name">rentenrechner.html</div><div class="product-desc">Almanya emeklilik maaşı hesaplayıcı. Tüm parametreler güncel, DRV verileriyle uyumlu.</div><span class="product-badge">CANLI ✅</span><a href="https://grundrente.io/rentenrechner.html" target="_blank" class="product-domain">grundrente.io/rentenrechner ↗</a></div>
     </div>
   </div>
 </section>
