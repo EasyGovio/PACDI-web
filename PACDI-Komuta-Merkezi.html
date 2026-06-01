@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PACDI Komuta Merkezi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #04162E;
+    --navy2: #0b2240;
+    --gold: #D4AF37;
+    --gold2: #F6B45F;
+    --teal: #1ABC9C;
+    --red: #E74C3C;
+    --blue: #3498DB;
+    --text: #c8daf0;
+    --text2: #8aabcc;
+    --border: rgba(212,175,55,0.2);
+    --card: rgba(11,34,64,0.7);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Background texture */
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 10% 20%, rgba(212,175,55,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(26,188,156,0.04) 0%, transparent 50%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrapper { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:24px 20px; }
+
+  /* HEADER */
+  .header {
+    text-align:center;
+    padding:40px 20px 32px;
+    border-bottom:1px solid var(--border);
+    margin-bottom:32px;
+    position:relative;
+  }
+  .header::after {
+    content:'';
+    position:absolute;
+    bottom:-1px; left:50%; transform:translateX(-50%);
+    width:120px; height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .logo {
+    font-family:'Cormorant Garamond', serif;
+    font-size:3rem;
+    font-weight:700;
+    color:var(--gold);
+    letter-spacing:4px;
+    line-height:1;
+  }
+  .logo span { color:var(--text2); font-weight:400; font-size:1.4rem; display:block; letter-spacing:8px; margin-top:4px; }
+  .manifesto {
+    margin-top:16px;
+    font-family:'DM Mono', monospace;
+    font-size:0.75rem;
+    color:var(--text2);
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  .date-badge {
+    display:inline-block;
+    margin-top:12px;
+    background:rgba(212,175,55,0.1);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:4px 16px;
+    font-size:0.7rem;
+    color:var(--gold2);
+    font-family:'DM Mono', monospace;
+  }
+
+  /* NAV TABS */
+  .tabs {
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:12px;
+  }
+  .tab {
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--text2);
+    padding:6px 16px;
+    border-radius:20px;
+    cursor:pointer;
+    font-family:'Outfit', sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.5px;
+    transition:all 0.2s;
+  }
+  .tab:hover, .tab.active {
+    background:rgba(212,175,55,0.12);
+    border-color:var(--gold);
+    color:var(--gold2);
+  }
+
+  /* SECTION */
+  .section { display:none; }
+  .section.active { display:block; }
+
+  /* GRID */
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .grid-4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; }
+  @media(max-width:900px) { .grid-3,.grid-4 { grid-template-columns:1fr 1fr; } }
+  @media(max-width:600px) { .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; } }
+
+  /* CARD */
+  .card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:18px;
+    backdrop-filter:blur(8px);
+  }
+  .card-title {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.1rem;
+    font-weight:600;
+    color:var(--gold2);
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .card-title .icon { font-size:1rem; }
+
+  /* SECTION TITLE */
+  .sec-title {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem;
+    font-weight:600;
+    color:var(--gold);
+    margin-bottom:20px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  /* TABLE */
+  table { width:100%; border-collapse:collapse; margin:8px 0; }
+  th {
+    background:rgba(212,175,55,0.1);
+    color:var(--gold2);
+    padding:8px 10px;
+    text-align:left;
+    font-size:0.72rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    font-family:'DM Mono', monospace;
+    border-bottom:1px solid var(--border);
+  }
+  td {
+    padding:8px 10px;
+    border-bottom:1px solid rgba(212,175,55,0.08);
+    font-size:0.82rem;
+    color:var(--text);
+    vertical-align:top;
+  }
+  tr:hover td { background:rgba(212,175,55,0.04); }
+
+  /* BADGE */
+  .badge {
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:10px;
+    font-size:0.65rem;
+    font-family:'DM Mono', monospace;
+    letter-spacing:0.5px;
+  }
+  .badge-live { background:rgba(26,188,156,0.15); color:#1ABC9C; border:1px solid rgba(26,188,156,0.3); }
+  .badge-dev { background:rgba(246,180,95,0.15); color:var(--gold2); border:1px solid rgba(246,180,95,0.3); }
+  .badge-plan { background:rgba(52,152,219,0.15); color:#3498DB; border:1px solid rgba(52,152,219,0.3); }
+  .badge-done { background:rgba(26,188,156,0.15); color:#1ABC9C; border:1px solid rgba(26,188,156,0.3); }
+  .badge-wait { background:rgba(231,76,60,0.15); color:#E74C3C; border:1px solid rgba(231,76,60,0.3); }
+
+  /* STATUS DOT */
+  .dot { width:7px; height:7px; border-radius:50%; display:inline-block; margin-right:6px; flex-shrink:0; }
+  .dot-green { background:#1ABC9C; box-shadow:0 0 6px #1ABC9C; }
+  .dot-yellow { background:var(--gold2); box-shadow:0 0 6px var(--gold2); }
+  .dot-blue { background:#3498DB; }
+  .dot-red { background:#E74C3C; }
+
+  /* LIST */
+  ul.clean { list-style:none; }
+  ul.clean li {
+    padding:5px 0;
+    border-bottom:1px solid rgba(212,175,55,0.06);
+    font-size:0.82rem;
+    color:var(--text);
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+  }
+  ul.clean li:last-child { border:none; }
+
+  /* MONO TEXT */
+  .mono { font-family:'DM Mono', monospace; font-size:0.75rem; color:var(--text2); }
+
+  /* HIGHLIGHT BOX */
+  .hbox {
+    background:rgba(212,175,55,0.06);
+    border-left:3px solid var(--gold);
+    border-radius:0 8px 8px 0;
+    padding:10px 14px;
+    margin:8px 0;
+    font-size:0.82rem;
+  }
+
+  /* PROGRESS */
+  .progress-bar {
+    background:rgba(255,255,255,0.07);
+    border-radius:10px;
+    height:6px;
+    margin-top:6px;
+    overflow:hidden;
+  }
+  .progress-fill {
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(90deg, var(--gold), var(--gold2));
+  }
+
+  /* DOMAIN PILL */
+  .domain-pill {
+    display:inline-block;
+    background:rgba(4,22,46,0.8);
+    border:1px solid rgba(212,175,55,0.25);
+    border-radius:8px;
+    padding:3px 10px;
+    font-family:'DM Mono', monospace;
+    font-size:0.7rem;
+    color:var(--gold2);
+    margin:2px;
+  }
+
+  /* TIMELINE */
+  .timeline { position:relative; padding-left:24px; }
+  .timeline::before { content:''; position:absolute; left:6px; top:0; bottom:0; width:1px; background:var(--border); }
+  .tl-item { position:relative; margin-bottom:16px; }
+  .tl-item::before {
+    content:'';
+    position:absolute;
+    left:-20px; top:6px;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--gold);
+    border:2px solid var(--navy);
+    box-shadow:0 0 8px var(--gold);
+  }
+  .tl-date { font-family:'DM Mono', monospace; font-size:0.68rem; color:var(--gold2); margin-bottom:3px; }
+  .tl-text { font-size:0.82rem; color:var(--text); }
+
+  /* AI TEAM */
+  .ai-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    text-align:center;
+  }
+  .ai-name { font-family:'Cormorant Garamond', serif; font-size:1.1rem; color:var(--gold2); margin-bottom:4px; }
+  .ai-role { font-size:0.72rem; color:var(--text2); font-family:'DM Mono', monospace; }
+
+  /* FOOTER */
+  .footer {
+    text-align:center;
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid var(--border);
+    font-family:'DM Mono', monospace;
+    font-size:0.65rem;
+    color:var(--text2);
+    letter-spacing:1px;
+  }
+
+  label { display:block; font-size:0.72rem; color:var(--text2); font-family:'DM Mono', monospace; margin-bottom:3px; letter-spacing:0.5px; text-transform:uppercase; }
+  strong { color:var(--gold2); }
+  p { font-size:0.83rem; color:var(--text); margin-bottom:8px; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">PACDI GLOBAL<span>KOMUTA MERKEZİ</span></div>
+    <div class="manifesto">Technologie im Dienste der Menschlichkeit · İnsanlık Onuru Ekmekten Önce Gelir</div>
+    <div class="date-badge">Son Güncelleme: 1 Haziran 2026</div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('ekosistem')">🗺 Ekosistem</button>
+    <button class="tab" onclick="showTab('sirket')">🏛 Şirket Yapısı</button>
+    <button class="tab" onclick="showTab('ip')">🔐 IP & Hukuki</button>
+    <button class="tab" onclick="showTab('domainler')">🌐 Domainler</button>
+    <button class="tab" onclick="showTab('gelir')">💶 Gelir Modeli</button>
+    <button class="tab" onclick="showTab('pipeline')">🚀 Pipeline</button>
+    <button class="tab" onclick="showTab('tubitak')">🔬 TÜBİTAK & Hibeler</button>
+    <button class="tab" onclick="showTab('github')">💻 GitHub</button>
+    <button class="tab" onclick="showTab('seo')">🔍 SEO Stratejisi</button>
+    <button class="tab" onclick="showTab('ai')">🤖 AI Ekibi</button>
+    <button class="tab" onclick="showTab('bugun')">📅 Bugün</button>
+  </div>
+
+  <!-- ===== EKOSİSTEM ===== -->
+  <div class="section active" id="ekosistem">
+    <div class="sec-title">🗺 PACDI Dijital Ekosistem Haritası</div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">✅ Canlı Ürünler</div>
+      <table>
+        <tr><th>Ürün</th><th>Domain</th><th>Hedef Kitle</th><th>Özellik</th><th>Durum</th></tr>
+        <tr><td><strong>GlucoNavigatör</strong></td><td class="mono">gluconavigator.io</td><td>Diyabet riski, 8.5M+ DE</td><td>Trilingual, PWA, TÜRKPATENT tescilli</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>EasyGov</strong></td><td class="mono">easygov.io</td><td>Göçmenler, sosyal hak arayanlar</td><td>GDPR uyumlu, göçmen odaklı</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>Grundrente Rehberi</strong></td><td class="mono">grundrente.io</td><td>Almanya emeklileri</td><td>TR/DE çift dil, hesaplayıcı</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>Kindererziehungszeiten</strong></td><td class="mono">kindererziehungszeiten.io</td><td>Çocuk yetiştirme hakları</td><td>Powered by EasyGov</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>NavigoPro</strong></td><td class="mono">navigopro.de</td><td>Kariyer yön arayanlar</td><td>90 soru, trilingual, RIASEC</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>SilverCompass</strong></td><td class="mono">silvercompass.world</td><td>60+ yaş, bilişsel navigasyon</td><td>27+ oyun, Pusula Gülü, PWA</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>CogniRoute</strong></td><td class="mono">cogniroute.de</td><td>Bilişsel navigasyon</td><td>Ekosistem entegreli</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>KiezFlow</strong></td><td class="mono">kiezflow.de</td><td>Mahalle dayanışması</td><td>Berlin odaklı</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>WohnRoute</strong></td><td class="mono">wohnroute.de</td><td>Almanya'da konut arayanlar</td><td>Navigasyon rehberi</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>PACDI Games</strong></td><td class="mono">pacdi.games</td><td>60+ bilişsel oyun</td><td>27 oyun, PWA, Pusula Puanı</td><td><span class="badge badge-live">CANLI</span></td></tr>
+        <tr><td><strong>PusulaPro</strong></td><td class="mono">pusulapro.com</td><td>TR kariyer değerlendirme</td><td>D-V-F-A, 14 profil, ₺499 rapor</td><td><span class="badge badge-live">CANLI</span></td></tr>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">⚙️ Geliştirmede</div>
+        <table>
+          <tr><th>Ürün</th><th>Domain</th><th>Durum</th></tr>
+          <tr><td><strong>BetreuerPro</strong></td><td class="mono">betreuerpro.io</td><td><span class="badge badge-dev">STEALTH</span></td></tr>
+          <tr><td><strong>AskMeAI</strong></td><td class="mono">askmeai.io</td><td><span class="badge badge-dev">GELİŞTİRMEDE</span></td></tr>
+          <tr><td><strong>wasstehtmirzu</strong></td><td class="mono">.eu / .com</td><td><span class="badge badge-plan">PLANLANDI</span></td></tr>
+          <tr><td><strong>AnspruchsKompass</strong></td><td class="mono">anspruchskompass.de</td><td><span class="badge badge-plan">PLANLANDI</span></td></tr>
+          <tr><td><strong>TeknoNavigatör</strong></td><td class="mono">foundrpro.de</td><td><span class="badge badge-plan">PLANLANDI</span></td></tr>
+          <tr><td><strong>BorsaNavigator</strong></td><td class="mono">borsanavigator.de</td><td><span class="badge badge-plan">PLANLANDI</span></td></tr>
+          <tr><td><strong>CareerMap.pro</strong></td><td class="mono">careermap.pro</td><td><span class="badge badge-plan">PLANLANDI</span></td></tr>
+          <tr><td><strong>Haklarım</strong></td><td class="mono">haklarim.de</td><td><span class="badge badge-plan">PLANLANDI</span></td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">🎭 Anders & Stark Evreni</div>
+        <div class="hbox" style="margin-bottom:10px;">
+          <strong>Own Your Edge</strong> — Animasyon IP, FSEK tescilli<br>
+          <span class="mono">andersstark.io / .de / .eu / .world</span>
+        </div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span><strong>Ela / Anders</strong> — Protagonist, farklılığı güce dönüştüren</li>
+          <li><span class="dot dot-yellow"></span><strong>Savaş / Stark</strong> — Asık suratlı, sokak zekası, abi figürü</li>
+          <li><span class="dot dot-blue"></span><strong>Barış</strong> — Dengeleyici karakter</li>
+          <li><span class="dot dot-green"></span><strong>Miriam</strong> — Kültürel çeşitlilik temsilcisi</li>
+          <li><span class="dot dot-yellow"></span><strong>Zayn</strong> — Tekerlekli sandalye, teknoloji dahisi, Anders'in kardeşi</li>
+          <li><span class="dot dot-red"></span><strong>Sitrettin Abi</strong> — Dert Babası, SitreetMX'ten esinli 😄</li>
+        </ul>
+        <div style="margin-top:10px;">
+          <span class="badge badge-live">FSEK Onay Aşamasında</span>
+          <span class="badge badge-plan">Nice Sınıf 9+41</span>
+          <span class="badge badge-plan">EUIPO/DPMA/TÜRKPATENT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">🌊 Mahşerin Üçlüsü — Birincil Gelir Motorları</div>
+      <div class="grid-3">
+        <div style="text-align:center; padding:12px; border:1px solid var(--border); border-radius:12px;">
+          <div style="font-size:1.5rem; margin-bottom:6px;">🌐</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--gold2); margin-bottom:4px;">wasstehtmirzu</div>
+          <div class="mono">.eu + .com</div>
+          <div style="font-size:0.75rem; margin-top:6px; color:var(--text2);">Trafik kapısı · AdSense · Lead</div>
+        </div>
+        <div style="text-align:center; padding:12px; border:1px solid var(--border); border-radius:12px;">
+          <div style="font-size:1.5rem; margin-bottom:6px;">🏛</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--gold2); margin-bottom:4px;">AnspruchsKompass</div>
+          <div class="mono">anspruchskompass.de</div>
+          <div style="font-size:0.75rem; margin-top:6px; color:var(--text2);">B2B · €49-99/kurum/ay · Kurumsal</div>
+        </div>
+        <div style="text-align:center; padding:12px; border:1px solid var(--border); border-radius:12px;">
+          <div style="font-size:1.5rem; margin-bottom:6px;">⚖️</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--gold2); margin-bottom:4px;">BetreuerPro</div>
+          <div class="mono">betreuerpro.io</div>
+          <div style="font-size:0.75rem; margin-top:6px; color:var(--text2);">€99/ay · 1.3M+ vaka · AZAV</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">🪨 Duygusal Ön Kapılar (Almanya)</div>
+      <div class="grid-3">
+        <div style="padding:10px; border:1px solid var(--border); border-radius:10px; text-align:center;">
+          <div style="font-size:1.3rem;">😤</div>
+          <div style="color:var(--gold2); font-family:'Cormorant Garamond',serif;">Dert Babası</div>
+          <div class="mono">onkelsorgen.de</div>
+        </div>
+        <div style="padding:10px; border:1px solid var(--border); border-radius:10px; text-align:center;">
+          <div style="font-size:1.3rem;">🕯</div>
+          <div style="color:var(--gold2); font-family:'Cormorant Garamond',serif;">Arınma Odası</div>
+          <div class="mono">beichtraum.de</div>
+        </div>
+        <div style="padding:10px; border:1px solid var(--border); border-radius:10px; text-align:center;">
+          <div style="font-size:1.3rem;">🪨</div>
+          <div style="color:var(--gold2); font-family:'Cormorant Garamond',serif;">Sabır Taşı</div>
+          <div class="mono">geduldstein.de</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ŞİRKET YAPISI ===== -->
+  <div class="section" id="sirket">
+    <div class="sec-title">🏛 Şirket Yapısı & Hukuki Çerçeve</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔷 PACDI Global Ltd. Şti.</div>
+        <label>Rol</label><p>IP Şirketi — Tüm fikri mülkiyet, markalar, yazılım kütüphanesi</p>
+        <label>Kuruluş</label><p>Haziran 2026, Manisa</p>
+        <label>Sermaye</label><p>~50.000 TL + ayni sermaye (domainler, TÜRKPATENT tescilleri)</p>
+        <label>Gelir Modeli</label><p>AskMeAI'ye lisans geliri üretir (%10/%15/%20 kademeli)</p>
+        <label>MERSİS</label><p><span class="badge badge-done">Başvuru Yapıldı — 1 Haziran 2026</span></p>
+      </div>
+      <div class="card">
+        <div class="card-title">🔶 AskMeAI Ltd. Şti.</div>
+        <label>Rol</label><p>Operasyonel Şirket — Ürün geliştirme, müşteri hizmetleri, B2B</p>
+        <label>Kuruluş</label><p>Haziran 2026, Manisa (PACDI Global'den sonra)</p>
+        <label>Gelir Modeli</label><p>PACDI Global'den lisans alır, ürünleri pazarlar</p>
+        <label>Müdürlük</label><p>Tüzel kişi müdürlük seçeneği değerlendiriliyor</p>
+        <label>MERSİS</label><p><span class="badge badge-done">Başvuru Yapıldı — 1 Haziran 2026</span></p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">⚖️ Kademeli Lisans Oranı (FSEK Md.18)</div>
+      <table>
+        <tr><th>Ciro Dilimi</th><th>Lisans Oranı</th><th>Mantık</th></tr>
+        <tr><td>İlk 500.000 TL</td><td><strong>%10</strong></td><td>Kazancın büyük kısmı AskMeAI'de → %80 KV istisnası korunur</td></tr>
+        <tr><td>500.001 – 2.000.000 TL</td><td><strong>%15</strong></td><td>Denge aşaması</td></tr>
+        <tr><td>2.000.000 TL üzeri</td><td><strong>%20</strong></td><td>IP değer artışıyla örtüşür — maliye nezdinde meşru</td></tr>
+      </table>
+    </div>
+
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card">
+        <div class="card-title">🏦 Banka Stratejisi</div>
+        <ul class="clean">
+          <li><span class="dot dot-yellow"></span><strong>İNG</strong> — Öncelik 1 (kurumsal hesap)</li>
+          <li><span class="dot dot-yellow"></span><strong>TEB</strong> — Öncelik 1 (teknogirişim ekosistemi)</li>
+          <li><span class="dot dot-blue"></span><strong>Enpara</strong> — İlerleyen süreçte (cazip faiz)</li>
+          <li><span class="dot dot-green"></span><strong>İşbank + Vakıfbank</strong> — Mevcut şahsi BIST hesapları</li>
+        </ul>
+        <div class="hbox" style="margin-top:8px; font-size:0.75rem;">
+          Kurumsal hesap → BIST halka arz tahsisatları için kritik
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ Almanya Betriebsstätte Riski</div>
+        <ul class="clean">
+          <li><span class="dot dot-red"></span>Tescil kararına ibare: "Müdür kararları Türkiye'de alır"</li>
+          <li><span class="dot dot-red"></span>Uçak biletleri + otel faturası arşivlenmeli</li>
+          <li><span class="dot dot-red"></span>MERSİS işlemleri Türkiye IP'siyle yapılmalı</li>
+          <li><span class="dot dot-red"></span>TR-DE ÇVÖA anlaşması — mali müşavir hakimiyeti kritik</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">📋 TÜRKPATENT Devir Sıralaması</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-date">ADIM 1</div><div class="tl-text">Şirket Kurulumu — PACDI Global + AskMeAI (Haziran 2026)</div></div>
+        <div class="tl-item"><div class="tl-date">ADIM 2</div><div class="tl-text">Muvafakatname — İlk gün imzalanır, gider yazma hakkı başlar</div></div>
+        <div class="tl-item"><div class="tl-date">ADIM 3</div><div class="tl-text">Rozet Başvurusu — "Tesciller rozet sonrası ayni sermaye olarak devredilecek" taahhüdü</div></div>
+        <div class="tl-item"><div class="tl-date">ADIM 4</div><div class="tl-text">Rozet Onayı — Şahsi tesciller somut IP kanıtı olarak güç sağlar</div></div>
+        <div class="tl-item"><div class="tl-date">ADIM 5</div><div class="tl-text">Ayni Devir — Bilirkişi takdiri + mahkeme organizasyonu → IP şirketine devir</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== IP & HUKUKİ ===== -->
+  <div class="section" id="ip">
+    <div class="sec-title">🔐 IP & Hukuki Durum</div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">🇹🇷 TÜRKPATENT Tescilleri</div>
+      <table>
+        <tr><th>Marka</th><th>Durum</th><th>No / Detay</th></tr>
+        <tr><td><strong>GlucoNavigatör</strong></td><td><span class="badge badge-live">TESCİLLİ</span></td><td class="mono">No: 4096543 · Sınıf 9, 42, 44 · 16 Mart 2026</td></tr>
+        <tr><td><strong>EasyGov</strong></td><td><span class="badge badge-dev">ONAY BEKLİYOR</span></td><td class="mono">Başvuru No: 2026/024177 · Sınıf 9, 35, 42</td></tr>
+        <tr><td><strong>BetreuerPro + Akademie</strong></td><td><span class="badge badge-plan">HAZİRAN 2026</span></td><td>Başvuru planlanıyor</td></tr>
+        <tr><td><strong>AskMeAI</strong></td><td><span class="badge badge-plan">HAZİRAN 2026</span></td><td>Başvuru planlanıyor</td></tr>
+        <tr><td><strong>Anders & Stark</strong></td><td><span class="badge badge-plan">EUIPO/DPMA/TÜRKPATENT</span></td><td>Nice Sınıf 9 + 41 · Logo+kelime mark</td></tr>
+      </table>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">📜 FSEK Telif Başvuruları — online.telifhaklari.gov.tr</div>
+      <table>
+        <tr><th>Eser</th><th>Tür</th><th>Tahsilat No</th><th>Tarih</th><th>Durum</th></tr>
+        <tr><td><strong>PACDI Yazılım Kütüphanesi</strong></td><td>Bilgisayar Programları</td><td class="mono">89527410</td><td>31/05/2026</td><td><span class="badge badge-dev">ONAY AŞAMASINDA</span></td></tr>
+        <tr><td><strong>Anders & Stark Karakter Evreni</strong></td><td>Güzel Sanat Eserleri</td><td class="mono">89527350</td><td>31/05/2026</td><td><span class="badge badge-dev">ONAY AŞAMASINDA</span></td></tr>
+      </table>
+      <div class="hbox" style="margin-top:8px; font-size:0.75rem;">
+        Anders & Stark zip: 6 karakter görseli + 3 logo versiyonu + FSEK Final v3 belgesi
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔒 Koruma Katmanları</div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span>TÜRKPATENT marka tescili</li>
+          <li><span class="dot dot-green"></span>FSEK eser sahipliği beyanı</li>
+          <li><span class="dot dot-green"></span>GitHub commit geçmişi (tarih kanıtı)</li>
+          <li><span class="dot dot-green"></span>Domain kayıt tarihleri (ilk kullanım kanıtı)</li>
+          <li><span class="dot dot-green"></span>App Store/Play Store market raporları (coğrafi/para birimi belgesi)</li>
+          <li><span class="dot dot-yellow"></span>EUIPO — ilk gelir sonrası (~850€)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 Teknik Altyapı</div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span>DNS: united-domains.de (A: 185.199.108-111.153)</li>
+          <li><span class="dot dot-green"></span>Firebase: pacdi-global (Firestore eur3, GDPR)</li>
+          <li><span class="dot dot-green"></span>GitHub: easygovio (GitHub Pages CI/CD)</li>
+          <li><span class="dot dot-green"></span>FlutterFlow Pro → Firebase bağlı</li>
+          <li><span class="dot dot-yellow"></span>info@ → info@pacdi.de yönlendirme</li>
+          <li><span class="dot dot-green"></span>ES5 uyumlu JS (geniş mobil uyumu)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DOMAİNLER ===== -->
+  <div class="section" id="domainler">
+    <div class="sec-title">🌐 Domain Portföyü — ~60 Domain</div>
+
+    <div class="hbox" style="margin-bottom:16px;">
+      <strong>Pazar Stratejisi:</strong> Ana pazar Almanya (DE market) — Almanca öncelikli, AdSense/lead oranları çok daha cazip. Türkçe görünmez katman olarak mevcut (kullanıcı seçiyor, uygulama Türkçe değilmiş gibi davranır). Ülke bazlı fiyatlama: DE App Store → € / TR App Store → ₺. İhracat odaklı → özelge kapsamında vergi avantajı.
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">🌍 GlucoNavigator Grubu (6 domain)</div>
+      <div style="display:flex; flex-wrap:wrap; gap:5px;">
+        <span class="domain-pill">gluconavigator.io ✅</span>
+        <span class="domain-pill">gluconavigator.de</span>
+        <span class="domain-pill">gluconavigator.eu</span>
+        <span class="domain-pill">gluconavigator.info</span>
+        <span class="domain-pill">gluconavigator.store</span>
+        <span class="domain-pill">gluconavigator.com</span>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">🧠 CogniRoute Grubu (4)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">cogniroute.de ✅</span>
+          <span class="domain-pill">cogniroute.eu</span>
+          <span class="domain-pill">cogniroute.info</span>
+          <span class="domain-pill">cogniroute.store</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🗺 CareerMap Grubu (3)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">careermap.pro</span>
+          <span class="domain-pill">careermap.tech</span>
+          <span class="domain-pill">careermap.world</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">🎓 UniRoute Grubu (6)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">uniroute.de</span>
+          <span class="domain-pill">uniroute.eu</span>
+          <span class="domain-pill">uniroute.info</span>
+          <span class="domain-pill">uniroute.pro</span>
+          <span class="domain-pill">uniroute.store</span>
+          <span class="domain-pill">uniroute.world</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🏛 PACDI Çatı (6)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">pacdi.de ✅</span>
+          <span class="domain-pill">pacdi.io ✅</span>
+          <span class="domain-pill">pacdi.games ✅</span>
+          <span class="domain-pill">pacdi.eu</span>
+          <span class="domain-pill">pacdi.group</span>
+          <span class="domain-pill">pacdi.info</span>
+          <span class="domain-pill">pacdi.store</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">🏛 EasyGov Grubu (5)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">easygov.io ✅</span>
+          <span class="domain-pill">easygov.at</span>
+          <span class="domain-pill">easygov.pro</span>
+          <span class="domain-pill">easygov.online</span>
+          <span class="domain-pill">easygov.me</span>
+          <span class="domain-pill">eazygov.de</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎭 Anders & Stark Grubu (5)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">andersstark.io</span>
+          <span class="domain-pill">andersandstark.de</span>
+          <span class="domain-pill">andersstark.eu</span>
+          <span class="domain-pill">andersstark.world</span>
+          <span class="domain-pill">ownyouredge.de</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">🧭 NavigoPro Grubu (2)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">navigopro.de ✅</span>
+          <span class="domain-pill">navigopro.eu</span>
+        </div>
+        <div class="card-title" style="margin-top:12px;">🪙 PusulaPro / KompassPro (4)</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">pusulapro.com ✅</span>
+          <span class="domain-pill">pusulapro.xyz</span>
+          <span class="domain-pill">kompasspro.de</span>
+          <span class="domain-pill">kompasspro.me</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🪨 Duygusal Kapılar + Diğer</div>
+        <div style="display:flex; flex-wrap:wrap; gap:5px;">
+          <span class="domain-pill">onkelsorgen.de</span>
+          <span class="domain-pill">beichtraum.de</span>
+          <span class="domain-pill">geduldstein.de</span>
+          <span class="domain-pill">haklarim.de</span>
+          <span class="domain-pill">wasstehtmirzu.com</span>
+          <span class="domain-pill">wasstehtmirzu.eu</span>
+          <span class="domain-pill">anspruchskompass.de</span>
+          <span class="domain-pill">betreuerpro.io ✅</span>
+          <span class="domain-pill">askmeai.io</span>
+          <span class="domain-pill">borsanavigator.de</span>
+          <span class="domain-pill">foundrpro.de</span>
+          <span class="domain-pill">schulroute.de</span>
+          <span class="domain-pill">wohnroute.de ✅</span>
+          <span class="domain-pill">kiezflow.de ✅</span>
+          <span class="domain-pill">kindererziehungszeiten.io ✅</span>
+          <span class="domain-pill">grundrente.io ✅</span>
+          <span class="domain-pill">silvercompass.world ✅</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📊 Portföy Özeti</div>
+      <div class="grid-4">
+        <div style="text-align:center; padding:10px; border:1px solid var(--border); border-radius:10px;">
+          <div style="font-size:1.5rem; color:var(--gold); font-family:'Cormorant Garamond',serif; font-weight:700;">~60</div>
+          <div class="mono">Toplam Domain</div>
+        </div>
+        <div style="text-align:center; padding:10px; border:1px solid var(--border); border-radius:10px;">
+          <div style="font-size:1.5rem; color:var(--teal); font-family:'Cormorant Garamond',serif; font-weight:700;">50+</div>
+          <div class="mono">united-domains.de</div>
+        </div>
+        <div style="text-align:center; padding:10px; border:1px solid var(--border); border-radius:10px;">
+          <div style="font-size:1.5rem; color:var(--blue); font-family:'Cormorant Garamond',serif; font-weight:700;">7</div>
+          <div class="mono">İsimtescil.com</div>
+        </div>
+        <div style="text-align:center; padding:10px; border:1px solid var(--border); border-radius:10px;">
+          <div style="font-size:1.5rem; color:var(--gold2); font-family:'Cormorant Garamond',serif; font-weight:700;">15+</div>
+          <div class="mono">Canlı (✅)</div>
+        </div>
+      </div>
+      <div class="hbox" style="margin-top:12px; font-size:0.75rem;">
+        wasstehtmirzu + anspruchskompass → Gemini SEO analizi: organik Almanya trafiği için üst sıra potansiyeli yüksek · ownyouredge.de = Anders & Stark tagline domaini
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GELİR MODELİ ===== -->
+  <div class="section" id="gelir">
+    <div class="sec-title">💶 Gelir Modeli & Projeksiyonlar</div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">💰 Gelir Kanalları</div>
+      <table>
+        <tr><th>Ürün / Kanal</th><th>Model</th><th>Birim Fiyat</th><th>Hedef</th></tr>
+        <tr><td><strong>BetreuerPro Pro</strong></td><td>B2B SaaS</td><td>€99/ay/kullanıcı</td><td>1.000 kullanıcı = 99K€/ay</td></tr>
+        <tr><td><strong>AnspruchsKompass</strong></td><td>Kurumsal lisans</td><td>€49-99/kurum/ay</td><td>50 kurum = 2.5-5K€/ay</td></tr>
+        <tr><td><strong>BetreuerPro Akademie</strong></td><td>Bildungsgutschein</td><td>Devlet faturalama</td><td>AZAV sonrası</td></tr>
+        <tr><td><strong>EasyGov Serisi (lead)</strong></td><td>Lead geliri</td><td>Rente 15-40€ · Pflegegrad 50-150€ · Wohnrente 500-2000€</td><td>Organik trafik</td></tr>
+        <tr><td><strong>PACDI Games</strong></td><td>Satış</td><td>1.99€-7.99€</td><td>App Store + Play Store</td></tr>
+        <tr><td><strong>AskMeAI / SilverCompass</strong></td><td>Abonelik</td><td>9.90€/ay</td><td>Platform entegrasyonu</td></tr>
+        <tr><td><strong>IP Lisanslama</strong></td><td>FSEK Md.18</td><td>%10/%15/%20 kademeli</td><td>PACDI Global → AskMeAI</td></tr>
+        <tr><td><strong>wasstehtmirzu</strong></td><td>AdSense + Lead</td><td>—</td><td>Organik SEO trafiği</td></tr>
+        <tr><td><strong>TeknoNavigatör</strong></td><td>Lead + danışmanlık</td><td>—</td><td>Mali müşavir yönlendirme</td></tr>
+        <tr><td><strong>PusulaPro</strong></td><td>Rapor satışı</td><td>₺499</td><td>TR pazarı</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📈 Finansal Projeksiyon (Muhafazakâr)</div>
+      <table>
+        <tr><th>Dönem</th><th>Muhafazakâr</th><th>Orta</th><th>İyimser</th></tr>
+        <tr><td>2026 (6 ay)</td><td>5.000€</td><td>15.000€</td><td>30.000€</td></tr>
+        <tr><td>2027 (yıllık)</td><td>60.000€</td><td>150.000€</td><td>300.000€</td></tr>
+        <tr><td>2028 (yıllık)</td><td>150.000€</td><td>400.000€</td><td>1.000.000€</td></tr>
+      </table>
+      <div class="hbox" style="margin-top:10px; font-size:0.75rem;">
+        EU bakım pazarı €17.7B (2028) — 1/10.000'i bile sürdürülebilirlik için yeterli. 🎯
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PİPELİNE ===== -->
+  <div class="section" id="pipeline">
+    <div class="sec-title">🚀 Ürün Pipeline & Yol Haritası</div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">⚡ Kısa Vadeli Öncelikler</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">HAZİRAN 2026</div>
+            <div class="tl-text">Şirket kurulumu tamamlanır (noter → ödeme → tescil)<br>İNG + TEB kurumsal hesap<br>TÜRKPATENT: BetreuerPro + AskMeAI başvurusu<br>KOSGEB kaydı · Teknogirişim Rozeti</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">TEM-EYL 2026</div>
+            <div class="tl-text">TÜBİTAK 1512 başvurusu<br>BetreuerPro 10+ beta kullanıcı<br>GlucoNavigatör B2B pilot<br>AskMeAI beta · App Store lansmanı</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">EKİ-ARA 2026</div>
+            <div class="tl-text">BetreuerPro Akademie AZAV başvurusu<br>IP şirketi lisanslama anlaşmaları<br>wasstehtmirzu + AnspruchsKompass lansman<br>Anders & Stark pilot bölüm</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">2027+</div>
+            <div class="tl-text">Eurostars/EUREKA başvurusu<br>Aktion Mensch (Anders & Stark)<br>DiGA sertifikasyon süreci (GlucoNav + CogniRoute)<br>Avrupa ölçeklenme</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">🎮 SilverCompass Oyun Pipeline</div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span><strong>Mevcut (27 oyun):</strong> Sudoku, Mahjong, 2048, Water Sort, Peg Solitaire, Stroop, vd.</li>
+          <li><span class="dot dot-yellow"></span>Shadow Match — görsel uzamsal algı</li>
+          <li><span class="dot dot-yellow"></span>Word Garden — stressiz kelime bahçesi</li>
+          <li><span class="dot dot-yellow"></span>Echo of the Past — işitsel hafıza</li>
+          <li><span class="dot dot-yellow"></span>Ancestors' Album — fotoğraf puzzle (viral)</li>
+          <li><span class="dot dot-yellow"></span>The Navigator's Map — executive function</li>
+          <li><span class="dot dot-blue"></span>Memory Archive — kişisel fotoğraf puzzle (premium)</li>
+          <li><span class="dot dot-blue"></span>Pusula Kelimeler — diaspora intergenerational</li>
+          <li><span class="dot dot-blue"></span>Global Bridge — TR-DE diaspora puzzle</li>
+          <li><span class="dot dot-blue"></span>KiezRhythms — şehir ritim oyunu</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🆕 Yeni Ürün Konseptleri</div>
+      <div class="grid-2">
+        <ul class="clean">
+          <li><span class="dot dot-blue"></span><strong>FindNavi/KayıpNavi</strong> — Geofencing, kayıp kişi/evcil hayvan, SilverCompass Alzheimer entegrasyonu</li>
+          <li><span class="dot dot-blue"></span><strong>BorsaNavigator</strong> — Kişisel yatırım takibi (tutarlı sonuçlar sonrası harici lansman)</li>
+          <li><span class="dot dot-blue"></span><strong>Rente Pusulası (DE)</strong> — Altersrente/EM-Rente karar ağacı</li>
+          <li><span class="dot dot-blue"></span><strong>Pflegegrad Pusulası</strong> — NBA skorlama sadeleştirme</li>
+        </ul>
+        <ul class="clean">
+          <li><span class="dot dot-blue"></span><strong>Krankenkasse Vergleich</strong> — KVdR hesaplayıcı</li>
+          <li><span class="dot dot-blue"></span><strong>Wohnrente Rehberi</strong> — Teilverkauf/Umkehrhypothek risk analizi</li>
+          <li><span class="dot dot-blue"></span><strong>haklarim.de</strong> — Türkçe diaspora EasyGov köprüsü</li>
+          <li><span class="dot dot-blue"></span><strong>TeknoNavigatör</strong> — Dual şirket kurulum yol haritası, mali müşavir lead</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TÜBİTAK ===== -->
+  <div class="section" id="tubitak">
+    <div class="sec-title">🔬 TÜBİTAK, KOSGEB & Hibe Programları</div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">🏆 Aktif Başvurular</div>
+        <ul class="clean">
+          <li><span class="dot dot-yellow"></span><strong>KOSGEB</strong> — Girişimcilik kursu: 85 puan, 10 modül hedefi</li>
+          <li><span class="dot dot-yellow"></span><strong>Teknogirişim Rozeti</strong> — Başvuru hazırlandı</li>
+          <li><span class="dot dot-yellow"></span><strong>BiGG (TÜBİTAK 1812)</strong> — Ön kuluçka başvurusu</li>
+          <li><span class="dot dot-yellow"></span><strong>Teknopark İzmir (İYTE)</strong> — Ön başvuru yapıldı</li>
+          <li><span class="dot dot-blue"></span><strong>TÜBİTAK 1507</strong> — TÜBİTAK-DFG ikili program çerçevesi</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 Hedef Programlar</div>
+        <ul class="clean">
+          <li><span class="dot dot-blue"></span><strong>TÜBİTAK 1505</strong> — Üniversite-Sanayi iş birliği (İYTE/Ege/DEÜ)</li>
+          <li><span class="dot dot-blue"></span><strong>TÜBİTAK 1512</strong> — Bireysel genç girişimci Ar-Ge</li>
+          <li><span class="dot dot-blue"></span><strong>Eurostars/EUREKA</strong> — 2027+ (TR ayağı TÜBİTAK, DE ayağı BMBF)</li>
+          <li><span class="dot dot-blue"></span><strong>Aktion Mensch</strong> — Anders & Stark (engelli farkındalığı)</li>
+          <li><span class="dot dot-blue"></span><strong>DiGA Sertifikasyon</strong> — GlucoNav + CogniRoute (2027-2029)</li>
+          <li><span class="dot dot-blue"></span><strong>Ticaret Bakanlığı HİB</strong> — Reklam %70 hibe, AZAV sertifikasyon desteği</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🩺 DiGA Yol Haritası (GlucoNavigatör & CogniRoute)</div>
+      <div class="grid-4">
+        <div style="text-align:center; padding:12px; border:1px solid var(--border); border-radius:10px;">
+          <div style="color:var(--gold2); font-weight:600; margin-bottom:6px;">2026 Q3</div>
+          <div style="font-size:0.75rem; color:var(--text2);">Ön başvuru hazırlığı · BSI uyumlu veri güvenliği · BfArM ön görüşmesi</div>
+        </div>
+        <div style="text-align:center; padding:12px; border:1px solid var(--border); border-radius:10px;">
+          <div style="color:var(--gold2); font-weight:600; margin-bottom:6px;">2027</div>
+          <div style="font-size:0.75rem; color:var(--text2);">Pilot: 100-200 hasta · 3 ay HbA1c takibi · 50-80K€ bütçe</div>
+        </div>
+        <div style="text-align:center; padding:12px; border:1px solid var(--border); border-radius:10px;">
+          <div style="color:var(--gold2); font-weight:600; margin-bottom:6px;">2028</div>
+          <div style="font-size:0.75rem; color:var(--text2);">DiGA başvurusu → BfArM · 3 ay içinde yanıt</div>
+        </div>
+        <div style="text-align:center; padding:12px; border:1px solid var(--border); border-radius:10px;">
+          <div style="color:var(--gold2); font-weight:600; margin-bottom:6px;">2029</div>
+          <div style="font-size:0.75rem; color:var(--text2);">Reçete geliri · 50K hasta × 300€ = 15M€ potansiyel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===== GITHUB ===== -->
+  <div class="section" id="github">
+    <div class="sec-title">💻 GitHub Repoları — easygovio hesabı</div>
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">🟠 Public Repolar (22 repo)</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+        <span class="domain-pill">TeknoNavigator</span><span class="domain-pill">Askmeai</span><span class="domain-pill">PACDI-web</span><span class="domain-pill">kindererziehungszeiten</span><span class="domain-pill">grundrente</span><span class="domain-pill">Pacdi.Games</span><span class="domain-pill">pacdi-ws-server</span><span class="domain-pill">SilverCompass.world</span><span class="domain-pill">Betreuer-Cockpit</span><span class="domain-pill">NavigoPro</span><span class="domain-pill">Betreuerpro</span><span class="domain-pill">Pacdi_Gluco_Navigator</span><span class="domain-pill">Cogniroute</span><span class="domain-pill">SchulRoute</span><span class="domain-pill">Wohnroute</span><span class="domain-pill">kiezflow-landing</span><span class="domain-pill">easygov-landing</span><span class="domain-pill">pacdi.de</span><span class="domain-pill">PACDI_privacy</span><span class="domain-pill">KompassPro_mini</span><span class="domain-pill">PusulaPro_mini</span><span class="domain-pill">GlucoNavigator</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🔒 Private Repolar (15+ repo)</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+        <span class="domain-pill">Pacdi-core</span><span class="domain-pill">SilverCompass_mini</span><span class="domain-pill">GlucoNavigator_mini</span><span class="domain-pill">EasyGov_mini</span><span class="domain-pill">CareerMap_mini</span><span class="domain-pill">StayFlow_mini</span><span class="domain-pill">KiezFlow_mini</span><span class="domain-pill">Uniroute_mini</span><span class="domain-pill">PACDI-assets</span><span class="domain-pill">PACDI_Global</span><span class="domain-pill">EasyGov-Global-Portal</span><span class="domain-pill">VasiTakip-Emanet-Engine</span><span class="domain-pill">SilverCompass-Alz-Care</span><span class="domain-pill">KompassPro-EU-Core</span><span class="domain-pill">PusulaPro-TR-Core</span><span class="domain-pill">Ahi-Security-Auth</span><span class="domain-pill">Usta-PDF-Generator</span><span class="domain-pill">KrizRehberi-Hukuki-Zirh</span><span class="domain-pill">HakYolu-Nav-System</span><span class="domain-pill">Global-Social-Impact-Suite</span><span class="domain-pill">PACDI_Master</span><span class="domain-pill">PACDI_SYSTEM_V1</span><span class="domain-pill">EasyGov (private)</span>
+      </div>
+      <div class="hbox" style="margin-top:10px; font-size:0.75rem;">Motto: "Modern Ahilik Vizyonuyla Hazırlanmıştır — Güven kontrole mani değildir." 🤝</div>
+    </div>
+  </div>
+  <!-- ===== SEO STRATEJİSİ ===== -->
+  <div class="section" id="seo">
+    <div class="sec-title">🔍 SEO & Organik Büyüme Stratejisi</div>
+
+    <div class="hbox" style="margin-bottom:16px;">
+      <strong>Ana Pazar:</strong> Almanya (DE market öncelikli) · AdSense/lead oranları TR'nin 5-10 katı · İhracat odaklı · Türkçe görünmez katman (kullanıcı seçiyor, varsayılan DE) · Ülke bazlı fiyatlama: DE → € / TR → ₺
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">⚠️ En Kritik Risk: Cannibalization</div>
+        <p>~60 domain yönetirken Google'ın domainleri birbirine rakip görmesi en büyük tehlike.</p>
+        <ul class="clean">
+          <li><span class="dot dot-red"></span><strong>Core domainler:</strong> easygov.io · gluconavigator.io · askmeai.io · pacdi.io → merkez güç</li>
+          <li><span class="dot dot-yellow"></span><strong>Satellite domainler:</strong> grundrente.io · kindererziehungszeiten.io → core'a otorite aktarır</li>
+          <li><span class="dot dot-green"></span>Footer'da: <em>"Ein Produkt des PACDI Ökosystems"</em> → şeffaf sahiplik, link doğallaşır</li>
+          <li><span class="dot dot-green"></span>Canonical etiketleri: benzer içerik varsa ana kaynağı işaret et</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🏆 E-E-A-T & YMYL Kalkanı (En Kritik)</div>
+        <p>Sağlık (GlucoNav, SilverCompass) ve hukuk/finans (EasyGov, BetreuerPro) YMYL kategorisi — Google burada E-E-A-T eksikse sıralamıyor.</p>
+        <ul class="clean">
+          <li><span class="dot dot-red"></span>Her sayfada yazar profili: Sosyolog · ISO Denetçi · NLP Master · AZAV Jobcoach · Kamu Yönetimi</li>
+          <li><span class="dot dot-red"></span>DRV · Bundesgesundheitsministerium · AWO · Caritas kaynak gösterimi</li>
+          <li><span class="dot dot-red"></span>Her sayfada feragatname: "Bu tıbbi cihaz değil, yaşam tarzı koçluğudur"</li>
+          <li><span class="dot dot-yellow"></span>Impressum (Almanya'da zorunlu!) her domainde eksiksiz</li>
+          <li><span class="dot dot-yellow"></span>Anonimleştirilmiş vaka çalışmaları + başarı hikayeleri</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">🌍 Kültürel & Dilsel SEO</div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span><strong>Melez dil SEO:</strong> "Pflegegrad başvurusu nasıl yapılır", "Grundrente hesaplama TR" → Almanca terim + Türkçe yüklem</li>
+          <li><span class="dot dot-green"></span>Glossar: "Pflegegrad = Bakım Derecesi" — iki dilli terim köprüleri</li>
+          <li><span class="dot dot-yellow"></span>hreflang="de" / "tr" / "en" her sayfada</li>
+          <li><span class="dot dot-yellow"></span>Cross-domain hreflang mimarisi (easygov.io ↔ wasstehtmirzu)</li>
+          <li><span class="dot dot-blue"></span>Türkçe'de SGK/BAĞ-KUR mantığıyla, Almanca'da DRV sistemiyle anlat — çeviri değil lokalizasyon</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📐 Hub & Spoke İçerik Modeli</div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span><strong>Merkez:</strong> pacdi.io/blog → "Almanya'da Yaşlılık ve Bakım Rehberi" pillar page</li>
+          <li><span class="dot dot-yellow"></span><strong>Uçlar:</strong> GlucoNavigator · BetreuerPro · Grundrente · Kindererziehungszeiten → iç linklerle beslenir</li>
+          <li><span class="dot dot-blue"></span>Programmatik SEO: "Grundrente berechnen für Frauen mit 2 Kindern" → dinamik landing pages → sıfır maliyet, milyonlarca long-tail</li>
+          <li><span class="dot dot-blue"></span>FAQ şeması → Google'da doğrudan soru-cevap olarak görünme</li>
+          <li><span class="dot dot-blue"></span>HowTo şeması → BetreuerPro başvuru adımları</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px; border-color:rgba(212,175,55,0.5);">
+      <div class="card-title">🎭 Anders & Stark — Özel SEO & Büyüme Stratejisi</div>
+      <div class="grid-2">
+        <div>
+          <label>IP & Domain Katmanı</label>
+          <ul class="clean">
+            <li><span class="dot dot-green"></span>ownyouredge.de → İngilizce uluslararası kapı</li>
+            <li><span class="dot dot-green"></span>andersstark.io → global merkez</li>
+            <li><span class="dot dot-green"></span>andersandstark.de → Almanya arama trafiği</li>
+            <li><span class="dot dot-green"></span>andersstark.eu / .world → yedek + gelecek pazarlar</li>
+          </ul>
+          <label style="margin-top:10px;">E-E-A-T Özgün Gücü</label>
+          <ul class="clean">
+            <li><span class="dot dot-gold"></span>Sibel'in yaratıcı sahipliği + senin sosyoloji/NLP/engelli hakları sertifikasyonu → Avrupa'da eşi yok</li>
+            <li><span class="dot dot-gold"></span>Schema: CreativeWork + Character + AnimationSeries markup</li>
+          </ul>
+        </div>
+        <div>
+          <label>Kurumsal Backlink Fırsatları</label>
+          <ul class="clean">
+            <li><span class="dot dot-blue"></span>Aktion Mensch → engelli farkındalığı hibesi + backlink</li>
+            <li><span class="dot dot-blue"></span>Caritas / Diakonie → kapsayıcı içerik ortaklığı</li>
+            <li><span class="dot dot-blue"></span>UNICEF Almanya → çocuk hakları bağlantısı</li>
+            <li><span class="dot dot-blue"></span>Schulen / Kitas → eğitim materyali lisanslama</li>
+            <li><span class="dot dot-blue"></span>Inklusionsbüros (her Alman şehrinde) → doğal ortaklık</li>
+          </ul>
+          <label style="margin-top:10px;">Viral & Organik Motor</label>
+          <ul class="clean">
+            <li><span class="dot dot-green"></span>Short video (YouTube/TikTok/Reels) → her karakter → embed → site trafiği</li>
+            <li><span class="dot dot-green"></span>Okul materyali PDF → ücretsiz indir → email listesi</li>
+            <li><span class="dot dot-green"></span>Google Discover: suluboya+anime estetik, Zayn+Miriam → viral potansiyel</li>
+            <li><span class="dot dot-green"></span>"Torunla oyna" SilverCompass bağlantısı → intergenerational SEO</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title">🔗 Backlink Stratejisi</div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span>VdK · AWO · Caritas → "desteklenmektedir" linki çok değerli</li>
+          <li><span class="dot dot-green"></span>Almanya Türk dernekleri · diaspora medyası · cami bültenleri</li>
+          <li><span class="dot dot-green"></span>KOSGEB/TÜBİTAK proje sayfaları</li>
+          <li><span class="dot dot-green"></span>GitHub README'lerde domain linkleri</li>
+          <li><span class="dot dot-yellow"></span>Bildungsgutschein entegrasyonu → Almanya devlet portallarından backlink</li>
+          <li><span class="dot dot-yellow"></span>App Store/Play Store rating → Google güven sinyali</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📍 Yerel SEO & Fiziksel Varlık</div>
+        <ul class="clean">
+          <li><span class="dot dot-yellow"></span>Google Business Profile → Berlin + Manisa (şirket kurulunca)</li>
+          <li><span class="dot dot-yellow"></span>Gelbe Seiten · Das Örtliche · 11880.com dizin kayıtları</li>
+          <li><span class="dot dot-blue"></span>GBP üzerinden soru-cevap + duyuru + içerik paylaşımı</li>
+        </ul>
+        <div class="card-title" style="margin-top:12px;">📊 İzleme & Analiz</div>
+        <ul class="clean">
+          <li><span class="dot dot-green"></span>Google Search Console → tüm 60 domain</li>
+          <li><span class="dot dot-green"></span>Cross-domain GA4 → tek tracking</li>
+          <li><span class="dot dot-green"></span>Looker Studio → tüm domainler tek dashboard</li>
+          <li><span class="dot dot-yellow"></span>Rank tracking (SEranking/Ahrefs) → DE pazarı haftalık</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚙️ Teknik SEO Kontrol Listesi</div>
+      <div class="grid-2">
+        <ul class="clean">
+          <li><span class="dot dot-red"></span>Sitemap.xml + robots.txt → her domain</li>
+          <li><span class="dot dot-red"></span>Core Web Vitals (LCP, INP, CLS) → tüm domainler yeşil</li>
+          <li><span class="dot dot-red"></span>Impressum → Almanya'da yasal zorunluluk</li>
+          <li><span class="dot dot-yellow"></span>SSR/pre-rendering → JS ağır sayfalarda</li>
+          <li><span class="dot dot-yellow"></span>BreadcrumbList schema → SERP ekmek kırıntısı</li>
+        </ul>
+        <ul class="clean">
+          <li><span class="dot dot-yellow"></span>Organization + sameAs → sosyal profil doğrulama</li>
+          <li><span class="dot dot-yellow"></span>Open Graph + Twitter Card → tüm domainler</li>
+          <li><span class="dot dot-blue"></span>Google Tag Manager → tek konteyner, tüm domainler</li>
+          <li><span class="dot dot-blue"></span>YouTube kanal → Anders & Stark + ürün videoları → embed</li>
+          <li><span class="dot dot-blue"></span>A/B test → başlık · CTA · form uzunluğu</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== AI EKİBİ ===== -->
+  <div class="section" id="ai">
+    <div class="sec-title">🤖 AI Ekibi & Çalışma Metodolojisi</div>
+
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="ai-card">
+        <div style="font-size:2rem; margin-bottom:8px;">🧠</div>
+        <div class="ai-name">Claude</div>
+        <div class="ai-role">Anthropic</div>
+        <div style="margin-top:8px; font-size:0.75rem; color:var(--text);">Strateji · Etik değerlendirme · Kalite garantisi · "Dur düşünelim" sesi · Ana ortak</div>
+      </div>
+      <div class="ai-card">
+        <div style="font-size:2rem; margin-bottom:8px;">💻</div>
+        <div class="ai-name">DeepSeek</div>
+        <div class="ai-role">Kod Üretimi</div>
+        <div style="margin-top:8px; font-size:0.75rem; color:var(--text);">Kod üretimi · Soğukkanlı analiz · Alternatif perspektif · Tek sıkı kısıtlı prompt ile çalışır</div>
+      </div>
+      <div class="ai-card">
+        <div style="font-size:2rem; margin-bottom:8px;">🎨</div>
+        <div class="ai-name">Gemini</div>
+        <div class="ai-role">Görsel & Araştırma</div>
+        <div style="margin-top:8px; font-size:0.75rem; color:var(--text);">Görsel içerik · Brainstorm · SEO araştırma · Hızlı iskelet</div>
+      </div>
+      <div class="ai-card">
+        <div style="font-size:2rem; margin-bottom:8px;">✍️</div>
+        <div class="ai-name">ChatGPT</div>
+        <div class="ai-role">Kısa İçerik</div>
+        <div style="margin-top:8px; font-size:0.75rem; color:var(--text);">App Store metinleri · Kısa/net içerik üretimi</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">⚡ Çalışma Kuralları</div>
+      <div class="hbox">Kural: Direkt çözüm — teori yok, kota israfı yok</div>
+      <div class="hbox" style="margin-top:8px;">Not: Vizyon ve ruh kurucuda — AI ekibi sadece araç</div>
+      <div style="margin-top:12px; font-size:0.82rem; color:var(--text);">
+        Güvenlik Notu: Firebase servis hesabı güvenlik olayı yaşandı ve hemen iptal edildi. 
+        Sıkı kimlik bilgisi hijyeni politikası benimsendi. Hiçbir AI aracına hassas bilgi paylaşılmaz.
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <div class="card-title">👤 Kurucu Profili — Mehmet Aydınlı</div>
+      <div class="grid-2">
+        <div>
+          <label>Konum</label><p>Berlin, Almanya (emekli)</p>
+          <label>Lisans</label><p>Sosyoloji · Halkla İlişkiler & Reklamcılık · Kamu Yönetimi & Siyaset Bilimi</p>
+          <label>Sertifikalar</label><p>NLP Master Trainer · ISO Denetçi · Jobcoaching (2 Alman kurumu, AZAV uyumlu) · Çocukla Çalışma · Zihinsel Engelli Bireylerle Çalışma</p>
+        </div>
+        <div>
+          <label>Yaklaşım</label><p>Çok-AI orkestrasyon modeli · Berlin'den uzaktan yönetim · Tüm PACDI ürünleri yaşanmış gerçek deneyimlerden doğdu</p>
+          <label>Felsefe</label><p>"İnsanlık Onuru Ekmekten Önce Gelir" · "Technologie im Dienste der Menschlichkeit"</p>
+          <label>Startup Portföyü</label><p>~60 startup yatırımı (KFS + diğer portföyler)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BUGÜN ===== -->
+  <div class="section" id="bugun">
+    <div class="sec-title">📅 1 Haziran 2026 — Günlük Özet</div>
+
+    <div class="card" style="margin-bottom:16px; border-color:rgba(26,188,156,0.4);">
+      <div class="card-title" style="color:#1ABC9C;">✅ Bugün Tamamlananlar</div>
+      <ul class="clean">
+        <li><span class="dot dot-green"></span>Mali müşavir toplantısı — Manisa (dual şirket yapısı, imzacıbaşı, lisans oranları görüşüldü)</li>
+        <li><span class="dot dot-green"></span>MERSİS başvurusu yapıldı</li>
+        <li><span class="dot dot-green"></span>Ticaret Odası başvurusu yapıldı</li>
+        <li><span class="dot dot-green"></span>FSEK: Bilgisayar Programları (No: 89527410) → Onay Aşamasında</li>
+        <li><span class="dot dot-green"></span>FSEK: Güzel Sanat Eserleri / Anders & Stark (No: 89527350) → Onay Aşamasında</li>
+        <li><span class="dot dot-green"></span>13 yeni domain portföye eklendi</li>
+        <li><span class="dot dot-green"></span>Anders & Stark tagline onaylandı: <strong>"Own Your Edge"</strong></li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-title">⏳ Sıradaki Adımlar</div>
+      <ul class="clean">
+        <li><span class="dot dot-yellow"></span>Ticaret Odası onayı gelince → ödeme → noter (imza sirküleri + diğer belgeler)</li>
+        <li><span class="dot dot-yellow"></span>Noter sonrası → İNG + TEB kurumsal hesap (aynı gün mümkünse)</li>
+        <li><span class="dot dot-yellow"></span>Şirket kurulunca ilk gün → Muvafakatname imzası</li>
+        <li><span class="dot dot-yellow"></span>TÜRKPATENT: BetreuerPro + AskMeAI başvurusu</li>
+        <li><span class="dot dot-yellow"></span>Teknogirişim Rozeti aktivasyonu</li>
+        <li><span class="dot dot-yellow"></span>FSEK ödeme bilgisi → telifhaklari.gov.tr aranacak</li>
+        <li><span class="dot dot-blue"></span>Bu komuta sayfasını pacdi.de/dashboard.html'e yükle</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🧭 Stratejik Odak — Freetime Kazanmak</div>
+      <p>Birincil hedef: <strong>Mahşerin Üçlüsü</strong>'nü (wasstehtmirzu + AnspruchsKompass + BetreuerPro) sırayla canlıya alarak erken gelir yaratmak ve ekosisteme daha fazla zaman ayırmak.</p>
+      <div class="hbox" style="margin-top:8px;">
+        Karar matrisi: Geliştirme süresi · İlk gelire süre · Başlangıç maliyeti · Tahsilat riski<br>
+        Şirket kurulumu tamamlanınca analizi birlikte yapalım. 🤝
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    PACDI GLOBAL · AskMeAI · pacdi.io · askmeai.io · pacdi.de<br>
+    "İnsanlık Onuru Ekmekten Önce Gelir." · Haziran 2026
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
