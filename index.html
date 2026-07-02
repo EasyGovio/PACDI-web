@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PACDI Global | Social Tech Berlin</title>
-  <meta name="description" content="PACDI Global — Technologie im Dienste der Menschlichkeit. Berlin." />
+  <title>PACDI — Kognitive Gesundheit & Gehirntraining</title>
+  <meta name="description" content="PACDI vereint digitale Werkzeuge für kognitive Gesundheit, würdevolles Altern und mentales Training. Berlin." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pacdi.de/" />
+  <meta property="og:title" content="PACDI — Kognitive Gesundheit & Gehirntraining" />
+  <meta property="og:description" content="Digitale Werkzeuge für kognitive Gesundheit, würdevolles Altern und mentales Training. Berlin." />
+  <meta property="og:image" content="https://pacdi.de/og-image.jpg" />
+  <meta property="og:locale" content="de_DE" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PACDI — Kognitive Gesundheit & Gehirntraining" />
+  <meta name="twitter:description" content="Digitale Werkzeuge für kognitive Gesundheit, würdevolles Altern und mentales Training." />
+  <meta name="twitter:image" content="https://pacdi.de/og-image.jpg" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap');
   </style>
@@ -445,53 +455,81 @@
 
 
   <nav>
-    <a href="#" class="nav-logo">PACDI Global</a>
-    <div class="lang-switch">
-      <button onclick="setLang('de')" id="btn-de" class="active">DE</button>
-      <button onclick="setLang('en')" id="btn-en">EN</button>
-      <button onclick="setLang('tr')" id="btn-tr">TR</button>
-    </div>
+    <a href="#" class="nav-logo">PACDI</a>
   </nav>
 
   <section class="hero" style="background:#04162E !important;">
     <div class="hero-glow g1"></div>
     <div class="hero-glow g2"></div>
-    <span class="hero-badge">Berlin · Frankfurt · Europa</span>
-    <h1 class="hero-title">PACDI<br><span>GLOBAL</span></h1>
-    <p class="hero-manifesto" id="txt-manifesto">"İnsan, ekmekten fazlasına layıktır."</p>
-    <p class="hero-desc" id="txt-desc">PACDI Global, yapay zekayı sosyal bir pusulaya dönüştürür. Dijital dünyadan gerçek hayata köprüler kuruyoruz.</p>
+    <span class="hero-badge">Berlin · Kognitive Gesundheit</span>
+    <h1 class="hero-title">PACDI<br><span>GESUNDHEIT</span></h1>
+    <p class="hero-manifesto">"Der Mensch verdient mehr als nur Brot."</p>
+    <p class="hero-desc">PACDI vereint digitale Werkzeuge für kognitive Gesundheit, würdevolles Altern und mentales Training — von der täglichen Übung bis zur Unterstützung im Alltag.</p>
   </section>
 
   <div class="quote-strip" style="background:#061828;">
-    <p id="txt-quote">"Pusulası olan <em>kaybolmaz.</em>"</p>
+    <p>"Ein wacher Geist ist der sicherste Hafen."</p>
   </div>
 
   <section class="section" id="apps" style="background:#04162E;">
-    <p class="section-label reveal" id="txt-apps-label">Ürünler & Ekosistem</p>
-    <h2 class="section-title reveal" id="txt-apps-title">Navigasyon araçları.</h2>
-    <p class="section-sub reveal" id="txt-apps-sub">"Doğru yolu bulmak, herkesin hakkıdır."</p>
-    <div class="app-grid" id="app-container"></div>
+    <p class="section-label reveal">Unsere Werkzeuge</p>
+    <h2 class="section-title reveal">Für einen wachen Geist.</h2>
+    <p class="section-sub reveal">"Kognitive Gesundheit ist ein Recht — in jedem Alter."</p>
+    <div class="app-grid" id="app-container">
+      <a href="https://gluconavigator.io" target="_blank" rel="noopener" style="text-decoration:none; display:block; color:inherit;">
+        <div class="app-card">
+          <span class="app-badge">Gesundheit</span>
+          <h3 class="app-name">GlucoNavigator</h3>
+          <p class="app-desc">KI-gestützte Glukose-Navigation für ein bewussteres Leben mit Diabetes.</p>
+          <p class="app-quote">"Beyond Sensing, Into Living."</p>
+        </div>
+      </a>
+      <a href="https://silvercompass.world" target="_blank" rel="noopener" style="text-decoration:none; display:block; color:inherit;">
+        <div class="app-card">
+          <span class="app-badge">Senioren</span>
+          <h3 class="app-name">SilverCompass</h3>
+          <p class="app-desc">Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.</p>
+          <p class="app-quote">"Würdevoll älter werden."</p>
+        </div>
+      </a>
+      <a href="https://cogniroute.de" target="_blank" rel="noopener" style="text-decoration:none; display:block; color:inherit;">
+        <div class="app-card">
+          <span class="app-badge">Kognition</span>
+          <h3 class="app-name">CogniRoute</h3>
+          <p class="app-desc">Kognitive Navigationsunterstützung für ältere Menschen und pflegende Angehörige.</p>
+          <p class="app-quote">"Die Route des Geistes, der Hafen des Vertrauens."</p>
+        </div>
+      </a>
+      <a href="https://pacdi.games" target="_blank" rel="noopener" style="text-decoration:none; display:block; color:inherit;">
+        <div class="app-card">
+          <span class="app-badge">Gehirnjogging</span>
+          <h3 class="app-name">PACDI Games</h3>
+          <p class="app-desc">Spielerisches Gehirntraining — Gedächtnis, Reflexe, Logik und visuelle Wahrnehmung.</p>
+          <p class="app-quote">"Wo Training Freude macht."</p>
+        </div>
+      </a>
+    </div>
   </section>
 
   <div class="vision-section" style="background:#071e35;">
     <div class="vision-grid">
       <div>
-        <p class="section-label reveal">Vizyon</p>
-        <h2 class="section-title reveal" id="txt-vision-title">İnsanlık onuruna<br>hizmet eden teknoloji.</h2>
-        <p class="vision-text reveal" id="txt-vision-desc">PACDI Global, bireyleri eksikleriyle değil güçleriyle görür. Her ürün, bir navigasyon aracıdır — kariyer, sağlık, bürokrasi veya mahalle dayanışması fark etmez.</p>
+        <p class="section-label reveal">Vision</p>
+        <h2 class="section-title reveal">Technologie im Dienste<br>der Menschlichkeit.</h2>
+        <p class="vision-text reveal">PACDI sieht den Menschen durch seine Stärken, nicht seine Defizite. Jedes Werkzeug unterstützt einen wachen, gesunden Geist — von der Früherkennung bis zum täglichen Training.</p>
       </div>
       <div class="vision-pillars reveal">
         <div class="pillar">
-          <p class="pillar-title" id="txt-p1-title">Hak</p>
-          <p class="pillar-text" id="txt-p1">"Doğru bilgiye erişmek, lüks değil — temel bir haktır."</p>
+          <p class="pillar-title">Recht</p>
+          <p class="pillar-text">"Zugang zu richtigen Informationen ist kein Luxus — es ist ein Grundrecht."</p>
         </div>
         <div class="pillar">
-          <p class="pillar-title" id="txt-p2-title">Dürüstlük</p>
-          <p class="pillar-text" id="txt-p2">"Hakkı hak edene teslim et — fırsatçılara değil."</p>
+          <p class="pillar-title">Integrität</p>
+          <p class="pillar-text">"Gib dem, der es verdient — nicht dem Opportunisten."</p>
         </div>
         <div class="pillar">
-          <p class="pillar-title" id="txt-p3-title">Navigasyon</p>
-          <p class="pillar-text" id="txt-p3">"Teknoloji insana hizmet eder — tersi değil."</p>
+          <p class="pillar-title">Navigation</p>
+          <p class="pillar-text">"Technologie dient dem Menschen — nicht umgekehrt."</p>
         </div>
       </div>
     </div>
@@ -499,8 +537,8 @@
 
   <footer style="background:#04162E;">
     <div>
-      <p class="footer-brand">PACDI Global</p>
-      <p class="footer-tagline" id="txt-footer-tagline">"Onur, en temel insan hakkıdır."</p>
+      <p class="footer-brand">PACDI</p>
+      <p class="footer-tagline">"Würde ist das grundlegendste Menschenrecht."</p>
       <p class="footer-copy">© 2026 PACDI Global — Berlin, Germany</p>
     </div>
     <div>
@@ -510,135 +548,11 @@
         <a href="privacy-tr.html">Gizlilik</a>
         <a href="mailto:info@pacdi.de">info@pacdi.de</a>
       </div>
-      <p class="footer-copy" style="margin-top:0.8rem;" id="txt-footer-note">Technologie im Dienste der Menschlichkeit.</p>
+      <p class="footer-copy" style="margin-top:0.8rem;">Technologie im Dienste der Menschlichkeit.</p>
     </div>
   </footer>
 
   <script>
-    var T = {
-      de: {
-        manifesto: '"Der Mensch verdient mehr als nur Brot."',
-        desc: 'PACDI Global verwandelt KI in einen sozialen Kompass. Wir bauen Brücken von der digitalen Welt in die reale Nachbarschaft.',
-        quote: '"Wer einen Kompass hat, <em>geht nicht verloren.</em>"',
-        appsLabel: 'Produkte & Ökosystem',
-        appsTitle: 'Navigations-werkzeuge.',
-        appsSub: '"Den richtigen Weg zu finden ist das Recht eines jeden Menschen."',
-        visionTitle: 'Technologie im Dienste<br>der Menschlichkeit.',
-        visionDesc: 'PACDI Global sieht den Menschen durch seine Stärken, nicht seine Defizite. Jedes Produkt ist ein Navigationsinstrument — ob Karriere, Gesundheit, Bürokratie oder Nachbarschaft.',
-        p1t: 'Recht',       p1: '"Zugang zu richtigen Informationen ist kein Luxus — es ist ein Grundrecht."',
-        p2t: 'Integrität',  p2: '"Gib dem, der es verdient — nicht dem Opportunisten."',
-        p3t: 'Navigation',  p3: '"Technologie dient dem Menschen — nicht umgekehrt."',
-        footerTagline: '"Würde ist das grundlegendste Menschenrecht."',
-        footerNote: 'Technologie im Dienste der Menschlichkeit.',
-        apps: [
-          { badge: 'Karriere',    name: 'PusulaPro',       url: '#',         desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
-          { badge: 'Karriere EU', name: 'KompassPro',      url: '#',         desc: 'RIASEC-basierte Berufsberatung für den europäischen Markt.',                          quote: '"Jeder Mensch verdient den richtigen Weg."' },
-          { badge: 'Bürokratie',  name: 'EasyGov.io',      url: 'https://easygov.io', desc: 'Bürokratische Prozesse einfach, würdevoll und mehrsprachig lösen.',                   quote: '"Das System soll dem Menschen dienen."' },
-          { badge: 'Gesundheit',  name: 'GlucoNavigator',  url: 'https://gluconavigator.io', desc: 'KI-gestützte Glukose-Navigation für ein bewussteres Leben mit Diabetes.',             quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Senioren',    name: 'SilverCompass',   url: 'https://silvercompass.world', desc: 'Kognitive Gesundheit und würdevolles Altern in der Gemeinschaft.',                    quote: '"Würdevoll älter werden."' },
-          { badge: 'Kiez',        name: 'Kiezflow',        url: 'https://kiezflow.de', desc: 'Digitale Nachbarschaftsplattform für Vertrauen und lokale Solidarität.',              quote: '"Vertrauen ist die Währung der Nachbarschaft."' },
-          { badge: 'Karriere EU', name: 'NavigoPro',       url: 'https://navigopro.de', desc: 'Trilinguales Karriere-Assessment — 6 Module, 90 Fragen für den europäischen Markt.', quote: '"Dein Weg beginnt mit Selbsterkenntnis."' },
-          { badge: 'Bildung',     name: 'SchulRoute',      url: 'https://schulroute.de', desc: 'Bildungsnavigation für Migranten — Schulwahl, Anmeldung und Sprachunterstützung.', quote: '"Bildungsweg leicht gemacht."' },
-          { badge: 'Wohnen',      name: 'WohnRoute',       url: 'https://wohnroute.de', desc: 'Wohnungssuche, Mietvertrag und Kaution-Rechte für Neuankömmlinge.',              quote: '"Ihr Zuhause. Ihr Weg."' },
-          { badge: 'Kognition',   name: 'CogniRoute',      url: 'https://cogniroute.de', desc: 'Kognitive Navigationsunterstützung für ältere Menschen und pflegende Angehörige.', quote: '"Die Route des Geistes, der Hafen des Vertrauens."' }
-        ]
-      },
-      tr: {
-        manifesto: '"İnsan, ekmekten fazlasına layıktır."',
-        desc: 'PACDI Global, yapay zekayı sosyal bir pusulaya dönüştürür. Dijital dünyadan gerçek hayata köprüler kuruyoruz.',
-        quote: '"Pusulası olan <em>kaybolmaz.</em>"',
-        appsLabel: 'Ürünler & Ekosistem',
-        appsTitle: 'Navigasyon araçları.',
-        appsSub: '"Doğru yolu bulmak, herkesin hakkıdır."',
-        visionTitle: 'İnsanlık onuruna<br>hizmet eden teknoloji.',
-        visionDesc: 'PACDI Global, bireyleri eksikleriyle değil güçleriyle görür. Her ürün, bir navigasyon aracıdır — kariyer, sağlık, bürokrasi veya mahalle dayanışması fark etmez.',
-        p1t: 'Hak',         p1: '"Doğru bilgiye erişmek, lüks değil — temel bir haktır."',
-        p2t: 'Dürüstlük',   p2: '"Hakkı hak edene teslim et — fırsatçılara değil."',
-        p3t: 'Navigasyon',  p3: '"Teknoloji insana hizmet eder — tersi değil."',
-        footerTagline: '"Onur, en temel insan hakkıdır."',
-        footerNote: 'İnsanlık onuruna hizmet eden teknoloji.',
-        apps: [
-          { badge: 'Kariyer',      name: 'PusulaPro',      url: '#',         desc: 'Mizaç temelli kariyer danışmanlığı ve yönlendirme platformu.',                        quote: '"Rotanı bilmek her şeyden önce gelir."' },
-          { badge: 'Kariyer EU',   name: 'KompassPro',     url: '#',         desc: 'Avrupa pazarı için RIASEC tabanlı kariyer rehberliği.',                               quote: '"Her insan doğru yolu hak eder."' },
-          { badge: 'Bürokrasi',    name: 'EasyGov.io',     url: 'https://easygov.io', desc: 'Bürokratik süreçleri basit, onurlu ve çok dilli çözen navigasyon aracı.',             quote: '"Sistem insana hizmet etmeli."' },
-          { badge: 'Sağlık',       name: 'GlucoNavigator', url: 'https://gluconavigator.io', desc: 'Diyabetle yaşayanlar için yapay zeka destekli glükoz navigasyon platformu.',         quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Yaşlı Bakım',  name: 'SilverCompass',  url: 'https://silvercompass.world', desc: 'Yaşlılar için bilişsel sağlık takibi ve onurlu yaşam desteği.',                      quote: '"Onurla yaşlanmak bir haktır."' },
-          { badge: 'Mahalle',      name: 'Kiezflow',       url: 'https://kiezflow.de', desc: 'Güven ve dayanışma üzerine kurulu dijital mahalle platformu.',                        quote: '"Güven, mahallenin para birimidir."' },
-          { badge: 'Kariyer EU',   name: 'NavigoPro',      url: 'https://navigopro.de', desc: 'Üç dilli kariyer değerlendirmesi — Avrupa pazarı için 6 modül, 90 soru.',        quote: '"Yolun özü kendini bilmekten geçer."' },
-          { badge: 'Eğitim',       name: 'SchulRoute',     url: 'https://schulroute.de', desc: 'Göçmenler için eğitim navigasyonu — okul seçimi, kayıt ve dil desteği.',        quote: '"Bildungsweg leicht gemacht."' },
-          { badge: 'Konut',        name: 'WohnRoute',      url: 'https://wohnroute.de', desc: 'Yeni gelenler için kiralık daire, sözleşme ve depozito hakları rehberi.',        quote: '"Ihr Zuhause. Ihr Weg."' },
-          { badge: 'Biliş',        name: 'CogniRoute',     url: 'https://cogniroute.de', desc: 'Yaşlılar ve bakıcılar için bilişsel navigasyon desteği.',                     quote: '"Zihnin Rotası, Güvenin Limanı."' }
-        ]
-      },
-      en: {
-        manifesto: '"The human being deserves more than bread alone."',
-        desc: 'PACDI Global transforms AI into a social compass. We build bridges from the digital world to real neighborhoods.',
-        quote: '"Those with a compass <em>never get lost.</em>"',
-        appsLabel: 'Products & Ecosystem',
-        appsTitle: 'Navigation tools.',
-        appsSub: '"Finding the right path is everyone\'s right."',
-        visionTitle: 'Technology in service<br>of human dignity.',
-        visionDesc: 'PACDI Global sees people through their strengths, not their deficits. Every product is a navigation tool — career, health, bureaucracy or neighborhood solidarity.',
-        p1t: 'Right',       p1: '"Access to the right information is not a luxury — it is a fundamental right."',
-        p2t: 'Integrity',   p2: '"Give to those who deserve it — not to opportunists."',
-        p3t: 'Navigation',  p3: '"Technology serves the human — not the other way around."',
-        footerTagline: '"Dignity is the most fundamental human right."',
-        footerNote: 'Technology in the service of humanity.',
-        apps: [
-          { badge: 'Career',      name: 'PusulaPro',       url: '#',         desc: 'Temperament-based career guidance platform for the Turkish market.',                  quote: '"Knowing your path comes first."' },
-          { badge: 'Career EU',   name: 'KompassPro',      url: '#',         desc: 'RIASEC-based career guidance for the European market.',                              quote: '"Every person deserves the right path."' },
-          { badge: 'Bureaucracy', name: 'EasyGov.io',      url: 'https://easygov.io', desc: 'Navigate bureaucratic processes simply, with dignity and multilingually.',           quote: '"The system should serve the people."' },
-          { badge: 'Health',      name: 'GlucoNavigator',  url: 'https://gluconavigator.io', desc: 'AI-powered glucose navigation platform for conscious diabetes management.',          quote: '"Beyond Sensing, Into Living."' },
-          { badge: 'Senior Care', name: 'SilverCompass',   url: 'https://silvercompass.world', desc: 'Cognitive health tracking and dignified aging support for seniors.',                 quote: '"Aging with dignity is a right."' },
-          { badge: 'Neighborhood',name: 'Kiezflow',        url: 'https://kiezflow.de', desc: 'Digital neighborhood platform built on trust and local solidarity.',                 quote: '"Trust is the currency of the neighborhood."' },
-          { badge: 'Career EU',   name: 'NavigoPro',       url: 'https://navigopro.de', desc: 'Trilingual career assessment — 6 modules, 90 questions for the European market.', quote: '"Your path begins with self-knowledge."' },
-          { badge: 'Education',   name: 'SchulRoute',      url: 'https://schulroute.de', desc: 'Education navigation for migrants — school selection, registration and language support.', quote: '"Bildungsweg leicht gemacht."' },
-          { badge: 'Housing',     name: 'WohnRoute',       url: 'https://wohnroute.de', desc: 'Apartment search, rental contract and deposit rights guide for newcomers.',         quote: '"Ihr Zuhause. Ihr Weg."' },
-          { badge: 'Cognition',   name: 'CogniRoute',      url: 'https://cogniroute.de', desc: 'Cognitive navigation support for seniors and caregivers.',                    quote: '"The Route of the Mind, the Harbor of Trust."' }
-        ]
-      }
-    };
-
-    function setLang(lang) {
-      var t = T[lang];
-      document.getElementById('txt-manifesto').innerText = t.manifesto;
-      document.getElementById('txt-desc').innerText = t.desc;
-      document.getElementById('txt-quote').innerHTML = t.quote;
-      document.getElementById('txt-apps-label').innerText = t.appsLabel;
-      document.getElementById('txt-apps-title').innerText = t.appsTitle;
-      document.getElementById('txt-apps-sub').innerText = t.appsSub;
-      document.getElementById('txt-vision-title').innerHTML = t.visionTitle;
-      document.getElementById('txt-vision-desc').innerText = t.visionDesc;
-      document.getElementById('txt-p1-title').innerText = t.p1t;
-      document.getElementById('txt-p1').innerText = t.p1;
-      document.getElementById('txt-p2-title').innerText = t.p2t;
-      document.getElementById('txt-p2').innerText = t.p2;
-      document.getElementById('txt-p3-title').innerText = t.p3t;
-      document.getElementById('txt-p3').innerText = t.p3;
-      document.getElementById('txt-footer-tagline').innerText = t.footerTagline;
-      document.getElementById('txt-footer-note').innerText = t.footerNote;
-
-      var container = document.getElementById('app-container');
-      container.innerHTML = '';
-      t.apps.forEach(function(app) {
-        var cardHtml = '<a href="' + app.url + '" target="_blank" rel="noopener" style="text-decoration:none; display:block; color:inherit;">' +
-          '<div class="app-card">' +
-            '<span class="app-badge">' + app.badge + '</span>' +
-            '<h3 class="app-name">' + app.name + '</h3>' +
-            '<p class="app-desc">' + app.desc + '</p>' +
-            '<p class="app-quote">' + app.quote + '</p>' +
-          '</div>' +
-        '</a>';
-        container.innerHTML += cardHtml;
-      });
-
-      var btns = document.querySelectorAll('.lang-switch button');
-      for (var i = 0; i < btns.length; i++) {
-        btns[i].classList.remove('active');
-      }
-      document.getElementById('btn-' + lang).classList.add('active');
-      document.documentElement.lang = lang;
-    }
 
     var reveals = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
@@ -653,8 +567,6 @@
       }, { threshold: 0.05 });
       reveals.forEach(function(el) { obs.observe(el); });
     }
-
-    setLang('de');
   </script>
 
 <div id="pacdi-fsek" style="clear:both;width:100%;flex-basis:100%;text-align:center;padding:28px 16px 20px;border-top:1px solid rgba(212,175,55,0.15);margin-top:32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
